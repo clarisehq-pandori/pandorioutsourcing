@@ -470,7 +470,9 @@ footer .logo.mark{width:28px}
 
 <script>
 (function(){
-  const ENDPOINT = 'https://formsubmit.co/ajax/clarise.hq@gmail.com';
+  const AUTO_CONTACT = 'Hello there!\n\nThis is Clarise, thank you for contacting Pandori Outsourcing. We have received your message and we\'ll get back to you as soon as possible. If the inquiry is more urgent, send an email to clarise@pandorioutsourcing.com with the subject line "URGENT."\n\nThank you and enjoy the rest of your day.\n\nBest,\nThe Pandori Team\n\n--\n𝗣𝗔𝗡𝗗𝗢𝗥𝗜 𝗚𝗟𝗢𝗕𝗔𝗟 𝗢𝗨𝗧𝗦𝗢𝗨𝗥𝗖𝗜𝗡𝗚 𝗦𝗢𝗟𝗨𝗧𝗜𝗢𝗡𝗦\nhttps://pandorioutsourcing.com/\n\n𝘐𝘔𝘗𝘖𝘙𝘛𝘈𝘕𝘛: 𝘛𝘩𝘦 𝘤𝘰𝘯𝘵𝘦𝘯𝘵𝘴 𝘰𝘧 𝘵𝘩𝘪𝘴 𝘦𝘮𝘢𝘪𝘭 𝘢𝘯𝘥 𝘢𝘯𝘺 𝘢𝘵𝘵𝘢𝘤𝘩𝘮𝘦𝘯𝘵𝘴 𝘢𝘳𝘦 𝘤𝘰𝘯𝘧𝘪𝘥𝘦𝘯𝘵𝘪𝘢𝘭. 𝘛𝘩𝘦𝘺 𝘢𝘳𝘦 𝘪𝘯𝘵𝘦𝘯𝘥𝘦𝘥 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘯𝘢𝘮𝘦𝘥 𝘳𝘦𝘤𝘪𝘱𝘪𝘦𝘯𝘵(𝘴) 𝘰𝘯𝘭𝘺. 𝘐𝘧 𝘺𝘰𝘶 𝘩𝘢𝘷𝘦 𝘳𝘦𝘤𝘦𝘪𝘷𝘦𝘥 𝘵𝘩𝘪𝘴 𝘦𝘮𝘢𝘪𝘭 𝘣𝘺 𝘮𝘪𝘴𝘵𝘢𝘬𝘦, 𝘱𝘭𝘦𝘢𝘴𝘦 𝘯𝘰𝘵𝘪𝘧𝘺 𝘵𝘩𝘦 𝘴𝘦𝘯𝘥𝘦𝘳 𝘪𝘮𝘮𝘦𝘥𝘪𝘢𝘵𝘦𝘭𝘺 𝘢𝘯𝘥 𝘥𝘰 𝘯𝘰𝘵 𝘥𝘪𝘴𝘤𝘭𝘰𝘴𝘦 𝘵𝘩𝘦 𝘤𝘰𝘯𝘵𝘦𝘯𝘵𝘴 𝘵𝘰 𝘢𝘯𝘺𝘰𝘯𝘦 𝘰𝘳 𝘮𝘢𝘬𝘦 𝘤𝘰𝘱𝘪𝘦𝘴 𝘵𝘩𝘦𝘳𝘦𝘰𝘧.';
+  const AUTO_APPLY = 'Hello there!\n\nThis is Clarise, thank you for your interest in joining Pandori Outsourcing. We have received your application and our team will review it carefully. If your experience is a fit for a current or upcoming client, we will contact you about next steps.\n\nWishing you the best of luck!\n\nBest,\nThe Pandori Team\n\n--\n𝗣𝗔𝗡𝗗𝗢𝗥𝗜 𝗚𝗟𝗢𝗕𝗔𝗟 𝗢𝗨𝗧𝗦𝗢𝗨𝗥𝗖𝗜𝗡𝗚 𝗦𝗢𝗟𝗨𝗧𝗜𝗢𝗡𝗦\nhttps://pandorioutsourcing.com/\n\n𝘐𝘔𝘗𝘖𝘙𝘛𝘈𝘕𝘛: 𝘛𝘩𝘦 𝘤𝘰𝘯𝘵𝘦𝘯𝘵𝘴 𝘰𝘧 𝘵𝘩𝘪𝘴 𝘦𝘮𝘢𝘪𝘭 𝘢𝘯𝘥 𝘢𝘯𝘺 𝘢𝘵𝘵𝘢𝘤𝘩𝘮𝘦𝘯𝘵𝘴 𝘢𝘳𝘦 𝘤𝘰𝘯𝘧𝘪𝘥𝘦𝘯𝘵𝘪𝘢𝘭. 𝘛𝘩𝘦𝘺 𝘢𝘳𝘦 𝘪𝘯𝘵𝘦𝘯𝘥𝘦𝘥 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘯𝘢𝘮𝘦𝘥 𝘳𝘦𝘤𝘪𝘱𝘪𝘦𝘯𝘵(𝘴) 𝘰𝘯𝘭𝘺. 𝘐𝘧 𝘺𝘰𝘶 𝘩𝘢𝘷𝘦 𝘳𝘦𝘤𝘦𝘪𝘷𝘦𝘥 𝘵𝘩𝘪𝘴 𝘦𝘮𝘢𝘪𝘭 𝘣𝘺 𝘮𝘪𝘴𝘵𝘢𝘬𝘦, 𝘱𝘭𝘦𝘢𝘴𝘦 𝘯𝘰𝘵𝘪𝘧𝘺 𝘵𝘩𝘦 𝘴𝘦𝘯𝘥𝘦𝘳 𝘪𝘮𝘮𝘦𝘥𝘪𝘢𝘵𝘦𝘭𝘺 𝘢𝘯𝘥 𝘥𝘰 𝘯𝘰𝘵 𝘥𝘪𝘴𝘤𝘭𝘰𝘴𝘦 𝘵𝘩𝘦 𝘤𝘰𝘯𝘵𝘦𝘯𝘵𝘴 𝘵𝘰 𝘢𝘯𝘺𝘰𝘯𝘦 𝘰𝘳 𝘮𝘢𝘬𝘦 𝘤𝘰𝘱𝘪𝘦𝘴 𝘵𝘩𝘦𝘳𝘦𝘰𝘧.';
+  const ENDPOINT = 'https://formsubmit.co/ajax/clarise@pandorioutsourcing.com';
   const views = [...document.querySelectorAll('[data-view]')];
   const links = [...document.querySelectorAll('nav a')];
   function route(){
@@ -529,27 +531,30 @@ footer .logo.mark{width:28px}
   async function send(form, box, subject, fields, thanks){
     const btn = form.querySelector('[type=submit]'), status = form.querySelector('[data-status]'), label = btn.textContent;
     status.textContent = ''; btn.disabled = true; btn.textContent = 'Sending…';
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 20000);
     try {
-      const r = await fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json', Accept:'application/json'},
+      const r = await fetch(ENDPOINT, {method:'POST', signal: ctl.signal, headers:{'Content-Type':'application/json', Accept:'application/json'},
         body: JSON.stringify(Object.assign({_subject: subject, _template: 'table', _captcha: 'false', _honey: form.querySelector('[name=_honey]').value}, fields))});
       const j = await r.json().catch(() => ({}));
-      if (!r.ok || String(j.success) === 'false') throw new Error('send failed');
+      if (!r.ok || String(j.success) === 'false') { const err = new Error('send failed'); err.detail = j.message || ''; throw err; }
       form.reset(); form.hidden = true; box.hidden = false;
       box.innerHTML = '<h3>Thanks, ' + esc(fields.Name.split(' ')[0]) + '!</h3><p>' + thanks + '</p><div class="actions"><button class="copy" type="button" data-a>Send another</button></div>';
       box.querySelector('[data-a]').onclick = () => { box.hidden = true; form.hidden = false; };
     } catch (e) {
-      status.textContent = 'We couldn\'t send this right now. Check your connection and try again in a moment.';
-    } finally { btn.disabled = false; btn.textContent = label; }
+      status.textContent = e.name === 'AbortError'
+        ? 'This is taking too long. Please try again in a minute.'
+        : 'We couldn\'t send this right now.' + (e.detail ? ' (' + e.detail + ')' : ' Check your connection and try again in a moment.');
+    } finally { clearTimeout(timer); btn.disabled = false; btn.textContent = label; }
   }
   const af = document.getElementById('apply-form');
   af.addEventListener('submit', e => { e.preventDefault(); if (!validate(af)) return; const d = Object.fromEntries(new FormData(af));
     send(af, document.getElementById('apply-done'), 'Pandori application: ' + d.role + ' – ' + d.name,
-      {Name: d.name, Email: d.email, Role: d.role, Portfolio: d.link || '–', 'How I use AI': d.ai, _replyto: d.email},
+      {Name: d.name, Email: d.email, Role: d.role, Portfolio: d.link || '–', 'How I use AI': d.ai, _replyto: d.email, _autoresponse: AUTO_APPLY},
       'Your application is in. We\'ll be in touch if there\'s a fit.'); });
   const cf = document.getElementById('contact-form');
   cf.addEventListener('submit', e => { e.preventDefault(); if (!validate(cf)) return; const d = Object.fromEntries(new FormData(cf));
     send(cf, document.getElementById('contact-done'), 'Pandori enquiry: ' + d.need + (d.company ? ' – ' + d.company : ''),
-      {Name: d.name, Company: d.company || '–', Email: d.email, 'Interested in': d.need, Message: d.message, _replyto: d.email},
+      {Name: d.name, Company: d.company || '–', Email: d.email, 'Interested in': d.need, Message: d.message, _replyto: d.email, _autoresponse: AUTO_CONTACT},
       'We\'ve received your message and will get back to you soon.'); });
 })();
 </script>
