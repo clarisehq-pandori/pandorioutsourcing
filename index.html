@@ -507,6 +507,8 @@ footer .logo.mark{width:28px}
     if (!views.some(v => v.dataset.view === target)) target = 'home';
     views.forEach(v => v.hidden = v.dataset.view !== target);
     links.forEach(a => a.getAttribute('href') === '#' + target ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
+    resetForm('apply-form', 'apply-done', h === 'applied');
+    resetForm('contact-form', 'contact-done', h === 'sent');
     if (h === 'applied') showApplied();
     if (h === 'sent') showSent();
     if (h === 'apply' || h === 'applied') document.getElementById('apply-wrap').scrollIntoView({behavior:'smooth'});
@@ -517,10 +519,15 @@ footer .logo.mark{width:28px}
     f.hidden = true; box.hidden = false;
     box.innerHTML = '<h3>Thank you, your application is in!</h3><p>We\'ve received your details and files. Check your inbox for a confirmation email. If your experience is a fit for a current or upcoming client, we\'ll contact you about next steps.</p><div class="actions"><a class="copy" href="#hiring">Back to open roles</a></div>';
   }
+  function resetForm(formId, boxId, keep){
+    if (keep) return;
+    const f = document.getElementById(formId), box = document.getElementById(boxId);
+    if (f.hidden) { f.reset(); f.hidden = false; box.hidden = true; const b = f.querySelector('[type=submit]'); b.disabled = false; b.textContent = formId === 'apply-form' ? 'Send application' : 'Send message'; }
+  }
   function showSent(){
     const f = document.getElementById('contact-form'), box = document.getElementById('contact-done');
     f.hidden = true; box.hidden = false;
-    box.innerHTML = '<h3>Thank you, your message is on its way!</h3><p>We\'ve received your enquiry and will get back to you as soon as possible. Check your inbox for a confirmation email.</p><div class="actions"><a class="copy" href="#home">Back to home</a></div>';
+    box.innerHTML = '<h3>Thank you, your message is on its way!</h3><p>We\'ve received your enquiry and will get back to you as soon as possible. Check your inbox for a confirmation email.</p><div class="actions"><a class="copy" href="#contact">Send another enquiry</a><a class="copy" href="#home">Back to home</a></div>';
   }
   addEventListener('hashchange', route); route();
 
