@@ -646,10 +646,13 @@ button#send{background:#202C44;color:#FFFFFF}
 
 <footer><div class="wrap">Pandori · Your team, multiplied.</div></footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-// ---- settings: paste your Google Apps Script web app URL here (see SETUP.md) ----
-const SUBMIT_URL = "";
-// -------------------------------------------------------------------
+// ---- settings ----
+// Answers go to this inbox through FormSubmit (the same service the website's contact form uses).
+const SEND_TO = "https://formsubmit.co/clarise@pandorioutsourcing.com";
+const THANKS_URL = "https://pandorioutsourcing.com/campaign-questionnaire/?sent=1";
+// -------------------
 (() => {
   const form = document.getElementById("qform"), bar = document.getElementById("bar"), pct = document.getElementById("pct"), err = document.getElementById("err");
   // progress: share of questions with any answer
@@ -719,7 +722,6 @@ const SUBMIT_URL = "";
     e.preventDefault(); err.textContent = "";
     const missing = [...form.querySelectorAll("[required]")].filter(el => !el.value.trim() || (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value)));
     if (missing.length){ err.textContent = "Please choose what the campaign is about, and fill in your name, a valid email and the name field."; missing[0].focus(); return; }
-    if (!SUBMIT_URL){ err.textContent = "This form isn't connected yet. Please contact Pandori directly."; return; }
     // build a readable copy of every answer, section by section, for the PDF
     const clean = t => (t || "").replace(/\(required\)/g, "").replace(/\s+/g, " ").trim();
     const sections = [...form.querySelectorAll("section")].filter(sec => !sec.closest("[hidden]")).map(sec => {
@@ -748,15 +750,64 @@ const SUBMIT_URL = "";
     };
     const btn = document.getElementById("send"); btn.disabled = true; btn.textContent = "Sending…";
     try {
-      // Apps Script web apps don't answer CORS, so the response is opaque; a network failure still throws.
-      await fetch(SUBMIT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
-      form.hidden = true; document.querySelector(".progress").hidden = true;
-      const d = document.getElementById("done"); d.hidden = false; d.focus(); scrollTo({ top: 0 });
+      const pdf = await buildPdf(payload);
+      const fname = "Pandori questionnaire - " + (payload.business || payload.name).replace(/[\\/:*?"<>|]+/g, " ").slice(0, 60) + ".pdf";
+      // plain-text copy of every answer as a backup in the email body
+      const text = payload.sections.map(sec => sec.num + " " + sec.title + "\n" + sec.items.map(it => "- " + it.question + ": " + (it.answer || "Not answered")).join("\n")).join("\n\n");
+      const f = document.createElement("form"); f.method = "POST"; f.action = SEND_TO; f.enctype = "multipart/form-data"; f.hidden = true;
+      const add = (n, v) => { const i = document.createElement("input"); i.type = "hidden"; i.name = n; i.value = v; f.appendChild(i); };
+      add("Name", payload.name); add("email", payload.email); add("Business / name", payload.business); add("Campaign is about", payload.type);
+      add("Submitted", payload.submitted); add("All answers", text);
+      add("_subject", "New campaign questionnaire: " + (payload.business || payload.name) + " (" + payload.type + ")");
+      add("_template", "table"); add("_next", THANKS_URL);
+      add("_autoresponse", "Hello there!\n\nThis is Clarise, thank you for filling in the Pandori campaign questionnaire. We have received your answers and will be in touch with your tailored quote soon.\n\nYour team, multiplied.\nPandori Outsourcing");
+      const file = document.createElement("input"); file.type = "file"; file.name = "Questionnaire PDF";
+      const dt = new DataTransfer(); dt.items.add(new File([pdf], fname, { type: "application/pdf" })); file.files = dt.files; f.appendChild(file);
+      document.body.appendChild(f); f.submit();
     } catch (x) {
-      err.textContent = "Something went wrong sending your answers. Please check your connection and try again.";
+      err.textContent = "Something went wrong preparing your answers. Please try again, or contact Pandori directly.";
       btn.disabled = false; btn.textContent = "Send my answers";
     }
   });
+
+  // ---- branded PDF of the answers (jsPDF) ----
+  const logoData = () => new Promise(res => { const im = new Image(); im.onload = () => { const c = document.createElement("canvas"); c.width = im.naturalWidth; c.height = im.naturalHeight; c.getContext("2d").drawImage(im, 0, 0); try { res({ url: c.toDataURL("image/png"), w: im.naturalWidth, h: im.naturalHeight }); } catch (e) { res(null); } }; im.onerror = () => res(null); im.src = document.querySelector(".logo").src; });
+  const ascii = t => String(t || "").replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').replace(/\u2014/g, "-").replace(/\u2713/g, "").replace(/[^\x00-\xFF\u2013\u20AC]/g, "?");
+  async function buildPdf(d) {
+    const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const W = 595, H = 842, M = 40, NAVY = [32, 44, 68], OLIVE = [54, 72, 46], SAGE = [175, 185, 174], GREY = [177, 177, 177];
+    const footer = () => { doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...GREY); doc.text("Pandori  \u00B7  Your team, multiplied.", W / 2, H - 22, { align: "center" }); doc.text(String(doc.getNumberOfPages()), W - M, H - 22, { align: "right" }); };
+    // cover band
+    doc.setFillColor(...NAVY); doc.rect(0, 0, W, 190, "F"); doc.setFillColor(...OLIVE); doc.rect(0, 190, W, 5, "F");
+    const lg = await logoData(); if (lg) doc.addImage(lg.url, "PNG", M, 34, 150, 150 * lg.h / lg.w);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...SAGE); doc.setCharSpace(2); doc.text("PROJECT QUESTIONNAIRE", M, 100); doc.setCharSpace(0);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(255, 255, 255); doc.text(doc.splitTextToSize(ascii(d.business || d.name), W - 2 * M)[0], M, 128);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...SAGE); doc.text(ascii([d.type, d.name, d.email].filter(Boolean).join("   \u00B7   ")), M, 150);
+    doc.setFontSize(8.5); doc.text("Submitted " + ascii(d.submitted), M, 168);
+    let y = 222;
+    const need = h => { if (y + h > H - 50) { footer(); doc.addPage(); y = M; } };
+    d.sections.forEach(sec => {
+      need(60);
+      doc.setFillColor(...NAVY); doc.rect(M, y, W - 2 * M, 28, "F"); doc.setFillColor(...OLIVE); doc.rect(M, y + 28, W - 2 * M, 3, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(11.5); doc.setTextColor(...SAGE); doc.text(sec.num, M + 12, y + 18.5);
+      doc.setTextColor(255, 255, 255); doc.text(ascii(sec.title), M + 38, y + 18.5); y += 39;
+      sec.items.forEach(it => {
+        const a = it.answer || "Not answered", skip = !it.answer || a === "Doesn't apply", unsure = /^Not sure, help me figure it out/.test(a);
+        doc.setFontSize(9.5);
+        const ql = doc.splitTextToSize(ascii(it.question), 190), al = doc.splitTextToSize(ascii(a), W - 2 * M - 215);
+        const h = Math.max(ql.length, al.length) * 12.5 + 12; need(h);
+        doc.setFont("helvetica", "bold"); doc.setTextColor(...OLIVE); doc.text(ql, M + 4, y + 13);
+        doc.setFont("helvetica", unsure ? "bold" : "normal"); doc.setTextColor(...(skip ? GREY : unsure ? OLIVE : NAVY)); doc.text(al, M + 210, y + 13);
+        y += h; doc.setDrawColor(...GREY); doc.setLineWidth(0.5); doc.line(M, y - 3, W - M, y - 3);
+      });
+      y += 14;
+    });
+    footer();
+    return doc.output("blob");
+  }
+
+  // back from FormSubmit: show the thank-you panel
+  if (/[?&]sent=1/.test(location.search)) { form.hidden = true; document.querySelector(".progress").hidden = true; const dn = document.getElementById("done"); dn.hidden = false; }
   applyType();
 })();
 </script>
