@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Pandori Quote Request</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Hind+Guntur:wght@400;500;600&family=Trirong:ital,wght@0,300;1,300&display=swap">
+<style>
+/* Layout: navy cover band with the Pandori wordmark, then one calm column of five numbered sections (the order is the real flow of the brief). White, navy, sage. */
+:root{
+  /* Pandori brand palette only: #202C44 navy, #223732 deep forest, #36482E olive, #AFB9AE sage, #B1B1B1 grey, white */
+  --bg:#FFFFFF; --soft:rgba(175,185,174,.18); --ink:#202C44; --muted:rgba(32,44,68,.72); --line:#B1B1B1;
+  --navy:#202C44; --sage:#AFB9AE; --sagebg:rgba(175,185,174,.22); --onnavy:#FFFFFF; --err:#202C44;
+  --display:"League Spartan",system-ui,sans-serif; --body:"Hind Guntur",system-ui,sans-serif; --serif:"Trirong",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#202C44; --soft:rgba(175,185,174,.10); --ink:#FFFFFF; --muted:#AFB9AE; --line:rgba(177,177,177,.45);
+  --navy:#223732; --sagebg:rgba(175,185,174,.14); --err:#FFFFFF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#202C44; --soft:rgba(175,185,174,.10); --ink:#FFFFFF; --muted:#AFB9AE; --line:rgba(177,177,177,.45);
+  --navy:#223732; --sagebg:rgba(175,185,174,.14); --err:#FFFFFF; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header{background:var(--navy);color:var(--onnavy)}
+header .wrap{padding-block:56px 48px;display:grid;gap:22px}
+.logo{width:200px;max-width:60vw;height:auto;display:block}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--sage)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,6vw,42px);line-height:1.05;margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{font-size:17px;color:#FFFFFF;max-width:56ch;margin:0}
+.meta{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--serif);font-style:italic;font-weight:300;color:var(--sage)}
+/* progress */
+.progress{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.progress .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
+.progress .track{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+.progress span{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+main.wrap{padding-block:40px 80px}
+form{display:grid;gap:56px}
+section{display:grid;gap:26px}
+.sechead{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:14px}
+.num{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1;color:var(--sage);grid-row:span 2}
+h2{font-family:var(--display);font-weight:700;font-size:22px;margin:0;letter-spacing:-.01em}
+.sechead p{margin:0;color:var(--muted);font-size:15px}
+.q{display:grid;gap:8px;border:0;padding:0;margin:0;min-width:0}
+.q>label,.q>legend{font-weight:600;font-size:16px;padding:0}
+.q .hint{font-size:14px;color:var(--muted);margin-top:-6px}
+.req{color:var(--muted);font-weight:400;font-size:13px}
+input[type=text],input[type=email],input[type=url],input[type=date],input[type=number],textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;min-width:0;transition:border-color .15s}
+input:hover,textarea:hover{border-color:var(--sage)}
+input:focus-visible,textarea:focus-visible,button:focus-visible,.opt input:focus-visible+span{outline:2px solid var(--sage);outline-offset:2px}
+textarea{min-height:96px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 16px 6px;font-size:15px;cursor:pointer;transition:all .15s;user-select:none}
+.opt input:hover+span{border-color:var(--sage)}
+.opt input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;min-width:0}
+.na-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.na-btn{font-family:var(--body);font-size:13px;letter-spacing:0;text-transform:none;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 14px 3px}
+.na-btn:hover{border-color:var(--sage);color:var(--ink);opacity:1}
+.q.na>*:not(.na-row):not(legend):not(label){opacity:.35}
+.q.na>label,.q.na>legend{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--sage)}
+.na-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.q[data-state="unsure"]>label,.q[data-state="unsure"]>legend{text-decoration:none;color:var(--green,#36482E)}
+.bhead{margin:0;font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.branch{display:grid;gap:26px;border-left:2px solid var(--sage);padding-left:18px}
+.goalgroups{display:grid;gap:14px}
+.gg{display:grid;gap:6px}
+.ggt{font-family:var(--display);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.aipanel{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+@media (max-width:560px){.aipanel{grid-template-columns:1fr}}
+.aicol{padding:20px 22px;display:grid;gap:10px;align-content:start}
+.aicol+.aicol{background:#202C44;color:#FFFFFF}
+.aitag{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green,#36482E)}
+.aicol+.aicol .aitag{color:#AFB9AE}
+.aicol ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.aicol li{padding-left:20px;position:relative}
+.aicol li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#AFB9AE}
+.otherbox{margin-top:2px}
+.subhead{margin:18px 0 0;font-family:var(--display);font-weight:700;font-size:19px;color:var(--green,#36482E);padding-bottom:8px;border-bottom:2px solid var(--green,#36482E)}
+.subp{margin:-14px 0 0;color:var(--muted);font-size:15px}
+.subgroup{display:grid;gap:26px}
+.counts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (max-width:480px){.counts{grid-template-columns:1fr}}
+.counts label{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.note{background:var(--sagebg);border-radius:8px;padding:16px 18px;font-size:15px;color:var(--ink)}
+.note em{font-family:var(--serif);font-weight:300}
+.submit{display:grid;gap:14px;justify-items:start}
+button{font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:15px 30px;cursor:pointer;transition:opacity .15s}
+button:hover{opacity:.9}
+button[disabled]{opacity:.5;cursor:wait}
+.error{font-weight:600;color:var(--err);font-size:14px;min-height:1.4em}
+.done{display:grid;gap:14px;text-align:left;padding-block:30px}
+.done h2{font-size:28px}
+.done p{margin:0;color:var(--muted);max-width:52ch}
+footer{border-top:1px solid var(--line);padding-block:26px;font-family:var(--serif);font-style:italic;font-weight:300;color:var(--muted);font-size:14px}
+/* brand colour pass: navy buttons, navy section headers with green accent, green subsections */
+:root{--green:#36482E;--greenbg:rgba(175,185,174,.22)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--green:#AFB9AE;--greenbg:rgba(175,185,174,.14)}}
+:root[data-theme="dark"]{--green:#AFB9AE;--greenbg:rgba(175,185,174,.14)}
+.sechead{background:#202C44;border-radius:8px;padding:18px 20px;border-bottom:4px solid #36482E;gap:2px 18px}
+.sechead h2{color:#FFFFFF}
+.sechead p{color:#AFB9AE}
+.sechead .num{color:#AFB9AE}
+.q>label,.q>legend,.bhead{color:var(--green)}
+.bhead{border-bottom:1px solid var(--greenbg);padding-bottom:6px}
+.na-btn{background:#202C44;color:#FFFFFF;border-color:#202C44}
+.na-btn:hover{background:#223732;color:#FFFFFF;border-color:#223732}
+.na-btn[aria-pressed="true"]{background:#36482E;border-color:#36482E;color:#FFFFFF}
+button#send{background:#202C44;color:#FFFFFF}
+.opt input:checked+span{background:#202C44;border-color:#202C44;color:#FFFFFF}
+.note{background:var(--greenbg)}
+.note strong{color:var(--green)}
+.branch{border-left-color:var(--green)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sechead{background:#223732;border-bottom-color:#AFB9AE}:root:not([data-theme="light"]) .na-btn,:root:not([data-theme="light"]) .opt input:checked+span,:root:not([data-theme="light"]) button#send{background:#AFB9AE;border-color:#AFB9AE;color:#202C44}:root:not([data-theme="light"]) .na-btn[aria-pressed="true"]{background:#36482E;border-color:#36482E;color:#FFFFFF}}
+:root[data-theme="dark"] .sechead{background:#223732;border-bottom-color:#AFB9AE}
+:root[data-theme="dark"] .na-btn,:root[data-theme="dark"] .opt input:checked+span,:root[data-theme="dark"] button#send{background:#AFB9AE;border-color:#AFB9AE;color:#202C44}
+:root[data-theme="dark"] .na-btn[aria-pressed="true"]{background:#36482E;border-color:#36482E;color:#FFFFFF}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="logo" src="logo.png" alt="Pandori" width="200" height="53">
+    <span class="eyebrow">Quote request</span>
+    <h1>Tell us what you need</h1>
+    <p class="lede">A few questions so we can price your project accurately, with no surprises later. Creative details come after you sign.</p>
+    <div class="meta"><span>About 8–10 minutes</span><span>"Not sure yet" is a fine answer</span></div>
+  </div>
+</header>
+
+<div class="progress" aria-hidden="true"><div class="wrap"><div class="track"><i id="bar"></i></div><span id="pct">0% complete</span></div></div>
+
+<main class="wrap">
+  <form id="qform" novalidate>
+    <section aria-labelledby="h1s">
+      <div class="sechead"><span class="num">01</span><h2 id="h1s">About you</h2><p>So we understand who you are and what we'd be promoting.</p></div>
+      <div class="q"><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
+        <select id="service" name="Service" required>
+          <option value="">Choose one…</option>
+          <option>Content creation only</option>
+          <option>Content + social media management</option>
+          <option>Content + social media management + paid ads</option>
+          <option>Not sure yet, help me decide</option>
+        </select></div>
+      <div class="q"><label for="subject">This campaign is about <span class="req">(required)</span></label>
+        <select id="subject" name="Campaign is about" required>
+          <option value="">Choose one…</option>
+          <option>A business</option>
+          <option>A person (personal brand)</option>
+          <option>A product</option>
+          <option>An event</option>
+          <option>Other</option>
+        </select></div>
+      <div class="branch" data-for="A business" hidden>
+        <p class="bhead" data-only="other">The business</p>
+        <div class="q"><label for="b_where">Where are you based?</label><input type="text" id="b_where" name="Business: based in"></div>
+      </div>
+      <div class="branch" data-for="A product" hidden>
+        <p class="bhead" data-only="other">The product</p>
+        <div class="grid2">
+          <div class="q"><label for="pr_name">Product name</label><input type="text" id="pr_name" name="Product: name"></div>
+        </div>
+        <div class="q"><label for="pr_var">How many variants, sizes or colours need to be shown?</label><input type="text" id="pr_var" name="Product: variants"></div>
+      </div>
+      <div class="branch" data-for="An event" hidden>
+        <p class="bhead" data-only="other">The event</p>
+        <div class="grid2">
+          <div class="q"><label for="e_name">Event name</label><input type="text" id="e_name" name="Event: name"></div>
+          <div class="q"><label for="e_date">Event date</label><input type="date" id="e_date" name="Event: date"></div>
+        </div>
+        <div class="grid2">
+          <div class="q"><label for="e_venue">Venue and city</label><input type="text" id="e_venue" name="Event: venue"></div>
+          <div class="q"><label for="e_guests">Expected guests</label><input type="number" min="0" id="e_guests" name="Event: guests"></div>
+        </div>
+        <div class="q"><label for="e_length">How long is the event?</label><span class="hint">Hours, or number of days.</span><input type="text" id="e_length" name="Event: length"></div>
+        <fieldset class="q"><legend>Type of event</legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Event: type" value="Launch"><span>Launch</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Conference"><span>Conference</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Workshop"><span>Workshop</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Wedding"><span>Wedding</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Party or celebration"><span>Party or celebration</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Other"><span>Other</span></label>
+          </div></fieldset>
+        <fieldset class="q"><legend>When do you need content?</legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="Before (promo)"><span>Before, to promote it</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="During the event"><span>During the event</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="Same-day edit"><span>Same-day edit</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="After (recap)"><span>After, recap</span></label>
+          </div></fieldset>
+      </div>
+      <div class="grid2">
+        <div class="q"><label for="name">Your name <span class="req">(required)</span></label><input type="text" id="name" name="Name" required autocomplete="name"></div>
+        <div class="q"><label for="email">Email <span class="req">(required)</span></label><input type="email" id="email" name="Email" required autocomplete="email"></div>
+      </div>
+      <div class="grid2">
+        <div class="q"><label for="biz"><span data-l-business="Business name" data-l-person="Your brand or professional name" data-l-product="Brand or company behind the product" data-l-event="Organiser or company" data-l-other="Business, brand or organiser name">Business name</span> <span class="req">(required)</span></label><input type="text" id="biz" name="Business name" required autocomplete="organization"></div>
+        <div class="q"><label for="web">Website or main social handle</label><input type="text" id="web" name="Website / socials" placeholder="e.g. @yourbrand"></div>
+      </div>
+      <fieldset class="q"><legend>Which brand assets do you already have?</legend><span class="hint">Tick everything you have. It helps us match your look from day one.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Logo (high-res or vector)"><span>Logo (high-res or vector)</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Logo variations (icon, white, dark)"><span>Logo variations (icon, white, dark)</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Colour palette with hex codes"><span>Colour palette with hex codes</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Brand fonts"><span>Brand fonts</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Brand guidelines / style guide"><span>Brand guidelines / style guide</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Tone of voice guide"><span>Tone of voice guide</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Photography or video style"><span>Photography or video style</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Patterns, icons or graphic elements"><span>Patterns, icons or graphic elements</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Social media templates"><span>Social media templates</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Mood board"><span>Mood board</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Existing photo / video library"><span>Existing photo / video library</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="None yet"><span>None yet</span></label>
+        </div></fieldset>
+      <div class="branch" data-for="Other" hidden>
+        <div class="q"><label for="o_what">Tell us what this campaign is about</label><span class="hint">For example, a cause, a community, a property, a restaurant opening, or a mix of things.</span><textarea id="o_what" name="Other: what it is"></textarea></div>
+        <p class="note">We've opened every question below so we can cover the whole campaign. Answer what fits, and tap <strong>Doesn't apply</strong> on anything that doesn't.</p>
+      </div>
+    </section>
+
+
+    <section aria-labelledby="hcs">
+      <div class="sechead"><span class="num">03</span><h2 id="hcs">Content, AI and the shoot</h2><p>The look, feel and kind of content that fits your brand.</p></div>
+      <fieldset class="q" data-only="business product event other"><legend>Who is the face of your brand?</legend><span class="hint">The person people see and hear in your content.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="Founder or owner"><span>Founder or owner</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A team member"><span>A team member</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A spokesperson or ambassador"><span>A spokesperson or ambassador</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A creator or influencer"><span>A creator or influencer</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="No face, the product is the star"><span>No face, the product is the star</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="We don't have one yet"><span>We don't have one yet</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Spoken and caption language</legend><span class="hint">The language people hear and read in your posts. Pick all that apply.</span>
+        <div class="goalgroups">
+          <div class="gg"><span class="ggt">English</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Language" value="English (US)"><span>English (US)</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="English (UK)"><span>English (UK)</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="English (Australia)"><span>English (Australia)</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="English (Canada)"><span>English (Canada)</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">European</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Language" value="Spanish"><span>Spanish</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="French"><span>French</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="German"><span>German</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Italian"><span>Italian</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Portuguese"><span>Portuguese</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Dutch"><span>Dutch</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Swedish"><span>Swedish</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Polish"><span>Polish</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">Asia-Pacific and others</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Language" value="Filipino / Tagalog"><span>Filipino / Tagalog</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Taglish"><span>Taglish</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Bisaya"><span>Bisaya</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Vietnamese"><span>Vietnamese</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Mandarin"><span>Mandarin</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Japanese"><span>Japanese</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Korean"><span>Korean</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Arabic"><span>Arabic</span></label>
+            <label class="opt"><input type="checkbox" name="Language" value="Hindi"><span>Hindi</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">Another language</span><input type="text" id="lang_other" name="Language: other" placeholder="Type the language"></div>
+        </div></fieldset>
+      <fieldset class="q"><legend>On-screen subtitle language</legend><span class="hint">Subtitles shown on your videos. Pick all that apply.</span>
+        <div class="goalgroups">
+          <div class="gg"><div class="opts"><label class="opt"><input type="checkbox" name="Subtitles" value="No subtitles"><span>No subtitles</span></label><label class="opt"><input type="checkbox" name="Subtitles" value="Same as spoken language"><span>Same as spoken language</span></label></div></div>
+          <div class="gg"><span class="ggt">English</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Subtitles" value="English (US)"><span>English (US)</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="English (UK)"><span>English (UK)</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="English (Australia)"><span>English (Australia)</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="English (Canada)"><span>English (Canada)</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">European</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Spanish"><span>Spanish</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="French"><span>French</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="German"><span>German</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Italian"><span>Italian</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Portuguese"><span>Portuguese</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Dutch"><span>Dutch</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Swedish"><span>Swedish</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Polish"><span>Polish</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">Asia-Pacific and others</span><div class="opts">
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Filipino / Tagalog"><span>Filipino / Tagalog</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Taglish"><span>Taglish</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Bisaya"><span>Bisaya</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Vietnamese"><span>Vietnamese</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Mandarin"><span>Mandarin</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Japanese"><span>Japanese</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Korean"><span>Korean</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Arabic"><span>Arabic</span></label>
+            <label class="opt"><input type="checkbox" name="Subtitles" value="Hindi"><span>Hindi</span></label>
+          </div></div>
+          <div class="gg"><span class="ggt">Another language</span><input type="text" id="sub_other" name="Subtitles: other" placeholder="Type the language"></div>
+        </div></fieldset>
+      <h3 class="subhead">AI and real content</h3>
+      <div class="aipanel">
+        <div class="aicol">
+          <span class="aitag">What AI adds</span>
+          <ul>
+            <li>More content for the same budget</li>
+            <li>Extra visuals, backgrounds and scenes</li>
+            <li>Product animations and motion</li>
+            <li>Voiceovers and faster edits</li>
+          </ul>
+        </div>
+        <div class="aicol">
+          <span class="aitag">What stays real</span>
+          <ul>
+            <li>Unless you choose 100% AI, we shoot in person of your <span data-l-business="business, team and products" data-l-person="you" data-l-product="product" data-l-event="event" data-l-other="product, people or event">business, team and products</span></li>
+            <li>Real faces, real places, real products</li>
+            <li>Every AI piece is checked by a person</li>
+            <li>Your audience sees what's genuine</li>
+          </ul>
+        </div>
+      </div>
+      <fieldset class="q"><legend>How much of your content can be AI-made?</legend><span class="hint">100% AI means no shoot day. We'd build everything from your existing photos, videos and brand assets.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="None"><span>None</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="A little (up to 25%)"><span>A little, up to 25%</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="About half"><span>About half</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="Most of it (75%+)"><span>Most of it, 75%+</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="All of it (100% AI)"><span>All of it, 100% AI</span></label>
+        </div></fieldset>
+      <p class="note" id="aiAllNote" hidden><strong>No shoot needed.</strong> With 100% AI content we build everything from your existing photos, videos and brand assets, so we've skipped the shoot questions.</p>
+      <fieldset class="q"><legend>Where are you comfortable with AI?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="AI: where" value="Editing, retouching and colour"><span>Editing and retouching</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="Captions and copywriting"><span>Captions and copy</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI backgrounds and scenes"><span>Backgrounds and scenes</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI product animations"><span>Product animations</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI voiceover"><span>Voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI models or avatars"><span>AI models or avatars</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="Fully AI-generated videos"><span>Fully AI-made videos</span></label>
+        </div></fieldset>
+      <div id="shootGroup" class="subgroup">
+        <h3 class="subhead">Shoot preferences</h3>
+        <p class="subp">Tell us what you'd like. We plan and run the shoot.</p>
+      <fieldset class="q" data-only="business person product other"><legend>Preferred setting</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Your store or office"><span>Your store or office</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Outdoors"><span>Outdoors</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="A studio"><span>A studio</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="At home"><span>At home</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Somewhere unexpected"><span>Somewhere unexpected</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <div class="q" data-only="business other"><label for="items">How many products should we feature?</label><input type="number" min="0" id="items" name="Number of products"></div>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceAvail">Will they be available for the shoot?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Yes, in person"><span>Yes, in person</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Some days only"><span>Some days only</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Only for self-filmed clips"><span>Only for self-filmed clips</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Not sure yet"><span>Not sure yet</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceComfort">How comfortable are they on camera?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Very, can talk to camera"><span>Very, can talk to camera</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Okay with guidance"><span>Okay with guidance</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Prefer candid moments"><span>Prefer candid moments</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Voiceover only"><span>Voiceover only</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-none"><legend>Would you like us to find a face for your brand?</legend><span class="hint">You haven't named one yet, so here are the options.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Yes, find a model or creator"><span>Yes, find a model or creator</span></label>
+          <label class="opt" data-dyn="ai-ok"><input type="checkbox" name="Face: sourcing" value="Use an AI avatar"><span>Use an AI avatar</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="No face, keep it product and voiceover"><span>No face, keep it product and voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Help me decide"><span>Help me decide</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Who would you like on camera?</legend>
+        <div class="opts">
+          <label class="opt" data-only="business product other"><input type="checkbox" name="On camera" value="Product only"><span>Product only</span></label>
+          <label class="opt" data-only="person other"><input type="checkbox" name="On camera" value="Me"><span>Me</span></label>
+          <label class="opt" data-only="event other"><input type="checkbox" name="On camera" value="Guests and speakers"><span>Guests and speakers</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Your team"><span>Your team</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Customers"><span>Customers</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Models (we can source them)"><span>Models (we can source them)</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Voice only"><span>Voice only</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Nobody, faceless content"><span>Nobody, faceless content</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Props and styling</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Props" value="We have some you can use"><span>We have some you can use</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Please source them"><span>Please source them</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Any extras you'd like?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Extras" value="Hair and makeup"><span>Hair and makeup</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Voiceover"><span>Voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Drone shots"><span>Drone shots</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Wardrobe styling"><span>Wardrobe styling</span></label>
+        </div></fieldset>
+      </div>
+    </section>
+
+    <section aria-labelledby="h3s">
+      <div class="sechead"><span class="num">05</span><h2 id="h3s">Deliverables and platforms</h2><p>What we'd be creating, and where it will live.</p></div>
+      <fieldset class="q"><legend>Where will this content be used?</legend><span class="hint" data-s-all="Pick every place it will appear." data-s-social="Pick every place it will appear. You'll list the accounts we manage further down." data-s-ads="Pick every place it will appear. You'll list the accounts we manage and where to run ads further down.">Pick every place it will appear.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Platforms" value="Instagram"><span>Instagram</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Facebook"><span>Facebook</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="TikTok"><span>TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="LinkedIn"><span>LinkedIn</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="YouTube"><span>YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Website"><span>Website</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Print or in-store"><span>Print or in-store</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Threads"><span>Threads</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="X (Twitter)"><span>X (Twitter)</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Pinterest"><span>Pinterest</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="YouTube Shorts"><span>YouTube Shorts</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Google Business Profile"><span>Google Business Profile</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Shopee / Lazada / TikTok Shop listings"><span>Marketplace listings</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Email newsletter"><span>Email newsletter</span></label>
+          <label class="opt" data-svc="content social"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)"><span>Paid ads you run yourself</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Billboards or outdoor"><span>Billboards or outdoor</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Event screens or presentations"><span>Event screens</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend data-s-all="Roughly how much content do you need?" data-s-content="Roughly how much content do you need?" data-s-social="Roughly how much content do you need each month?" data-s-ads="Roughly how much content do you need each month, including ads?">Roughly how much content do you need?</legend>
+        <div class="counts">
+          <label>Short videos / Reels<input type="number" min="0" id="c1" name="Qty: short videos"></label>
+          <label>Photos<input type="number" min="0" id="c2" name="Qty: photos"></label>
+          <label>Carousels or graphics<input type="number" min="0" id="c3" name="Qty: carousels / graphics"></label>
+          <label>Longer videos (60s+)<input type="number" min="0" id="c4" name="Qty: long videos"></label>
+          <label>Stories<input type="number" min="0" id="c5" name="Qty: stories"></label>
+          <label data-svc="content ads">Ad creatives<input type="number" min="0" id="c6" name="Qty: ad creatives"></label>
+          <label>Product listing images<input type="number" min="0" id="c7" name="Qty: listing images"></label>
+          <label>Behind-the-scenes clips<input type="number" min="0" id="c8" name="Qty: BTS clips"></label>
+        </div></fieldset>
+      <fieldset class="q" data-svc="content"><legend>Is this a one-off campaign or ongoing?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Frequency" value="One-off campaign"><span>One-off campaign</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Ongoing monthly"><span>Ongoing monthly</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Not sure yet"><span>Not sure yet</span></label>
+        </div></fieldset>
+    </section>
+
+    <section aria-labelledby="hsm" data-svc="social ads">
+      <div class="sechead"><span class="num">06</span><h2 id="hsm">Social media management</h2><p>How we'd run your accounts day to day.</p></div>
+      <div class="q"><label for="sm_handles">Which accounts would we manage?</label><span class="hint">Paste handles or links you haven't already given us.</span><textarea id="sm_handles" name="SMM: accounts"></textarea></div>
+      <fieldset class="q"><legend>How often should we post?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="1–2 posts a week"><span>1–2 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="3–4 posts a week"><span>3–4 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="5–7 posts a week"><span>5–7 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="Daily, plus Stories"><span>Daily, plus Stories</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>What should we handle on your accounts?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Writing captions"><span>Writing captions</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Scheduling and posting"><span>Scheduling and posting</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Stories"><span>Stories</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Replying to comments"><span>Replying to comments</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Replying to DMs"><span>Replying to DMs</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Growing followers"><span>Growing followers</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Collaborations and influencers"><span>Collaborations and influencers</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Monthly report"><span>Monthly report</span></label>
+        </div></fieldset>
+    </section>
+
+    <section aria-labelledby="had" data-svc="ads">
+      <div class="sechead"><span class="num">07</span><h2 id="had">Paid ads</h2><p>So we can plan campaigns that pay for themselves.</p></div>
+      <fieldset class="q"><legend>Where should we run ads?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Facebook and Instagram (Meta)"><span>Facebook and Instagram (Meta)</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="TikTok"><span>TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Google Search"><span>Google Search</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="YouTube"><span>YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="LinkedIn"><span>LinkedIn</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Shopee / Lazada ads"><span>Shopee / Lazada ads</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Monthly ad spend</legend><span class="hint">The amount paid to the platforms, separate from our fee. In US dollars.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="Under $300"><span>Under $300</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$300–1,000"><span>$300–1,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$1,000–3,000"><span>$1,000–3,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$3,000–10,000"><span>$3,000–10,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$10,000+"><span>$10,000+</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>What's already set up?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Meta ad account"><span>Meta ad account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Meta Pixel on the website"><span>Meta Pixel on the website</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Google Ads account"><span>Google Ads account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="TikTok Ads account"><span>TikTok Ads account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="A landing page or shop to send people to"><span>A landing page or shop to send people to</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Nothing yet"><span>Nothing yet</span></label>
+        </div></fieldset>
+    </section>
+
+    <section aria-labelledby="h5s">
+      <div class="sechead"><span class="num">07</span><h2 id="h5s">Timeline and budget</h2><p>So our quote fits how you work.</p></div>
+      <div class="grid2">
+        <div class="q"><label for="revs">Rounds of revisions you expect</label><input type="number" min="0" id="revs" name="Revision rounds"></div>
+      </div>
+      <div class="q"><label for="deadline">When do you need the final content?</label><span class="hint">Include any launch, season or event it's tied to.</span><input type="text" id="deadline" name="Deadline and timing"></div>
+      <fieldset class="q"><legend>Budget range for this project</legend><span class="hint" data-s-all="In US dollars, for our work." data-s-ads="In US dollars, for our work. Ad spend is separate.">In US dollars, for our work.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="Under $500"><span>Under $500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$500–1,000"><span>$500–1,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$1,000–2,500"><span>$1,000–2,500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$2,500–5,000"><span>$2,500–5,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$5,000–10,000"><span>$5,000–10,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$10,000+"><span>$10,000+</span></label>
+        </div></fieldset>
+      <div class="q"><label for="else">Anything else we should know?</label><textarea id="else" name="Anything else"></textarea></div>
+      <p class="note">Once we have your answers, we'll send a tailored quote. <em>Strategy and creative concepts are shared once the project is confirmed.</em></p>
+    </section>
+
+    <div class="submit">
+      <button type="submit" id="send">Send my answers</button>
+      <span class="error" id="err" role="alert"></span>
+    </div>
+  </form>
+
+  <div class="done" id="done" hidden tabindex="-1">
+    <span class="eyebrow" style="color:var(--muted)">Received</span>
+    <h2>Thank you</h2>
+    <p>We've got your answers and will be in touch with your quote soon.</p>
+  </div>
+</main>
+
+<footer><div class="wrap">Pandori · Your team, multiplied.</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// ---- settings ----
+// Answers go to this inbox through FormSubmit (the same service the website's contact form uses).
+const SEND_TO = "https://formsubmit.co/clarise@pandorioutsourcing.com";
+const THANKS_URL = "https://pandorioutsourcing.com/quote/?sent=1";
+// -------------------
+(() => {
+  const form = document.getElementById("qform"), bar = document.getElementById("bar"), pct = document.getElementById("pct"), err = document.getElementById("err");
+  // progress: share of questions with any answer
+  const groups = () => { const g = new Map(); form.querySelectorAll("input, textarea, select").forEach(el => { if (el.disabled) return; const k = el.name; if (!g.has(k)) g.set(k, []); g.get(k).push(el); }); return [...g.values()]; };
+  const answered = els => els.some(el => (el.type === "checkbox" || el.type === "radio") ? el.checked : el.value.trim() !== "");
+  const update = () => { const g = groups(), n = g.filter(answered).length, p = Math.round(n / g.length * 100); bar.style.width = p + "%"; pct.textContent = p + "% complete"; };
+  form.addEventListener("input", update); form.addEventListener("change", update);
+  // limit "pick up to two"
+  form.querySelectorAll("[data-max]").forEach(box => box.addEventListener("change", e => { const max = +box.dataset.max; const on = box.querySelectorAll("input:checked"); if (on.length > max) e.target.checked = false; }));
+
+  // ---- "Other" chip + text box on every multiple-choice question ----
+  form.querySelectorAll("fieldset.q").forEach(fs => {
+    const opts = fs.querySelector(".opts"); if (!opts) return;
+    if (fs.querySelector('input[type=text]')) return; // already has its own "other" box
+    const first = opts.querySelector("input[type=checkbox], input[type=radio]"); if (!first) return;
+    const name = first.name, type = first.type;
+    const lab = document.createElement("label"); lab.className = "opt";
+    const inp = document.createElement("input"); inp.type = type; inp.name = name; inp.value = "Other";
+    const sp = document.createElement("span"); sp.textContent = "Other";
+    lab.append(inp, sp); opts.appendChild(lab);
+    const wrap = document.createElement("div"); wrap.className = "otherbox"; wrap.hidden = true;
+    const txt = document.createElement("input"); txt.type = "text"; txt.name = name + ": other"; txt.id = "other-" + name.replace(/[^a-z0-9]+/gi, "-").toLowerCase(); txt.placeholder = "Tell us more"; txt.setAttribute("aria-label", "Other: " + (fs.querySelector("legend")?.textContent || name));
+    wrap.appendChild(txt); opts.after(wrap);
+    fs.addEventListener("change", () => { const show = inp.checked; if (wrap.hidden === show) { wrap.hidden = !show; syncDisabled(); if (show) txt.focus(); } });
+  });
+
+  // ---- "Doesn't apply" on every optional question ----
+  const syncDisabled = () => {
+    form.querySelectorAll("input, textarea, select").forEach(el => {
+      const hiddenUp = el.closest("[hidden]");
+      el.disabled = !!hiddenUp || (!!el.closest(".q.na") && !el.classList.contains("na-val"));
+    });
+    update();
+  };
+  form.querySelectorAll(".q").forEach(q => {
+    if (q.querySelector("[required]")) return;
+    const names = [...new Set([...q.querySelectorAll("input, textarea, select")].map(el => el.name).filter(Boolean))];
+    if (!names.length) return;
+    const row = document.createElement("div"); row.className = "na-row";
+    const opts = [["na", "Doesn't apply", "Doesn't apply"], ["unsure", "Not sure, help me figure it out", "Not sure, help me figure it out"]];
+    const btns = opts.map(([state, label, value]) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "na-btn"; b.textContent = label; b.setAttribute("aria-pressed", "false");
+      b.onclick = () => {
+        const on = q.dataset.state !== state;
+        q.dataset.state = on ? state : ""; q.classList.toggle("na", on);
+        btns.forEach((x, i) => { const act = on && opts[i][0] === state; x.setAttribute("aria-pressed", String(act)); x.textContent = act ? opts[i][1] + " ✓" : opts[i][1]; });
+        q.querySelectorAll(".na-val").forEach(x => x.remove());
+        if (on) names.forEach(n => { const h = document.createElement("input"); h.type = "hidden"; h.className = "na-val"; h.name = n; h.value = value; q.appendChild(h); });
+        syncDisabled();
+      };
+      row.appendChild(b); return b;
+    });
+    q.appendChild(row);
+  });
+
+  // ---- campaign type: show the right branch and reword questions ----
+  const typeKey = v => ({ "A business": "business", "A person (personal brand)": "person", "A product": "product", "An event": "event", "Other": "other" })[v] || "";
+  const svcKey = v => ({ "Content creation only": "content", "Content + social media management": "social", "Content + social media management + paid ads": "ads" })[v] || "";
+  const applyType = () => {
+    const k = typeKey(document.getElementById("subject").value);
+    form.querySelectorAll(".branch").forEach(b => { const bk = typeKey(b.dataset.for); b.hidden = !(bk === k || (k === "other" && bk !== "other") || (k === "other" && bk === "other")); });
+    form.querySelectorAll("[data-only]").forEach(el => { const only = el.dataset.only.split(" "); el.hidden = only.includes("other") && only.length === 1 ? k !== "other" : !(!k || k === "other" || only.includes(k)); });
+    form.querySelectorAll("[data-l-business]").forEach(el => { const t = el.getAttribute("data-l-" + (k || "business")); if (t) el.textContent = t; });
+    // service: hide sections and questions that don't fit what they need from us
+    const sv = svcKey(document.getElementById("service").value);
+    form.querySelectorAll("[data-svc]").forEach(el => { const ok = !sv || el.dataset.svc.split(" ").includes(sv); el.hidden = el.dataset.only ? (el.hidden || !ok) : !ok; });
+    form.querySelectorAll("[data-s-all]").forEach(el => { el.textContent = el.getAttribute("data-s-" + (sv || "all")) || el.dataset.sAll; });
+    // number the visible sections 01, 02, 03…
+    // shoot adapts to the AI and face-of-brand answers
+    const picked = nm => [...form.querySelectorAll('input[name="' + nm + '"]:checked')].map(i => i.value);
+    const share = picked("AI: share of content"), aiAll = share.length === 1 && share[0] === "All of it (100% AI)", noAI = share.length === 1 && share[0] === "None";
+    const $id = x => document.getElementById(x) || {};
+    $id("aiAllNote").hidden = !aiAll;
+    $id("shootGroup").hidden = aiAll;
+    const face = picked("Face of the brand"), people = ["Founder or owner", "A team member", "A spokesperson or ambassador", "A creator or influencer"];
+    const known = k === "person" || face.some(v => people.includes(v));
+    const productOnly = !known && face.includes("No face, the product is the star");
+    form.querySelectorAll('[data-dyn="face-known"]').forEach(el => el.hidden = !known);
+    form.querySelectorAll('[data-dyn="face-none"]').forEach(el => el.hidden = known || productOnly);
+    form.querySelectorAll('[data-dyn="ai-ok"]').forEach(el => el.hidden = noAI);
+    const who = k === "person" ? "you" : face.filter(v => people.includes(v)).length === 1 ? ({ "Founder or owner": "your founder", "A team member": "your team member", "A spokesperson or ambassador": "your spokesperson", "A creator or influencer": "your creator" })[face.find(v => people.includes(v))] : "they";
+    $id("faceAvail").textContent = k === "person" ? "Will you be available for the shoot?" : "Will " + who + " be available for the shoot?";
+    $id("faceComfort").textContent = k === "person" ? "How comfortable are you on camera?" : "How comfortable " + (who === "they" ? "are they" : "is " + who) + " on camera?";
+    let n = 0; form.querySelectorAll("section").forEach(sec => { if (!sec.hidden) sec.querySelector(".num").textContent = String(++n).padStart(2, "0"); });
+    syncDisabled();
+  };
+  document.getElementById("subject").addEventListener("change", applyType);
+  document.getElementById("service").addEventListener("change", applyType);
+  form.addEventListener("change", e => { if (/^(AI: share of content|Face of the brand)$/.test(e.target.name)) applyType(); });
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); err.textContent = "";
+    const missing = [...form.querySelectorAll("[required]")].filter(el => !el.value.trim() || (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value)));
+    if (missing.length){ err.textContent = "Please choose what you need and what the campaign is about, and fill in your name, a valid email and the name field."; missing[0].focus(); return; }
+    // build a readable copy of every answer, section by section, for the PDF
+    const clean = t => (t || "").replace(/\(required\)/g, "").replace(/\s+/g, " ").trim();
+    const sections = [...form.querySelectorAll("section")].filter(sec => !sec.closest("[hidden]")).map(sec => {
+      const title = clean(sec.querySelector(".sechead h2")?.textContent), num = clean(sec.querySelector(".sechead .num")?.textContent);
+      const items = [...sec.querySelectorAll(".q")].filter(q => !q.closest("[hidden]") && !q.parentElement.closest(".q")).map(q => {
+        const head = q.querySelector(":scope > legend, :scope > label");
+        const question = clean(head ? [...head.childNodes].filter(n => !(n.classList && n.classList.contains("req"))).map(n => n.textContent).join("") : "");
+        const parts = [];
+        q.querySelectorAll("input, textarea, select").forEach(el => {
+          if (el.disabled && !el.classList.contains("na-val")) return;
+          if (el.classList.contains("na-val")) { if (!parts.includes(el.value)) parts.push(el.value); return; }
+          if (el.type === "checkbox" || el.type === "radio") { if (el.checked && el.value !== "Other") parts.push(el.value); return; }
+          const v = (el.value || "").trim(); if (!v) return;
+          if (el.closest(".counts")) parts.push(clean(el.parentElement.firstChild.textContent) + ": " + v);
+          else if (/: other$/.test(el.name)) parts.push("Other: " + v);
+          else parts.push(v);
+        });
+        return { question, answer: parts.join(", ") };
+      }).filter(x => x.question);
+      return { num, title, items };
+    });
+    const payload = {
+      name: form.querySelector("#name").value.trim(), email: form.querySelector("#email").value.trim(),
+      business: form.querySelector("#biz").value.trim(), type: form.querySelector("#subject").value, service: form.querySelector("#service").value,
+      submitted: new Date().toLocaleString("en-US", { dateStyle: "long", timeStyle: "short" }), sections
+    };
+    const btn = document.getElementById("send"); btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const pdf = await buildPdf(payload);
+      const fname = "Pandori quote request - " + (payload.business || payload.name).replace(/[\\/:*?"<>|]+/g, " ").slice(0, 60) + ".pdf";
+      // plain-text copy of every answer as a backup in the email body
+      const text = payload.sections.map(sec => sec.num + " " + sec.title + "\n" + sec.items.map(it => "- " + it.question + ": " + (it.answer || "Not answered")).join("\n")).join("\n\n");
+      const f = document.createElement("form"); f.method = "POST"; f.action = SEND_TO; f.enctype = "multipart/form-data"; f.hidden = true;
+      const add = (n, v) => { const i = document.createElement("input"); i.type = "hidden"; i.name = n; i.value = v; f.appendChild(i); };
+      add("Name", payload.name); add("email", payload.email); add("Business / name", payload.business); add("Campaign is about", payload.type); add("Service needed", payload.service);
+      add("Submitted", payload.submitted); add("All answers", text);
+      add("_subject", "New quote request: " + (payload.business || payload.name) + " (" + payload.type + ")");
+      add("_template", "table"); add("_next", THANKS_URL);
+      add("_autoresponse", "Hello there!\n\nThis is Clarise, thank you for requesting a quote from Pandori. We have received your answers and will send your tailored quote soon.\n\nYour team, multiplied.\nPandori Outsourcing");
+      const file = document.createElement("input"); file.type = "file"; file.name = "Questionnaire PDF";
+      const dt = new DataTransfer(); dt.items.add(new File([pdf], fname, { type: "application/pdf" })); file.files = dt.files; f.appendChild(file);
+      document.body.appendChild(f); f.submit();
+    } catch (x) {
+      err.textContent = "Something went wrong preparing your answers. Please try again, or contact Pandori directly.";
+      btn.disabled = false; btn.textContent = "Send my answers";
+    }
+  });
+
+  // ---- branded PDF of the answers (jsPDF) ----
+  const logoData = () => new Promise(res => { const im = new Image(); im.onload = () => { const c = document.createElement("canvas"); c.width = im.naturalWidth; c.height = im.naturalHeight; c.getContext("2d").drawImage(im, 0, 0); try { res({ url: c.toDataURL("image/png"), w: im.naturalWidth, h: im.naturalHeight }); } catch (e) { res(null); } }; im.onerror = () => res(null); im.src = document.querySelector(".logo").src; });
+  const ascii = t => String(t || "").replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').replace(/\u2014/g, "-").replace(/\u2713/g, "").replace(/[^\x00-\xFF\u2013\u20AC]/g, "?");
+  async function buildPdf(d) {
+    const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const W = 595, H = 842, M = 40, NAVY = [32, 44, 68], OLIVE = [54, 72, 46], SAGE = [175, 185, 174], GREY = [177, 177, 177];
+    const footer = () => { doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...GREY); doc.text("Pandori  \u00B7  Your team, multiplied.", W / 2, H - 22, { align: "center" }); doc.text(String(doc.getNumberOfPages()), W - M, H - 22, { align: "right" }); };
+    // cover band
+    doc.setFillColor(...NAVY); doc.rect(0, 0, W, 190, "F"); doc.setFillColor(...OLIVE); doc.rect(0, 190, W, 5, "F");
+    const lg = await logoData(); if (lg) doc.addImage(lg.url, "PNG", M, 34, 150, 150 * lg.h / lg.w);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...SAGE); doc.setCharSpace(2); doc.text("QUOTE REQUEST", M, 100); doc.setCharSpace(0);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(255, 255, 255); doc.text(doc.splitTextToSize(ascii(d.business || d.name), W - 2 * M)[0], M, 128);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...SAGE); doc.text(ascii([d.service, d.type, d.name, d.email].filter(Boolean).join("   \u00B7   ")), M, 150);
+    doc.setFontSize(8.5); doc.text("Submitted " + ascii(d.submitted), M, 168);
+    let y = 222;
+    const need = h => { if (y + h > H - 50) { footer(); doc.addPage(); y = M; } };
+    d.sections.forEach(sec => {
+      need(60);
+      doc.setFillColor(...NAVY); doc.rect(M, y, W - 2 * M, 28, "F"); doc.setFillColor(...OLIVE); doc.rect(M, y + 28, W - 2 * M, 3, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(11.5); doc.setTextColor(...SAGE); doc.text(sec.num, M + 12, y + 18.5);
+      doc.setTextColor(255, 255, 255); doc.text(ascii(sec.title), M + 38, y + 18.5); y += 39;
+      sec.items.forEach(it => {
+        const a = it.answer || "Not answered", skip = !it.answer || a === "Doesn't apply", unsure = /^Not sure, help me figure it out/.test(a);
+        doc.setFontSize(9.5);
+        const ql = doc.splitTextToSize(ascii(it.question), 190), al = doc.splitTextToSize(ascii(a), W - 2 * M - 215);
+        const h = Math.max(ql.length, al.length) * 12.5 + 12; need(h);
+        doc.setFont("helvetica", "bold"); doc.setTextColor(...OLIVE); doc.text(ql, M + 4, y + 13);
+        doc.setFont("helvetica", unsure ? "bold" : "normal"); doc.setTextColor(...(skip ? GREY : unsure ? OLIVE : NAVY)); doc.text(al, M + 210, y + 13);
+        y += h; doc.setDrawColor(...GREY); doc.setLineWidth(0.5); doc.line(M, y - 3, W - M, y - 3);
+      });
+      y += 14;
+    });
+    footer();
+    return doc.output("blob");
+  }
+
+  // back from FormSubmit: show the thank-you panel
+  if (/[?&]sent=1/.test(location.search)) { form.hidden = true; document.querySelector(".progress").hidden = true; const dn = document.getElementById("done"); dn.hidden = false; }
+  applyType();
+})();
+</script>
+
+</body>
+</html>
