@@ -427,10 +427,10 @@ footer .logo.mark{width:28px}
             <span class="err" id="a-files-err"></span>
           </fieldset>
           <label for="a-ai">How do you use AI in your work today?<textarea id="a-ai" name="AI" required></textarea><span class="err"></span></label>
-          <input type="hidden" name="_subject" id="a-subject">
+          <input type="hidden" name="_subject" id="a-subject" value="Pandori application">
           <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_autoresponse" id="a-auto">
-          <input type="hidden" name="_next" id="a-next">
+          <input type="hidden" name="_autoresponse" id="a-auto" value="Hello there!&lt;br&gt;&lt;br&gt;This is Clarise, thank you for your interest in joining Pandori Outsourcing. We have received your application and our team will review it carefully. If your experience is a fit for a current or upcoming client, we will contact you about next steps.&lt;br&gt;&lt;br&gt;Wishing you the best of luck!&lt;br&gt;&lt;br&gt;Best,&lt;br&gt;The Pandori Team&lt;br&gt;&lt;br&gt;&lt;img src=&quot;https://pandorioutsourcing.com/assets/email-logo.png&quot; alt=&quot;Pandori&quot; width=&quot;200&quot; style=&quot;display:block;border:0;margin:0 0 10px&quot;&gt;&lt;br&gt;&lt;b&gt;PANDORI GLOBAL OUTSOURCING SOLUTIONS&lt;/b&gt;&lt;br&gt;&lt;a href=&quot;https://pandorioutsourcing.com/&quot;&gt;https://pandorioutsourcing.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;IMPORTANT: The contents of this email and any attachments are confidential. They are intended for the named recipient(s) only. If you have received this email by mistake, please notify the sender immediately and do not disclose the contents to anyone or make copies thereof.&lt;/i&gt;">
+          <input type="hidden" name="_next" id="a-next" value="https://pandorioutsourcing.com/#applied">
           <input type="text" name="_honey" id="a-honey" tabindex="-1" autocomplete="off" hidden>
           <button class="btn leaf" type="submit" style="justify-self:start">Send application</button>
           <p class="err" data-status role="status"></p>
@@ -473,10 +473,10 @@ footer .logo.mark{width:28px}
               <option value="">Choose one</option><option>Independent Contractors</option><option>Virtual Assistants</option><option>Business Process Outsourcing</option><option>Content Creation</option><option>Social Media Management</option><option>Not sure yet</option></select><span class="err"></span></label>
           </div>
           <label for="c-msg">What do you need help with?<textarea id="c-msg" name="Message" required></textarea><span class="err"></span></label>
-          <input type="hidden" name="_subject" id="c-subject">
+          <input type="hidden" name="_subject" id="c-subject" value="Pandori enquiry">
           <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_autoresponse" id="c-auto">
-          <input type="hidden" name="_next" id="c-next">
+          <input type="hidden" name="_autoresponse" id="c-auto" value="Hello there!&lt;br&gt;&lt;br&gt;This is Clarise, thank you for contacting Pandori Outsourcing. We have received your message and we'll get back to you as soon as possible. If the inquiry is more urgent, send an email to &lt;a href=&quot;mailto:clarise@pandorioutsourcing.com&quot;&gt;clarise@pandorioutsourcing.com&lt;/a&gt; with the subject line &quot;URGENT.&quot;&lt;br&gt;&lt;br&gt;Thank you and enjoy the rest of your day.&lt;br&gt;&lt;br&gt;Best,&lt;br&gt;The Pandori Team&lt;br&gt;&lt;br&gt;&lt;img src=&quot;https://pandorioutsourcing.com/assets/email-logo.png&quot; alt=&quot;Pandori&quot; width=&quot;200&quot; style=&quot;display:block;border:0;margin:0 0 10px&quot;&gt;&lt;br&gt;&lt;b&gt;PANDORI GLOBAL OUTSOURCING SOLUTIONS&lt;/b&gt;&lt;br&gt;&lt;a href=&quot;https://pandorioutsourcing.com/&quot;&gt;https://pandorioutsourcing.com/&lt;/a&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;IMPORTANT: The contents of this email and any attachments are confidential. They are intended for the named recipient(s) only. If you have received this email by mistake, please notify the sender immediately and do not disclose the contents to anyone or make copies thereof.&lt;/i&gt;">
+          <input type="hidden" name="_next" id="c-next" value="https://pandorioutsourcing.com/#sent">
           <input type="text" name="_honey" id="c-honey" tabindex="-1" autocomplete="off" hidden>
           <button class="btn ink" type="submit" style="justify-self:start">Send message</button>
           <p class="err" data-status role="status"></p>
@@ -497,9 +497,6 @@ footer .logo.mark{width:28px}
 
 <script>
 (function(){
-  const AUTO_CONTACT = 'Hello there!<br><br>This is Clarise, thank you for contacting Pandori Outsourcing. We have received your message and we\'ll get back to you as soon as possible. If the inquiry is more urgent, send an email to <a href="mailto:clarise@pandorioutsourcing.com">clarise@pandorioutsourcing.com</a> with the subject line "URGENT."<br><br>Thank you and enjoy the rest of your day.<br><br>Best,<br>The Pandori Team<br><br><img src="https://pandorioutsourcing.com/assets/email-logo.png" alt="Pandori" width="200" style="display:block;border:0;margin:0 0 10px"><br><b>PANDORI GLOBAL OUTSOURCING SOLUTIONS</b><br><a href="https://pandorioutsourcing.com/">https://pandorioutsourcing.com/</a><br><br><i>IMPORTANT: The contents of this email and any attachments are confidential. They are intended for the named recipient(s) only. If you have received this email by mistake, please notify the sender immediately and do not disclose the contents to anyone or make copies thereof.</i>';
-  const AUTO_APPLY = 'Hello there!<br><br>This is Clarise, thank you for your interest in joining Pandori Outsourcing. We have received your application and our team will review it carefully. If your experience is a fit for a current or upcoming client, we will contact you about next steps.<br><br>Wishing you the best of luck!<br><br>Best,<br>The Pandori Team<br><br><img src="https://pandorioutsourcing.com/assets/email-logo.png" alt="Pandori" width="200" style="display:block;border:0;margin:0 0 10px"><br><b>PANDORI GLOBAL OUTSOURCING SOLUTIONS</b><br><a href="https://pandorioutsourcing.com/">https://pandorioutsourcing.com/</a><br><br><i>IMPORTANT: The contents of this email and any attachments are confidential. They are intended for the named recipient(s) only. If you have received this email by mistake, please notify the sender immediately and do not disclose the contents to anyone or make copies thereof.</i>';
-  const ENDPOINT = 'https://formsubmit.co/ajax/clarise@pandorioutsourcing.com';
   const views = [...document.querySelectorAll('[data-view]')];
   const links = [...document.querySelectorAll('nav a')];
   function route(){
@@ -569,24 +566,6 @@ footer .logo.mark{width:28px}
     return ok;
   }
   function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-  async function send(form, box, subject, fields, thanks){
-    const btn = form.querySelector('[type=submit]'), status = form.querySelector('[data-status]'), label = btn.textContent;
-    status.textContent = ''; btn.disabled = true; btn.textContent = 'Sending…';
-    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 20000);
-    try {
-      const r = await fetch(ENDPOINT, {method:'POST', signal: ctl.signal, headers:{'Content-Type':'application/json', Accept:'application/json'},
-        body: JSON.stringify(Object.assign({_subject: subject, _template: 'table', _captcha: 'false', _honey: form.querySelector('[name=_honey]').value}, fields))});
-      const j = await r.json().catch(() => ({}));
-      if (!r.ok || String(j.success) === 'false') { const err = new Error('send failed'); err.detail = j.message || ''; throw err; }
-      form.reset(); form.hidden = true; box.hidden = false;
-      box.innerHTML = '<h3>Thanks, ' + esc(fields.Name.split(' ')[0]) + '!</h3><p>' + thanks + '</p><div class="actions"><button class="copy" type="button" data-a>Send another</button></div>';
-      box.querySelector('[data-a]').onclick = () => { box.hidden = true; form.hidden = false; };
-    } catch (e) {
-      status.textContent = e.name === 'AbortError'
-        ? 'This is taking too long. Please try again in a minute.'
-        : 'We couldn\'t send this right now.' + (e.detail ? ' (' + e.detail + ')' : ' Check your connection and try again in a moment.');
-    } finally { clearTimeout(timer); btn.disabled = false; btn.textContent = label; }
-  }
   const af = document.getElementById('apply-form');
   const MAX_BYTES = 5 * 1024 * 1024;
   function checkFiles(){
@@ -605,8 +584,6 @@ footer .logo.mark{width:28px}
     const valid = validate(af), filesOk = checkFiles();
     if (!valid || !filesOk) { e.preventDefault(); return; }
     document.getElementById('a-subject').value = 'Pandori application: ' + document.getElementById('a-role').value + ' – ' + document.getElementById('a-name').value.trim();
-    document.getElementById('a-auto').value = AUTO_APPLY;
-    document.getElementById('a-next').value = location.origin + location.pathname + '#applied';
     const btn = af.querySelector('[type=submit]'); btn.textContent = 'Sending…';
     setTimeout(() => { btn.disabled = true; }, 0);
   });
@@ -615,8 +592,6 @@ footer .logo.mark{width:28px}
     if (!validate(cf)) { e.preventDefault(); return; }
     const company = document.getElementById('c-company').value.trim();
     document.getElementById('c-subject').value = 'Pandori enquiry: ' + document.getElementById('c-need').value + (company ? ' – ' + company : '');
-    document.getElementById('c-auto').value = AUTO_CONTACT;
-    document.getElementById('c-next').value = location.origin + location.pathname + '#sent';
     const btn = cf.querySelector('[type=submit]'); btn.textContent = 'Sending…';
     setTimeout(() => { btn.disabled = true; }, 0);
   });
