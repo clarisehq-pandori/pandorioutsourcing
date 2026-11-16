@@ -463,17 +463,22 @@ footer .logo.mark{width:28px}
         </ul>
       </div>
       <div>
-        <form id="contact-form" novalidate>
+        <form id="contact-form" action="https://formsubmit.co/clarise@pandorioutsourcing.com" method="POST" novalidate>
           <div class="row2">
-            <label for="c-name">Your name<input id="c-name" name="name" autocomplete="name" required><span class="err"></span></label>
-            <label for="c-company">Company<input id="c-company" name="company" autocomplete="organization"><span class="err"></span></label>
+            <label for="c-name">Your name<input id="c-name" name="Name" autocomplete="name" required><span class="err"></span></label>
+            <label for="c-company">Company<input id="c-company" name="Company" autocomplete="organization"><span class="err"></span></label>
           </div>
           <div class="row2">
             <label for="c-mail">Email<input id="c-mail" name="email" type="email" autocomplete="email" required><span class="err"></span></label>
-            <label for="c-need">I'm interested in<select id="c-need" name="need">
+            <label for="c-need">I'm interested in<select id="c-need" name="Interested in">
               <option>Independent Contractors</option><option>Virtual Assistants</option><option>Business Process Outsourcing</option><option>Content Creation</option><option>Social Media Management</option><option>Not sure yet</option></select><span class="err"></span></label>
           </div>
-          <label for="c-msg">What do you need help with?<textarea id="c-msg" name="message" required></textarea><span class="err"></span></label>
+          <label for="c-msg">What do you need help with?<textarea id="c-msg" name="Message" required></textarea><span class="err"></span></label>
+          <input type="hidden" name="_subject" id="c-subject">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_autoresponse" id="c-auto">
+          <input type="hidden" name="_next" id="c-next">
           <input type="text" name="_honey" id="c-honey" tabindex="-1" autocomplete="off" hidden>
           <button class="btn ink" type="submit" style="justify-self:start">Send message</button>
           <p class="err" data-status role="status"></p>
@@ -503,10 +508,12 @@ footer .logo.mark{width:28px}
     let h = location.hash.slice(1) || 'home';
     let target = h;
     if (h === 'apply' || h === 'applied') target = 'hiring';
+    if (h === 'sent') target = 'contact';
     if (!views.some(v => v.dataset.view === target)) target = 'home';
     views.forEach(v => v.hidden = v.dataset.view !== target);
     links.forEach(a => a.getAttribute('href') === '#' + target ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
     if (h === 'applied') showApplied();
+    if (h === 'sent') showSent();
     if (h === 'apply' || h === 'applied') document.getElementById('apply-wrap').scrollIntoView({behavior:'smooth'});
     else window.scrollTo(0,0);
   }
@@ -514,6 +521,11 @@ footer .logo.mark{width:28px}
     const f = document.getElementById('apply-form'), box = document.getElementById('apply-done');
     f.hidden = true; box.hidden = false;
     box.innerHTML = '<h3>Thank you, your application is in!</h3><p>We\'ve received your details and files. Check your inbox for a confirmation email. If your experience is a fit for a current or upcoming client, we\'ll contact you about next steps.</p><div class="actions"><a class="copy" href="#hiring">Back to open roles</a></div>';
+  }
+  function showSent(){
+    const f = document.getElementById('contact-form'), box = document.getElementById('contact-done');
+    f.hidden = true; box.hidden = false;
+    box.innerHTML = '<h3>Thank you, your message is on its way!</h3><p>We\'ve received your enquiry and will get back to you as soon as possible. Check your inbox for a confirmation email.</p><div class="actions"><a class="copy" href="#home">Back to home</a></div>';
   }
   addEventListener('hashchange', route); route();
 
@@ -600,9 +612,14 @@ footer .logo.mark{width:28px}
     setTimeout(() => { btn.disabled = true; }, 0);
   });
   const cf = document.getElementById('contact-form');
-  cf.addEventListener('submit', e => { e.preventDefault(); if (!validate(cf)) return; const d = Object.fromEntries(new FormData(cf));
-    send(cf, document.getElementById('contact-done'), 'Pandori enquiry: ' + d.need + (d.company ? ' – ' + d.company : ''),
-      {Name: d.name, Company: d.company || '–', email: d.email, 'Interested in': d.need, Message: d.message, _replyto: d.email, _autoresponse: AUTO_CONTACT},
-      'We\'ve received your message and will get back to you soon.'); });
+  cf.addEventListener('submit', e => {
+    if (!validate(cf)) { e.preventDefault(); return; }
+    const company = document.getElementById('c-company').value.trim();
+    document.getElementById('c-subject').value = 'Pandori enquiry: ' + document.getElementById('c-need').value + (company ? ' – ' + company : '');
+    document.getElementById('c-auto').value = AUTO_CONTACT;
+    document.getElementById('c-next').value = location.origin + location.pathname + '#sent';
+    const btn = cf.querySelector('[type=submit]'); btn.textContent = 'Sending…';
+    setTimeout(() => { btn.disabled = true; }, 0);
+  });
 })();
 </script>
