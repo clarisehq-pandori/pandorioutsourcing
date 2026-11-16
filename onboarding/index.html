@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Pandori Onboarding Brief</title>
+<title>Breath Lab Quote Request</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Hind+Guntur:wght@400;500;600&family=Trirong:ital,wght@0,300;1,300&display=swap">
 <style>
 /* Layout: navy cover band with the Pandori wordmark, then one calm column of five numbered sections (the order is the real flow of the brief). White, navy, sage. */
@@ -131,10 +131,10 @@ button#send{background:#202C44;color:#FFFFFF}
 <header>
   <div class="wrap">
     <img class="logo" src="logo.png" alt="Pandori" width="200" height="53">
-    <span class="eyebrow">Onboarding brief</span>
-    <h1>Welcome to Pandori</h1>
-    <p class="lede">Now that we're working together, tell us about your brand, your audience and the content you want. This is what our team builds from.</p>
-    <div class="meta"><span>About 15 minutes</span><span>"Not sure yet" is a fine answer</span></div>
+    <span class="eyebrow">Quote request</span>
+    <h1>Tell us what you need</h1>
+    <p class="lede">We already have your product, where it runs and the format from our chat, so these are just the last details we need to price your videos.</p>
+    <div class="meta"><span>About 8–10 minutes</span><span>"Not sure yet" is a fine answer</span></div>
   </div>
 </header>
 
@@ -143,7 +143,7 @@ button#send{background:#202C44;color:#FFFFFF}
 <main class="wrap">
   <form id="qform" novalidate>
     <section aria-labelledby="h1s">
-      <div class="sechead"><span class="num">01</span><h2 id="h1s">About you and your brand</h2><p>So we understand who you are and what we'd be promoting.</p></div>
+      <div class="sechead"><span class="num">01</span><h2 id="h1s">About you</h2><p>So we understand who you are and what we'd be promoting.</p></div>
       <div class="q"><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
         <select id="service" name="Service" required>
           <option value="">Choose one…</option>
@@ -152,227 +152,315 @@ button#send{background:#202C44;color:#FFFFFF}
           <option>Content + social media management + paid ads</option>
           <option>Not sure yet, help me decide</option>
         </select></div>
-      <div class="q"><label for="subject">This campaign is about <span class="req">(required)</span></label>
+      <div class="q" hidden><label for="subject">This campaign is about <span class="req">(required)</span></label>
         <select id="subject" name="Campaign is about" required>
           <option value="">Choose one…</option>
           <option>A business</option>
           <option>A person (personal brand)</option>
-          <option>A product</option>
+          <option selected>A product</option>
           <option>An event</option>
           <option>Other</option>
         </select></div>
       <div class="branch" data-for="A business" hidden>
         <p class="bhead" data-only="other">The business</p>
-        <div class="grid2">
-          <div class="q"><label for="b_ind">Industry</label><input type="text" id="b_ind" name="Business: industry"></div>
-          <div class="q"><label for="b_years">Years in business</label><input type="text" id="b_years" name="Business: years running"></div>
-        </div>
-        <div class="q"><label for="b_diff">What makes you different from competitors?</label><textarea id="b_diff" name="Business: what makes you different"></textarea></div>
-      </div>
-      <div class="branch" data-for="A person (personal brand)" hidden>
-        <p class="bhead" data-only="other">The person</p>
-        <div class="q"><label for="p_role">Your role, and what you want to be known for</label><input type="text" id="p_role" name="Person: role and known for"></div>
-        <div class="q"><label for="p_story">Your story</label><span class="hint">Background, turning points, what drives you.</span><textarea id="p_story" name="Person: story"></textarea></div>
+        <div class="q"><label for="b_where">Where are you based?</label><input type="text" id="b_where" name="Business: based in"></div>
       </div>
       <div class="branch" data-for="A product" hidden>
         <p class="bhead" data-only="other">The product</p>
         <div class="grid2">
-          <div class="q"><label for="pr_price">Price</label><input type="text" id="pr_price" name="Product: price"></div>
+          <div class="q" hidden><label for="pr_name">Product name</label><input type="text" id="pr_name" name="Product: name" value="Breath Lab Oral Probiotic (10 Billion CFU, 30 lozenges)"></div>
         </div>
-        <fieldset class="q"><legend>Where is it sold?</legend>
-          <div class="opts">
-            <label class="opt"><input type="checkbox" name="Product: sold" value="Online store"><span>Online store</span></label>
-            <label class="opt"><input type="checkbox" name="Product: sold" value="Shopee / Lazada / TikTok Shop"><span>Shopee, Lazada or TikTok Shop</span></label>
-            <label class="opt"><input type="checkbox" name="Product: sold" value="Physical stores"><span>Physical stores</span></label>
-          </div></fieldset>
-        <fieldset class="q"><legend>Stage</legend>
-          <div class="opts">
-            <label class="opt"><input type="checkbox" name="Product: stage" value="Brand new launch"><span>Brand new launch</span></label>
-            <label class="opt"><input type="checkbox" name="Product: stage" value="Relaunch"><span>Relaunch</span></label>
-            <label class="opt"><input type="checkbox" name="Product: stage" value="Already selling"><span>Already selling</span></label>
-          </div></fieldset>
+        <div class="q" hidden><label for="pr_var">How many variants, sizes or colours need to be shown?</label><input type="text" id="pr_var" name="Product: variants"></div>
       </div>
       <div class="branch" data-for="An event" hidden>
         <p class="bhead" data-only="other">The event</p>
-        <div class="q"><label for="e_moments">Key moments we must capture</label><span class="hint">Speakers, reveals, performances, VIPs.</span><textarea id="e_moments" name="Event: key moments"></textarea></div>
+        <div class="grid2">
+          <div class="q"><label for="e_name">Event name</label><input type="text" id="e_name" name="Event: name"></div>
+          <div class="q"><label for="e_date">Event date</label><input type="date" id="e_date" name="Event: date"></div>
+        </div>
+        <div class="grid2">
+          <div class="q"><label for="e_venue">Venue and city</label><input type="text" id="e_venue" name="Event: venue"></div>
+          <div class="q"><label for="e_guests">Expected guests</label><input type="number" min="0" id="e_guests" name="Event: guests"></div>
+        </div>
+        <div class="q"><label for="e_length">How long is the event?</label><span class="hint">Hours, or number of days.</span><input type="text" id="e_length" name="Event: length"></div>
+        <fieldset class="q"><legend>Type of event</legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Event: type" value="Launch"><span>Launch</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Conference"><span>Conference</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Workshop"><span>Workshop</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Wedding"><span>Wedding</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Party or celebration"><span>Party or celebration</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Other"><span>Other</span></label>
+          </div></fieldset>
+        <fieldset class="q"><legend>When do you need content?</legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="Before (promo)"><span>Before, to promote it</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="During the event"><span>During the event</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="Same-day edit"><span>Same-day edit</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="After (recap)"><span>After, recap</span></label>
+          </div></fieldset>
       </div>
       <div class="grid2">
         <div class="q"><label for="name">Your name <span class="req">(required)</span></label><input type="text" id="name" name="Name" required autocomplete="name"></div>
         <div class="q"><label for="email">Email <span class="req">(required)</span></label><input type="email" id="email" name="Email" required autocomplete="email"></div>
       </div>
       <div class="grid2">
-        <div class="q"><label for="biz"><span data-l-business="Business name" data-l-person="Your brand or professional name" data-l-product="Brand or company behind the product" data-l-event="Organiser or company" data-l-other="Business, brand or organiser name">Business name</span> <span class="req">(required)</span></label><input type="text" id="biz" name="Business name" required autocomplete="organization"></div>
+        <div class="q" hidden><label for="biz"><span data-l-business="Business name" data-l-person="Your brand or professional name" data-l-product="Brand or company behind the product" data-l-event="Organiser or company" data-l-other="Business, brand or organiser name">Business name</span> <span class="req">(required)</span></label><input type="text" id="biz" name="Business name" required value="Breath Lab" autocomplete="organization"></div>
+        <div class="q"><label for="web">Website or main social handle</label><input type="text" id="web" name="Website / socials" placeholder="e.g. @yourbrand"></div>
       </div>
-      <div class="q"><label for="what" data-l-business="What do you sell, and who buys it?" data-l-person="What do you do, and who do you help?" data-l-product="What does the product do, and who buys it?" data-l-event="What is the event about, and who is it for?" data-l-other="What is this campaign for, and who is it for?">What do you sell, and who buys it?</label><textarea id="what" name="What you sell"></textarea></div>
-      <div class="q" data-only="business person"><label for="focus" data-l-business="Which products or services should this campaign focus on?" data-l-person="Which services, offers or topics should this campaign promote?" data-l-other="Which products, services, people or moments should this campaign feature?">Which products or services should this campaign focus on?</label><textarea id="focus" name="Campaign focus"></textarea></div>
-      <div class="q"><label for="brandlink">Link to your brand files</label><span class="hint">Google Drive, Dropbox or Canva link. You can also send them after this form.</span><input type="url" id="brandlink" name="Brand files link" placeholder="https://"></div>
-      <fieldset class="q"><legend>How settled is your branding?</legend>
+      <fieldset class="q"><legend>Which brand assets do you already have?</legend><span class="hint">Tick everything you have. It helps us match your look from day one.</span>
         <div class="opts">
-          <label class="opt"><input type="checkbox" name="Branding status" value="Fixed, follow it closely"><span>Fixed, follow it closely</span></label>
-          <label class="opt"><input type="checkbox" name="Branding status" value="Flexible, open to fresh ideas"><span>Flexible, open to fresh ideas</span></label>
-          <label class="opt"><input type="checkbox" name="Branding status" value="Needs work, may want a refresh"><span>Needs work, may want a refresh</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Logo (high-res or vector)"><span>Logo (high-res or vector)</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Logo variations (icon, white, dark)"><span>Logo variations (icon, white, dark)</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Colour palette with hex codes"><span>Colour palette with hex codes</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Brand fonts"><span>Brand fonts</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Brand guidelines / style guide"><span>Brand guidelines / style guide</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Tone of voice guide"><span>Tone of voice guide</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Photography or video style"><span>Photography or video style</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Patterns, icons or graphic elements"><span>Patterns, icons or graphic elements</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Social media templates"><span>Social media templates</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Mood board"><span>Mood board</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="Existing photo / video library"><span>Existing photo / video library</span></label>
+          <label class="opt"><input type="checkbox" name="Brand assets" value="None yet"><span>None yet</span></label>
         </div></fieldset>
-      <div class="q"><label for="past" data-l-business="Have you run campaigns or shoots before? What worked, and what didn't?" data-l-person="Have you created content of yourself before? What worked, and what didn't?" data-l-product="Has this product been marketed before? What worked, and what didn't?" data-l-event="Have you run this or a similar event before? What content worked?" data-l-other="Have you run similar campaigns or shoots before? What worked, and what didn't?">Have you run campaigns or shoots before? What worked, and what didn't?</label><textarea id="past" name="Past campaigns"></textarea></div>
+      <div class="branch" data-for="Other" hidden>
+        <div class="q"><label for="o_what">Tell us what this campaign is about</label><span class="hint">For example, a cause, a community, a property, a restaurant opening, or a mix of things.</span><textarea id="o_what" name="Other: what it is"></textarea></div>
+        <p class="note">We've opened every question below so we can cover the whole campaign. Answer what fits, and tap <strong>Doesn't apply</strong> on anything that doesn't.</p>
+      </div>
     </section>
 
-    <section aria-labelledby="h2s">
-      <div class="sechead"><span class="num">02</span><h2 id="h2s">Goals and audience</h2><p>What success looks like, and who it's for.</p></div>
-      <fieldset class="q"><legend>Main goals of this campaign</legend><span class="hint">Pick all that apply.</span>
-        <div class="goalgroups">
-          <div class="gg"><span class="ggt">Get seen</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Brand awareness"><span>Brand awareness</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Followers and engagement"><span>Followers and engagement</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Community building"><span>Build a community</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Press and media attention"><span>Press and media attention</span></label>
-          </div></div>
-          <div class="gg"><span class="ggt">Get customers</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Website traffic"><span>Website traffic</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Leads or enquiries"><span>Leads or enquiries</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Sales"><span>Sales</span></label>
-            <label class="opt" data-only="business event"><input type="checkbox" name="Goals" value="Foot traffic to a store or venue"><span>Foot traffic to a store or venue</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Email or SMS sign-ups"><span>Email or SMS sign-ups</span></label>
-            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="App downloads or sign-ups"><span>App downloads or sign-ups</span></label>
-          </div></div>
-          <div class="gg"><span class="ggt">Keep and grow</span><div class="opts">
-            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="Repeat customers and loyalty"><span>Repeat customers and loyalty</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Trust and credibility"><span>Trust and credibility</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Educate the audience"><span>Educate your audience</span></label>
-            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="Launching something new"><span>Launch something new</span></label>
-            <label class="opt" data-only="business person"><input type="checkbox" name="Goals" value="Rebrand or reposition"><span>Rebrand or reposition</span></label>
-          </div></div>
-          <div class="gg"><span class="ggt">Beyond customers</span><div class="opts">
-            <label class="opt" data-only="business"><input type="checkbox" name="Goals" value="Hiring and recruitment"><span>Hiring and recruitment</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Partnerships or sponsors"><span>Partnerships or sponsors</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Build a content library"><span>Build a content library</span></label>
-          </div></div>
-          <div class="gg" data-only="person other"><span class="ggt">For you</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Build authority / thought leadership"><span>Build authority</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Land clients or opportunities"><span>Land clients or opportunities</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Grow a personal following"><span>Grow a personal following</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Speaking or media invites"><span>Speaking or media invites</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Career move or new role"><span>Career move or new role</span></label>
-          </div></div>
-          <div class="gg" data-only="product other"><span class="ggt">For your product</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Marketplace sales (Shopee / Lazada / TikTok Shop)"><span>Marketplace sales</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Reviews and customer content (UGC)"><span>Reviews and customer content</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Retail partners or stockists"><span>Retail partners or stockists</span></label>
-          </div></div>
-          <div class="gg" data-only="event other"><span class="ggt">For your event</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Ticket sales / registrations"><span>Ticket sales or registrations</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Live buzz on the day"><span>Live buzz on the day</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Sponsor visibility"><span>Sponsor visibility</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Capture memories / recap"><span>Capture the memories</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Promote next year's event"><span>Promote the next one</span></label>
-          </div></div>
-          <div class="gg"><span class="ggt">Something else</span><input type="text" id="goalOther" name="Goals: other" placeholder="Tell us your goal"></div>
-        </div></fieldset>
-      <div class="q"><label for="success">How will you know it worked?</label><span class="hint">For example, a number of sales, leads or followers.</span><textarea id="success" name="Success measure"></textarea></div>
-      <div class="q"><label for="audience" data-l-business="Who is your ideal customer?" data-l-person="Who is your ideal audience?" data-l-product="Who is the ideal buyer?" data-l-event="Who should attend or watch?" data-l-other="Who is your ideal audience?">Who is your ideal customer?</label><span class="hint">Age, location, job or lifestyle, and the problem you solve for them.</span><textarea id="audience" name="Ideal customer"></textarea></div>
-    </section>
 
     <section aria-labelledby="hcs">
-      <div class="sechead"><span class="num">03</span><h2 id="hcs">The content you want out there</h2><p>The look, feel and kind of content that fits your brand.</p></div>
-      <div class="q"><label for="remember">After seeing your content, what should people feel or remember?</label><textarea id="remember" name="Feel / remember"></textarea></div>
-      <fieldset class="q"><legend>Tone you're going for</legend><span class="hint">Pick all that apply.</span>
+      <div class="sechead"><span class="num">03</span><h2 id="hcs">Content, AI and the shoot</h2><p>The look, feel and kind of content that fits your brand.</p></div>
+      <fieldset class="q" data-only="business product event other"><legend>Who is the face of your brand?</legend><span class="hint">The person people see and hear in your content.</span>
         <div class="opts">
-          <label class="opt"><input type="checkbox" name="Tone" value="Premium"><span>Premium</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Warm and friendly"><span>Warm and friendly</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Playful and funny"><span>Playful and funny</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Bold and loud"><span>Bold and loud</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Calm and minimal"><span>Calm and minimal</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Educational"><span>Educational</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Raw and real"><span>Raw and real</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Cinematic"><span>Cinematic</span></label>
-          <label class="opt"><input type="checkbox" name="Tone" value="Edgy"><span>Edgy</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="Founder or owner"><span>Founder or owner</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A team member"><span>A team member</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A spokesperson or ambassador"><span>A spokesperson or ambassador</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A creator or influencer"><span>A creator or influencer</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="No face, the product is the star"><span>No face, the product is the star</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="We don't have one yet"><span>We don't have one yet</span></label>
         </div></fieldset>
-      <fieldset class="q"><legend>Everyday content you'd like</legend>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="Content: core" value="Product photos"><span>Product photos</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="Lifestyle (product in use)"><span>Lifestyle (product in use)</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="Behind the scenes"><span>Behind the scenes</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="Customer testimonials"><span>Customer testimonials</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="How-to / tips"><span>How-to and tips</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="Founder or team stories"><span>Founder or team stories</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="Offers and launches"><span>Offers and launches</span></label>
-          <label class="opt"><input type="checkbox" name="Content: core" value="UGC-style (phone-shot, creator feel)"><span>UGC-style, phone-shot</span></label>
+      <fieldset class="q"><legend>Spoken and caption language</legend><span class="hint">The language people hear and read in your posts.</span>
+        <div class="goalgroups">
+          <div class="gg"><div class="opts"><label class="opt"><input type="checkbox" name="Language" value="English"><span>English</span></label></div></div>
+          <div class="gg"><span class="ggt">Other languages</span><input type="text" id="lang_other" name="Language: other" placeholder="Type any other languages"></div>
         </div></fieldset>
-      <fieldset class="q"><legend>Content that gets remembered</legend><span class="hint">Less typical ideas that make people stop scrolling. Tick any that excite you.</span>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Episodic mini-series with recurring characters"><span>A mini-series with recurring characters</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Street interviews / vox pops"><span>Street interviews</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Product POV (the product tells its story)"><span>The product's point of view</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Stop-motion or playful animation"><span>Stop-motion or playful animation</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="ASMR / sensory close-ups"><span>ASMR and sensory close-ups</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="How it's made / satisfying process"><span>How it's made, satisfying process</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Experiments / '30-day test' challenges"><span>Experiments and "we tested it" challenges</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Comedy skits / relatable sketches"><span>Comedy skits</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Myth vs fact"><span>Myth vs fact</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Founder confessional (what went wrong)"><span>Founder confessionals</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Customer or employee takeover"><span>Customer or staff takeovers</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Before / after transformations"><span>Before and after</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Mini documentary"><span>A short documentary</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Interactive (polls, quizzes, 'you choose')"><span>Interactive: polls, quizzes, "you choose"</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Unexpected location or setting"><span>An unexpected location</span></label>
-          <label class="opt"><input type="checkbox" name="Content: standout" value="Hero brand film"><span>A cinematic hero film</span></label>
+      <fieldset class="q"><legend>On-screen subtitle language</legend><span class="hint">Subtitles shown on your videos.</span>
+        <div class="goalgroups">
+          <div class="gg"><div class="opts"><label class="opt"><input type="checkbox" name="Subtitles" value="No subtitles"><span>No subtitles</span></label><label class="opt"><input type="checkbox" name="Subtitles" value="Same as spoken language"><span>Same as spoken language</span></label><label class="opt"><input type="checkbox" name="Subtitles" value="English"><span>English</span></label></div></div>
+          <div class="gg"><span class="ggt">Other languages</span><input type="text" id="sub_other" name="Subtitles: other" placeholder="Type any other languages"></div>
         </div></fieldset>
-      <fieldset class="q"><legend>How adventurous can we be?</legend>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="Creative risk" value="Play it safe"><span>Play it safe</span></label>
-          <label class="opt"><input type="checkbox" name="Creative risk" value="A few experiments"><span>A few experiments</span></label>
-          <label class="opt"><input type="checkbox" name="Creative risk" value="Push the boundaries"><span>Push the boundaries</span></label>
-        </div></fieldset>
-      <fieldset class="q"><legend>Trends and sounds</legend>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="Trends" value="Yes, jump on trends"><span>Yes, jump on trends</span></label>
-          <label class="opt"><input type="checkbox" name="Trends" value="Only if it fits the brand"><span>Only if it fits the brand</span></label>
-          <label class="opt"><input type="checkbox" name="Trends" value="No trends"><span>No trends</span></label>
-        </div></fieldset>
-      <div class="q"><label for="refs">Brands or content you love</label><span class="hint">Any brand, any industry. Paste a few links or name them, and tell us what you like.</span><textarea id="refs" name="Reference links"></textarea></div>
-      <div class="q"><label for="offlimits">Anything off-limits?</label><span class="hint">Topics, words, competitors, styles you dislike, or anything private.</span><textarea id="offlimits" name="Off-limits"></textarea></div>
       <h3 class="subhead">AI and real content</h3>
-      <div class="q"><label for="ai_never">Anything AI should never be used for?</label><span class="hint">For example, your face, your voice, product claims or customer stories.</span><textarea id="ai_never" name="AI: never use for"></textarea></div>
+      <div class="aipanel">
+        <div class="aicol">
+          <span class="aitag">What AI adds</span>
+          <ul>
+            <li>More content for the same budget</li>
+            <li>Extra visuals, backgrounds and scenes</li>
+            <li>Product animations and motion</li>
+            <li>Voiceovers and faster edits</li>
+          </ul>
+        </div>
+        <div class="aicol">
+          <span class="aitag">What stays real</span>
+          <ul>
+            <li>Unless you choose 100% AI, we shoot in person of your <span data-l-business="business, team and products" data-l-person="you" data-l-product="product" data-l-event="event" data-l-other="product, people or event">business, team and products</span></li>
+            <li>Real faces, real places, real products</li>
+            <li>Every AI piece is checked by a person</li>
+            <li>Your audience sees what's genuine</li>
+          </ul>
+        </div>
+      </div>
+      <fieldset class="q"><legend>How much of your content can be AI-made?</legend><span class="hint">100% AI means no shoot day. We'd build everything from your existing photos, videos and brand assets.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="None"><span>None</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="A little (up to 25%)"><span>A little, up to 25%</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="About half"><span>About half</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="Most of it (75%+)"><span>Most of it, 75%+</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="All of it (100% AI)"><span>All of it, 100% AI</span></label>
+        </div></fieldset>
+      <p class="note" id="aiAllNote" hidden><strong>No shoot needed.</strong> With 100% AI content we build everything from your existing photos, videos and brand assets, so we've skipped the shoot questions.</p>
+      <fieldset class="q"><legend>Where are you comfortable with AI?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="AI: where" value="Editing, retouching and colour"><span>Editing and retouching</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="Captions and copywriting"><span>Captions and copy</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI backgrounds and scenes"><span>Backgrounds and scenes</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI product animations"><span>Product animations</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI voiceover"><span>Voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="AI models or avatars"><span>AI models or avatars</span></label>
+          <label class="opt"><input type="checkbox" name="AI: where" value="Fully AI-generated videos"><span>Fully AI-made videos</span></label>
+        </div></fieldset>
       <div id="shootGroup" class="subgroup">
         <h3 class="subhead">Shoot preferences</h3>
         <p class="subp">Tell us what you'd like. We plan and run the shoot.</p>
-      <fieldset class="q"><legend>Look and feel you'd like</legend><span class="hint">Pick any that appeal.</span>
+      <fieldset class="q" data-only="business person product other"><legend>Preferred setting</legend>
         <div class="opts">
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Bright and airy"><span>Bright and airy</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Warm and natural"><span>Warm and natural</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Moody and dramatic"><span>Moody and dramatic</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Clean studio"><span>Clean studio</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Candid, real moments"><span>Candid, real moments</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Cinematic"><span>Cinematic</span></label>
-          <label class="opt"><input type="checkbox" name="Shoot look" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Your store or office"><span>Your store or office</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Outdoors"><span>Outdoors</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="A studio"><span>A studio</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="At home"><span>At home</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Somewhere unexpected"><span>Somewhere unexpected</span></label>
+          <label class="opt"><input type="checkbox" name="Shoot setting" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
         </div></fieldset>
-      <div class="q" data-only="business person product other"><label for="where">Any place in mind?</label><span class="hint">A specific spot or city you'd love, or places to avoid. Optional.</span><input type="text" id="where" name="Place in mind"></div>
-      <div class="q" data-only="business person product other"><label for="dates">Dates that suit you, or dates to avoid</label><input type="text" id="dates" name="Preferred dates"></div>
-      <div class="q"><label for="restrict">Anything we should work around?</label><span class="hint">Opening hours, busy times, areas that are off-limits.</span><textarea id="restrict" name="Work around"></textarea></div>
+      <div class="q" data-only="business other"><label for="items">How many products should we feature?</label><input type="number" min="0" id="items" name="Number of products"></div>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceAvail">Will they be available for the shoot?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Yes, in person"><span>Yes, in person</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Some days only"><span>Some days only</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Only for self-filmed clips"><span>Only for self-filmed clips</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Not sure yet"><span>Not sure yet</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceComfort">How comfortable are they on camera?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Very, can talk to camera"><span>Very, can talk to camera</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Okay with guidance"><span>Okay with guidance</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Prefer candid moments"><span>Prefer candid moments</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Voiceover only"><span>Voiceover only</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-none"><legend>Would you like us to find a face for your brand?</legend><span class="hint">You haven't named one yet, so here are the options.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Yes, find a model or creator"><span>Yes, find a model or creator</span></label>
+          <label class="opt" data-dyn="ai-ok"><input type="checkbox" name="Face: sourcing" value="Use an AI avatar"><span>Use an AI avatar</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="No face, keep it product and voiceover"><span>No face, keep it product and voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Help me decide"><span>Help me decide</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Who would you like on camera?</legend>
+        <div class="opts">
+          <label class="opt" data-only="business product other"><input type="checkbox" name="On camera" value="Product only"><span>Product only</span></label>
+          <label class="opt" data-only="person other"><input type="checkbox" name="On camera" value="Me"><span>Me</span></label>
+          <label class="opt" data-only="event other"><input type="checkbox" name="On camera" value="Guests and speakers"><span>Guests and speakers</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Your team"><span>Your team</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Customers"><span>Customers</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Models (we can source them)"><span>Models (we can source them)</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Voice only"><span>Voice only</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Nobody, faceless content"><span>Nobody, faceless content</span></label>
+          <label class="opt"><input type="checkbox" name="On camera" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Props and styling</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Props" value="We have some you can use"><span>We have some you can use</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Please source them"><span>Please source them</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>Any extras you'd like?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Extras" value="Hair and makeup"><span>Hair and makeup</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Voiceover"><span>Voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Drone shots"><span>Drone shots</span></label>
+          <label class="opt"><input type="checkbox" name="Extras" value="Wardrobe styling"><span>Wardrobe styling</span></label>
+        </div></fieldset>
       </div>
     </section>
 
+    <section aria-labelledby="h3s">
+      <div class="sechead"><span class="num">05</span><h2 id="h3s">Deliverables and platforms</h2><p>What we'd be creating, and where it will live.</p></div>
+      <fieldset class="q" hidden><legend>Where will this content be used?</legend><span class="hint" data-s-all="Pick every place it will appear." data-s-social="Pick every place it will appear. You'll list the accounts we manage further down." data-s-ads="Pick every place it will appear. You'll list the accounts we manage and where to run ads further down.">Pick every place it will appear.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Platforms" value="Instagram" checked><span>Instagram</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Facebook" checked><span>Facebook</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="TikTok"><span>TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="LinkedIn"><span>LinkedIn</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="YouTube"><span>YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Website"><span>Website</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Print or in-store"><span>Print or in-store</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Threads"><span>Threads</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="X (Twitter)"><span>X (Twitter)</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Pinterest"><span>Pinterest</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="YouTube Shorts"><span>YouTube Shorts</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Google Business Profile"><span>Google Business Profile</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Shopee / Lazada / TikTok Shop listings"><span>Marketplace listings</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Email newsletter"><span>Email newsletter</span></label>
+          <label class="opt" data-svc="content social"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)" checked><span>Paid ads you run yourself</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Billboards or outdoor"><span>Billboards or outdoor</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Event screens or presentations"><span>Event screens</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend data-s-all="Roughly how much content do you need?" data-s-content="Roughly how much content do you need?" data-s-social="Roughly how much content do you need each month?" data-s-ads="Roughly how much content do you need each month, including ads?">Roughly how much content do you need?</legend>
+        <div class="counts">
+          <label>Short videos / Reels<input type="number" min="0" id="c1" name="Qty: short videos"></label>
+          <label>Photos<input type="number" min="0" id="c2" name="Qty: photos"></label>
+          <label>Carousels or graphics<input type="number" min="0" id="c3" name="Qty: carousels / graphics"></label>
+          <label>Longer videos (60s+)<input type="number" min="0" id="c4" name="Qty: long videos"></label>
+          <label>Stories<input type="number" min="0" id="c5" name="Qty: stories"></label>
+          <label data-svc="content ads">Ad creatives<input type="number" min="0" id="c6" name="Qty: ad creatives"></label>
+          <label>Product listing images<input type="number" min="0" id="c7" name="Qty: listing images"></label>
+          <label>Behind-the-scenes clips<input type="number" min="0" id="c8" name="Qty: BTS clips"></label>
+        </div></fieldset>
+      <fieldset class="q" data-svc="content"><legend>Is this a one-off campaign or ongoing?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Frequency" value="One-off campaign"><span>One-off campaign</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Ongoing monthly"><span>Ongoing monthly</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Not sure yet"><span>Not sure yet</span></label>
+        </div></fieldset>
+    </section>
 
+    <section aria-labelledby="hsm" data-svc="social ads">
+      <div class="sechead"><span class="num">06</span><h2 id="hsm">Social media management</h2><p>How we'd run your accounts day to day.</p></div>
+      <div class="q"><label for="sm_handles">Which accounts would we manage?</label><span class="hint">Paste handles or links you haven't already given us.</span><textarea id="sm_handles" name="SMM: accounts"></textarea></div>
+      <fieldset class="q"><legend>How often should we post?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="1–2 posts a week"><span>1–2 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="3–4 posts a week"><span>3–4 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="5–7 posts a week"><span>5–7 posts a week</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="Daily, plus Stories"><span>Daily, plus Stories</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: posting frequency" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>What should we handle on your accounts?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Writing captions"><span>Writing captions</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Scheduling and posting"><span>Scheduling and posting</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Stories"><span>Stories</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Replying to comments"><span>Replying to comments</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Replying to DMs"><span>Replying to DMs</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Growing followers"><span>Growing followers</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Collaborations and influencers"><span>Collaborations and influencers</span></label>
+          <label class="opt"><input type="checkbox" name="SMM: tasks" value="Monthly report"><span>Monthly report</span></label>
+        </div></fieldset>
+    </section>
 
     <section aria-labelledby="had" data-svc="ads">
       <div class="sechead"><span class="num">07</span><h2 id="had">Paid ads</h2><p>So we can plan campaigns that pay for themselves.</p></div>
-      <fieldset class="q"><legend>What should the ads get people to do?</legend>
+      <fieldset class="q"><legend>Where should we run ads?</legend>
         <div class="opts">
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Buy online"><span>Buy online</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Send a message or DM"><span>Send a message or DM</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Fill in a form"><span>Fill in a form</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Call or book"><span>Call or book</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Visit a store or venue"><span>Visit a store or venue</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Sign up or register"><span>Sign up or register</span></label>
-          <label class="opt"><input type="checkbox" name="Ads: objective" value="Watch and follow"><span>Watch and follow</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Facebook and Instagram (Meta)"><span>Facebook and Instagram (Meta)</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="TikTok"><span>TikTok</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Google Search"><span>Google Search</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="YouTube"><span>YouTube</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="LinkedIn"><span>LinkedIn</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: platforms" value="Shopee / Lazada ads"><span>Shopee / Lazada ads</span></label>
         </div></fieldset>
-      <div class="q"><label for="ad_where">Where should the ads reach people?</label><span class="hint">Countries, cities, or a radius around a location.</span><input type="text" id="ad_where" name="Ads: locations"></div>
-      <div class="q"><label for="ad_offer">Is there an offer or promotion to advertise?</label><span class="hint">A discount, free trial, bundle, launch price.</span><input type="text" id="ad_offer" name="Ads: offer"></div>
+      <fieldset class="q"><legend>Monthly ad spend</legend><span class="hint">The amount paid to the platforms, separate from our fee. In US dollars.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="Under $300"><span>Under $300</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$300–1,000"><span>$300–1,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$1,000–3,000"><span>$1,000–3,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$3,000–10,000"><span>$3,000–10,000</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: monthly spend (USD)" value="$10,000+"><span>$10,000+</span></label>
+        </div></fieldset>
+      <fieldset class="q"><legend>What's already set up?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Meta ad account"><span>Meta ad account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Meta Pixel on the website"><span>Meta Pixel on the website</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Google Ads account"><span>Google Ads account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="TikTok Ads account"><span>TikTok Ads account</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="A landing page or shop to send people to"><span>A landing page or shop to send people to</span></label>
+          <label class="opt"><input type="checkbox" name="Ads: setup" value="Nothing yet"><span>Nothing yet</span></label>
+        </div></fieldset>
     </section>
 
     <section aria-labelledby="h5s">
-      <div class="sechead"><span class="num">07</span><h2 id="h5s">Approvals</h2><p>So our quote fits how you work.</p></div>
-      <div class="grid2">
-        <div class="q"><label for="approver">Who approves the content?</label><input type="text" id="approver" name="Approver(s)"></div>
-      </div>
+      <div class="sechead"><span class="num">07</span><h2 id="h5s">Timeline and budget</h2><p>So our quote fits how you work.</p></div>
+      <div class="q"><label for="deadline">When do you need the final content?</label><span class="hint">Include any launch, season or event it's tied to.</span><input type="text" id="deadline" name="Deadline and timing"></div>
+      <fieldset class="q"><legend>Budget range for this project</legend><span class="hint" data-s-all="In US dollars, for our work." data-s-ads="In US dollars, for our work. Ad spend is separate.">In US dollars, for our work.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="Under $500"><span>Under $500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$500–1,000"><span>$500–1,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$1,000–2,500"><span>$1,000–2,500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$2,500–5,000"><span>$2,500–5,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$5,000–10,000"><span>$5,000–10,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$10,000+"><span>$10,000+</span></label>
+        </div></fieldset>
+      <div class="q"><label for="else">Anything else we should know?</label><textarea id="else" name="Anything else"></textarea></div>
       <p class="note">Once we have your answers, we'll send a tailored quote. <em>Strategy and creative concepts are shared once the project is confirmed.</em></p>
     </section>
 
@@ -397,6 +485,7 @@ button#send{background:#202C44;color:#FFFFFF}
 // Answers go to this inbox through FormSubmit (the same service the website's contact form uses).
 const SEND_TO = "https://formsubmit.co/clarise@pandorioutsourcing.com";
 const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
+const KNOWN = [{"question": "Brand", "answer": "Breath Lab"}, {"question": "Product", "answer": "Oral Probiotic, 10 Billion CFU, 30 vanilla peach lozenges. Neutralises bad breath; clinically formulated; results in 30 days"}, {"question": "Campaign is about", "answer": "A product"}, {"question": "Where the content runs", "answer": "Facebook and Instagram ads, run by Breath Lab"}, {"question": "Variants to show", "answer": "One product (30-lozenge tube)"}, {"question": "Format", "answer": "Vertical video"}, {"question": "Audience", "answer": "Men aged 35-44 and women aged 45-54, global"}, {"question": "Direction", "answer": "Funny, relatable, 'memeable' sketches with broad appeal, nothing too pop-culture specific. Open to a skit or a real-looking 'getting ready' video (e.g. before a date or job interview)"}];
 // -------------------
 (() => {
   const form = document.getElementById("qform"), bar = document.getElementById("bar"), pct = document.getElementById("pct"), err = document.getElementById("err");
@@ -512,6 +601,7 @@ const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
       }).filter(x => x.question);
       return { num, title, items };
     });
+    sections.unshift({ num: "00", title: "Already discussed in chat", items: KNOWN });
     const payload = {
       name: form.querySelector("#name").value.trim(), email: form.querySelector("#email").value.trim(),
       business: form.querySelector("#biz").value.trim(), type: form.querySelector("#subject").value, service: form.querySelector("#service").value,
@@ -520,16 +610,16 @@ const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
     const btn = document.getElementById("send"); btn.disabled = true; btn.textContent = "Sending…";
     try {
       const pdf = await buildPdf(payload);
-      const fname = "Pandori onboarding brief - " + (payload.business || payload.name).replace(/[\\/:*?"<>|]+/g, " ").slice(0, 60) + ".pdf";
+      const fname = "Pandori quote request - " + (payload.business || payload.name).replace(/[\\/:*?"<>|]+/g, " ").slice(0, 60) + ".pdf";
       // plain-text copy of every answer as a backup in the email body
       const text = payload.sections.map(sec => sec.num + " " + sec.title + "\n" + sec.items.map(it => "- " + it.question + ": " + (it.answer || "Not answered")).join("\n")).join("\n\n");
       const f = document.createElement("form"); f.method = "POST"; f.action = SEND_TO; f.enctype = "multipart/form-data"; f.hidden = true;
       const add = (n, v) => { const i = document.createElement("input"); i.type = "hidden"; i.name = n; i.value = v; f.appendChild(i); };
       add("Name", payload.name); add("email", payload.email); add("Business / name", payload.business); add("Campaign is about", payload.type); add("Service needed", payload.service);
       add("Submitted", payload.submitted); add("All answers", text);
-      add("_subject", "New onboarding brief: " + (payload.business || payload.name) + " (" + payload.type + ")");
+      add("_subject", "New quote request: " + (payload.business || payload.name) + " (" + payload.type + ")");
       add("_template", "table"); add("_next", THANKS_URL);
-      add("_autoresponse", "Hello there!\n\nThis is Clarise, thank you for completing your Pandori onboarding brief. Our team has your answers and will be in touch about next steps.\n\nYour team, multiplied.\nPandori Outsourcing");
+      add("_autoresponse", "Hello there!\n\nThis is Clarise, thank you for requesting a quote from Pandori. We have received your answers and will send your tailored quote soon.\n\nYour team, multiplied.\nPandori Outsourcing");
       const file = document.createElement("input"); file.type = "file"; file.name = "Questionnaire PDF";
       const dt = new DataTransfer(); dt.items.add(new File([pdf], fname, { type: "application/pdf" })); file.files = dt.files; f.appendChild(file);
       document.body.appendChild(f); f.submit();
@@ -549,7 +639,7 @@ const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
     // cover band
     doc.setFillColor(...NAVY); doc.rect(0, 0, W, 190, "F"); doc.setFillColor(...OLIVE); doc.rect(0, 190, W, 5, "F");
     const lg = await logoData(); if (lg) doc.addImage(lg.url, "PNG", M, 34, 150, 150 * lg.h / lg.w);
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...SAGE); doc.setCharSpace(2); doc.text("ONBOARDING BRIEF", M, 100); doc.setCharSpace(0);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...SAGE); doc.setCharSpace(2); doc.text("QUOTE REQUEST", M, 100); doc.setCharSpace(0);
     doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(255, 255, 255); doc.text(doc.splitTextToSize(ascii(d.business || d.name), W - 2 * M)[0], M, 128);
     doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...SAGE); doc.text(ascii([d.service, d.type, d.name, d.email].filter(Boolean).join("   \u00B7   ")), M, 150);
     doc.setFontSize(8.5); doc.text("Submitted " + ascii(d.submitted), M, 168);
