@@ -317,6 +317,15 @@ button#send{background:#202C44;color:#FFFFFF}
     <section aria-labelledby="hcs">
       <div class="sechead"><span class="num">03</span><h2 id="hcs">The content you want out there</h2><p>The look, feel and kind of content that fits your brand.</p></div>
       <div class="q"><label for="remember">After seeing your content, what should people feel or remember?</label><textarea id="remember" name="Feel / remember"></textarea></div>
+      <fieldset class="q" data-only="business product event other"><legend>Who is the face of your brand?</legend><span class="hint">The person people see and hear in your content.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="Founder or owner"><span>Founder or owner</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A team member"><span>A team member</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A spokesperson or ambassador"><span>A spokesperson or ambassador</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="A creator or influencer"><span>A creator or influencer</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="No face, the product is the star"><span>No face, the product is the star</span></label>
+          <label class="opt"><input type="checkbox" name="Face of the brand" value="We don't have one yet"><span>We don't have one yet</span></label>
+        </div></fieldset>
       <fieldset class="q"><legend>Tone you're going for</legend><span class="hint">Pick all that apply.</span>
         <div class="opts">
           <label class="opt"><input type="checkbox" name="Tone" value="Premium"><span>Premium</span></label>
@@ -468,6 +477,7 @@ button#send{background:#202C44;color:#FFFFFF}
           <label class="opt"><input type="checkbox" name="AI: share of content" value="Most of it (75%+)"><span>Most of it, 75%+</span></label>
           <label class="opt"><input type="checkbox" name="AI: share of content" value="All of it (100% AI)"><span>All of it, 100% AI</span></label>
         </div></fieldset>
+      <p class="note" id="aiAllNote" hidden><strong>No shoot needed.</strong> With 100% AI content we build everything from your existing photos, videos and brand assets, so we've skipped the shoot questions.</p>
       <fieldset class="q"><legend>Where are you comfortable with AI?</legend>
         <div class="opts">
           <label class="opt"><input type="checkbox" name="AI: where" value="Editing, retouching and colour"><span>Editing and retouching</span></label>
@@ -616,6 +626,27 @@ button#send{background:#202C44;color:#FFFFFF}
         </div></fieldset>
       <div class="q" data-only="business person product other"><label for="where">Any place in mind?</label><span class="hint">A specific spot or city you'd love, or places to avoid. Optional.</span><input type="text" id="where" name="Place in mind"></div>
       <div class="q" data-only="business other"><label for="items">How many products should we feature?</label><input type="number" min="0" id="items" name="Number of products"></div>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceAvail">Will they be available for the shoot?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Yes, in person"><span>Yes, in person</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Some days only"><span>Some days only</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Only for self-filmed clips"><span>Only for self-filmed clips</span></label>
+          <label class="opt"><input type="checkbox" name="Face: availability" value="Not sure yet"><span>Not sure yet</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-known"><legend id="faceComfort">How comfortable are they on camera?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Very, can talk to camera"><span>Very, can talk to camera</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Okay with guidance"><span>Okay with guidance</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Prefer candid moments"><span>Prefer candid moments</span></label>
+          <label class="opt"><input type="checkbox" name="Face: camera comfort" value="Voiceover only"><span>Voiceover only</span></label>
+        </div></fieldset>
+      <fieldset class="q" data-dyn="face-none"><legend>Would you like us to find a face for your brand?</legend><span class="hint">You haven't named one yet, so here are the options.</span>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Yes, find a model or creator"><span>Yes, find a model or creator</span></label>
+          <label class="opt" data-dyn="ai-ok"><input type="checkbox" name="Face: sourcing" value="Use an AI avatar"><span>Use an AI avatar</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="No face, keep it product and voiceover"><span>No face, keep it product and voiceover</span></label>
+          <label class="opt"><input type="checkbox" name="Face: sourcing" value="Help me decide"><span>Help me decide</span></label>
+        </div></fieldset>
       <fieldset class="q"><legend>Who would you like on camera?</legend>
         <div class="opts">
           <label class="opt" data-only="business product other"><input type="checkbox" name="On camera" value="Product only"><span>Product only</span></label>
@@ -755,11 +786,26 @@ const THANKS_URL = "https://pandorioutsourcing.com/campaign-questionnaire/?sent=
     form.querySelectorAll("[data-svc]").forEach(el => { const ok = !sv || el.dataset.svc.split(" ").includes(sv); el.hidden = el.dataset.only ? (el.hidden || !ok) : !ok; });
     form.querySelectorAll("[data-s-all]").forEach(el => { el.textContent = el.getAttribute("data-s-" + (sv || "all")) || el.dataset.sAll; });
     // number the visible sections 01, 02, 03…
+    // shoot adapts to the AI and face-of-brand answers
+    const picked = nm => [...form.querySelectorAll('input[name="' + nm + '"]:checked')].map(i => i.value);
+    const share = picked("AI: share of content"), aiAll = share.length === 1 && share[0] === "All of it (100% AI)", noAI = share.length === 1 && share[0] === "None";
+    document.getElementById("aiAllNote").hidden = !aiAll;
+    form.querySelector('section[aria-labelledby="h4s"]').hidden = aiAll;
+    const face = picked("Face of the brand"), people = ["Founder or owner", "A team member", "A spokesperson or ambassador", "A creator or influencer"];
+    const known = k === "person" || face.some(v => people.includes(v));
+    const productOnly = !known && face.includes("No face, the product is the star");
+    form.querySelectorAll('[data-dyn="face-known"]').forEach(el => el.hidden = !known);
+    form.querySelectorAll('[data-dyn="face-none"]').forEach(el => el.hidden = known || productOnly);
+    form.querySelectorAll('[data-dyn="ai-ok"]').forEach(el => el.hidden = noAI);
+    const who = k === "person" ? "you" : face.filter(v => people.includes(v)).length === 1 ? ({ "Founder or owner": "your founder", "A team member": "your team member", "A spokesperson or ambassador": "your spokesperson", "A creator or influencer": "your creator" })[face.find(v => people.includes(v))] : "they";
+    document.getElementById("faceAvail").textContent = k === "person" ? "Will you be available for the shoot?" : "Will " + who + " be available for the shoot?";
+    document.getElementById("faceComfort").textContent = k === "person" ? "How comfortable are you on camera?" : "How comfortable " + (who === "they" ? "are they" : "is " + who) + " on camera?";
     let n = 0; form.querySelectorAll("section").forEach(sec => { if (!sec.hidden) sec.querySelector(".num").textContent = String(++n).padStart(2, "0"); });
     syncDisabled();
   };
   document.getElementById("subject").addEventListener("change", applyType);
   document.getElementById("service").addEventListener("change", applyType);
+  form.addEventListener("change", e => { if (/^(AI: share of content|Face of the brand)$/.test(e.target.name)) applyType(); });
   form.addEventListener("submit", async e => {
     e.preventDefault(); err.textContent = "";
     const missing = [...form.querySelectorAll("[required]")].filter(el => !el.value.trim() || (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value)));
