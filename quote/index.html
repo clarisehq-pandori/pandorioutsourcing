@@ -547,7 +547,7 @@ const THANKS_URL = "https://pandorioutsourcing.com/quote/?sent=1";
   const applyType = () => {
     const k = typeKey(document.getElementById("subject").value);
     form.querySelectorAll(".branch").forEach(b => { const bk = typeKey(b.dataset.for); b.hidden = !(bk === k || (k === "other" && bk !== "other") || (k === "other" && bk === "other")); });
-    form.querySelectorAll("[data-only]").forEach(el => { const only = el.dataset.only.split(" "); el.hidden = only.includes("other") && only.length === 1 ? k !== "other" : !(!k || k === "other" || only.includes(k)); });
+    form.querySelectorAll("[data-only]").forEach(el => { const only = el.dataset.only.split(" "); el.hidden = !k || (k !== "other" && !only.includes(k)); });
     form.querySelectorAll("[data-l-business]").forEach(el => { const t = el.getAttribute("data-l-" + (k || "business")); if (t) el.textContent = t; });
     // service: hide sections and questions that don't fit what they need from us
     const sv = svcKey(document.getElementById("service").value);

@@ -229,19 +229,19 @@ button#send{background:#202C44;color:#FFFFFF}
             <label class="opt"><input type="checkbox" name="Goals" value="Website traffic"><span>Website traffic</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Leads or enquiries"><span>Leads or enquiries</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Sales"><span>Sales</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Foot traffic to a store or venue"><span>Foot traffic to a store or venue</span></label>
+            <label class="opt" data-only="business event"><input type="checkbox" name="Goals" value="Foot traffic to a store or venue"><span>Foot traffic to a store or venue</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Email or SMS sign-ups"><span>Email or SMS sign-ups</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="App downloads or sign-ups"><span>App downloads or sign-ups</span></label>
+            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="App downloads or sign-ups"><span>App downloads or sign-ups</span></label>
           </div></div>
           <div class="gg"><span class="ggt">Keep and grow</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Repeat customers and loyalty"><span>Repeat customers and loyalty</span></label>
+            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="Repeat customers and loyalty"><span>Repeat customers and loyalty</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Trust and credibility"><span>Trust and credibility</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Educate the audience"><span>Educate your audience</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Launching something new"><span>Launch something new</span></label>
-            <label class="opt"><input type="checkbox" name="Goals" value="Rebrand or reposition"><span>Rebrand or reposition</span></label>
+            <label class="opt" data-only="business product"><input type="checkbox" name="Goals" value="Launching something new"><span>Launch something new</span></label>
+            <label class="opt" data-only="business person"><input type="checkbox" name="Goals" value="Rebrand or reposition"><span>Rebrand or reposition</span></label>
           </div></div>
           <div class="gg"><span class="ggt">Beyond customers</span><div class="opts">
-            <label class="opt"><input type="checkbox" name="Goals" value="Hiring and recruitment"><span>Hiring and recruitment</span></label>
+            <label class="opt" data-only="business"><input type="checkbox" name="Goals" value="Hiring and recruitment"><span>Hiring and recruitment</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Partnerships or sponsors"><span>Partnerships or sponsors</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Build a content library"><span>Build a content library</span></label>
           </div></div>
@@ -459,7 +459,7 @@ const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
   const applyType = () => {
     const k = typeKey(document.getElementById("subject").value);
     form.querySelectorAll(".branch").forEach(b => { const bk = typeKey(b.dataset.for); b.hidden = !(bk === k || (k === "other" && bk !== "other") || (k === "other" && bk === "other")); });
-    form.querySelectorAll("[data-only]").forEach(el => { const only = el.dataset.only.split(" "); el.hidden = only.includes("other") && only.length === 1 ? k !== "other" : !(!k || k === "other" || only.includes(k)); });
+    form.querySelectorAll("[data-only]").forEach(el => { const only = el.dataset.only.split(" "); el.hidden = !k || (k !== "other" && !only.includes(k)); });
     form.querySelectorAll("[data-l-business]").forEach(el => { const t = el.getAttribute("data-l-" + (k || "business")); if (t) el.textContent = t; });
     // service: hide sections and questions that don't fit what they need from us
     const sv = svcKey(document.getElementById("service").value);
