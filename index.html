@@ -466,12 +466,12 @@ footer .logo.mark{width:28px}
         <form id="contact-form" action="https://formsubmit.co/clarise@pandorioutsourcing.com" method="POST" novalidate>
           <div class="row2">
             <label for="c-name">Your name<input id="c-name" name="Name" autocomplete="name" required><span class="err"></span></label>
-            <label for="c-company">Company<input id="c-company" name="Company" autocomplete="organization"><span class="err"></span></label>
+            <label for="c-company">Company<input id="c-company" name="Company" autocomplete="organization" required><span class="err"></span></label>
           </div>
           <div class="row2">
             <label for="c-mail">Email<input id="c-mail" name="email" type="email" autocomplete="email" required><span class="err"></span></label>
-            <label for="c-need">I'm interested in<select id="c-need" name="Interested in">
-              <option>Independent Contractors</option><option>Virtual Assistants</option><option>Business Process Outsourcing</option><option>Content Creation</option><option>Social Media Management</option><option>Not sure yet</option></select><span class="err"></span></label>
+            <label for="c-need">I'm interested in<select id="c-need" name="Interested in" required>
+              <option value="">Choose one</option><option>Independent Contractors</option><option>Virtual Assistants</option><option>Business Process Outsourcing</option><option>Content Creation</option><option>Social Media Management</option><option>Not sure yet</option></select><span class="err"></span></label>
           </div>
           <label for="c-msg">What do you need help with?<textarea id="c-msg" name="Message" required></textarea><span class="err"></span></label>
           <input type="hidden" name="_subject" id="c-subject">
@@ -559,7 +559,8 @@ footer .logo.mark{width:28px}
   function validate(form){
     let ok = true;
     form.querySelectorAll('input,select,textarea').forEach(el => {
-      const err = el.parentElement.querySelector('.err'); let msg = '';
+      if (el.type === 'hidden' || el.name === '_honey') return;
+      const err = (el.closest('label') || el.parentElement).querySelector('.err'); let msg = '';
       const v = el.value.trim();
       if (el.required && !v) msg = 'Please fill this in.';
       else if (el.type === 'email' && v && !/^\S+@\S+\.\S+$/.test(v)) msg = 'Enter an email like name@company.com.';
