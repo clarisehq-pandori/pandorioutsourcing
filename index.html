@@ -1,4 +1,7 @@
+<!doctype html>
+<html lang="en">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pandori</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Pandori connects ambitious businesses with highly skilled, AI-trained freelancers matched to their exact needs.">
@@ -28,6 +31,10 @@
   --focus:#A3C287; color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;font-weight:500}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
 h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
@@ -82,7 +89,6 @@ nav a[aria-current="page"]{color:var(--navy);background:#fff}
 .hero .logo.word{width:min(560px,86%);margin-bottom:28px}
 .hero h1{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:700;max-width:24ch;margin-bottom:18px}
 .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.hero .ghostmark{position:absolute;right:-40px;bottom:-60px;width:min(380px,40vw);color:rgba(255,255,255,.05);pointer-events:none}
 .rule{height:3px;width:min(420px,70%);background:#fff;border-radius:2px;margin-block:4px 22px;opacity:.9}
 
 /* problem / solution switcher */
@@ -183,6 +189,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--leaf)}
 .err{color:#B4483C;font-size:.85rem;font-weight:600;min-height:1em}
 :root[data-theme="dark"] .err{color:#F08F80}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#F08F80}}
+.opt{font-weight:500;color:var(--muted)}
+.files{border:1.5px dashed var(--line);border-radius:10px;padding:14px;margin:0;display:grid;gap:10px;min-width:0}
+.files legend{font-weight:700;font-size:.92rem;padding:0 6px}
+input[type=file]{padding:9px 10px;font-size:.92rem}
+.files .hint{font-size:.85rem}
 .done{background:var(--leaf-soft);border:1px solid var(--leaf);border-radius:var(--r);padding:22px;display:grid;gap:12px}
 .done h3{font-size:1.4rem}
 .done pre{white-space:pre-wrap;font:500 .9rem var(--body);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;margin:0;max-height:220px;overflow:auto}
@@ -227,7 +238,6 @@ footer .logo.mark{width:28px}
         <a class="btn ghost" href="#hiring">Join our talent</a>
       </div>
     </div>
-    <span class="logo mark ghostmark" aria-hidden="true"></span>
   </div>
 
   <div class="band">
@@ -397,17 +407,31 @@ footer .logo.mark{width:28px}
     <div class="wrap split">
       <div><p class="eyebrow">Apply</p><h2>Tell us about you</h2><p class="muted" style="margin-top:14px">Fill this in and it goes straight to our team.</p></div>
       <div>
-        <form id="apply-form" novalidate>
+        <form id="apply-form" action="https://formsubmit.co/clarise@pandorioutsourcing.com" method="POST" enctype="multipart/form-data" novalidate>
           <div class="row2">
-            <label for="a-name">Full name<input id="a-name" name="name" autocomplete="name" required><span class="err"></span></label>
+            <label for="a-name">Full name<input id="a-name" name="Name" autocomplete="name" required><span class="err"></span></label>
             <label for="a-email">Email<input id="a-email" name="email" type="email" autocomplete="email" required><span class="err"></span></label>
           </div>
           <div class="row2">
-            <label for="a-role">Role<select id="a-role" name="role" required>
+            <label for="a-role">Role<select id="a-role" name="Role" required>
               <option value="">Choose a role</option><option>Virtual Assistant</option><option>Business Process Specialist</option><option>Content Creator</option><option>Social Media Manager</option><option>Independent Contractor</option></select><span class="err"></span></label>
-            <label for="a-link">Portfolio or LinkedIn<input id="a-link" name="link" type="url" placeholder="https://"><span class="err"></span></label>
+            <label for="a-link">Portfolio link <span class="opt">(optional)</span><input id="a-link" name="Portfolio link" type="url" placeholder="https://"><span class="err"></span></label>
           </div>
-          <label for="a-ai">How do you use AI in your work today?<textarea id="a-ai" name="ai" required></textarea><span class="err"></span></label>
+          <label for="a-cv">Resume / CV <span class="opt">(PDF or Word)</span><input id="a-cv" name="Resume" type="file" accept=".pdf,.doc,.docx" required><span class="err"></span></label>
+          <fieldset class="files">
+            <legend>Portfolio and proof of work <span class="opt">(optional: images, PDFs or Word files)</span></legend>
+            <input id="a-proof1" name="Proof 1" type="file" accept="image/*,.pdf,.doc,.docx" aria-label="Proof of work file 1">
+            <input id="a-proof2" name="Proof 2" type="file" accept="image/*,.pdf,.doc,.docx" aria-label="Proof of work file 2">
+            <input id="a-proof3" name="Proof 3" type="file" accept="image/*,.pdf,.doc,.docx" aria-label="Proof of work file 3">
+            <span class="hint muted">Up to 5 MB in total across all files.</span>
+            <span class="err" id="a-files-err"></span>
+          </fieldset>
+          <label for="a-ai">How do you use AI in your work today?<textarea id="a-ai" name="How I use AI" required></textarea><span class="err"></span></label>
+          <input type="hidden" name="_subject" id="a-subject">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_autoresponse" id="a-auto">
+          <input type="hidden" name="_next" id="a-next">
           <input type="text" name="_honey" id="a-honey" tabindex="-1" autocomplete="off" hidden>
           <button class="btn leaf" type="submit" style="justify-self:start">Send application</button>
           <p class="err" data-status role="status"></p>
@@ -478,12 +502,18 @@ footer .logo.mark{width:28px}
   function route(){
     let h = location.hash.slice(1) || 'home';
     let target = h;
-    if (h === 'apply') target = 'hiring';
+    if (h === 'apply' || h === 'applied') target = 'hiring';
     if (!views.some(v => v.dataset.view === target)) target = 'home';
     views.forEach(v => v.hidden = v.dataset.view !== target);
     links.forEach(a => a.getAttribute('href') === '#' + target ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
-    if (h === 'apply') document.getElementById('apply-wrap').scrollIntoView({behavior:'smooth'});
+    if (h === 'applied') showApplied();
+    if (h === 'apply' || h === 'applied') document.getElementById('apply-wrap').scrollIntoView({behavior:'smooth'});
     else window.scrollTo(0,0);
+  }
+  function showApplied(){
+    const f = document.getElementById('apply-form'), box = document.getElementById('apply-done');
+    f.hidden = true; box.hidden = false;
+    box.innerHTML = '<h3>Thank you, your application is in!</h3><p>We\'ve received your details and files. Check your inbox for a confirmation email. If your experience is a fit for a current or upcoming client, we\'ll contact you about next steps.</p><div class="actions"><a class="copy" href="#hiring">Back to open roles</a></div>';
   }
   addEventListener('hashchange', route); route();
 
@@ -547,14 +577,32 @@ footer .logo.mark{width:28px}
     } finally { clearTimeout(timer); btn.disabled = false; btn.textContent = label; }
   }
   const af = document.getElementById('apply-form');
-  af.addEventListener('submit', e => { e.preventDefault(); if (!validate(af)) return; const d = Object.fromEntries(new FormData(af));
-    send(af, document.getElementById('apply-done'), 'Pandori application: ' + d.role + ' – ' + d.name,
-      {Name: d.name, Email: d.email, Role: d.role, Portfolio: d.link || '–', 'How I use AI': d.ai, _replyto: d.email, _autoresponse: AUTO_APPLY},
-      'Your application is in. We\'ll be in touch if there\'s a fit.'); });
+  const MAX_BYTES = 5 * 1024 * 1024;
+  function checkFiles(){
+    const cv = document.getElementById('a-cv'), cvErr = cv.parentElement.querySelector('.err'), fErr = document.getElementById('a-files-err');
+    let ok = true; fErr.textContent = '';
+    const f = cv.files[0];
+    if (f && !/\.(pdf|docx?)$/i.test(f.name)) { cvErr.textContent = 'Upload your resume as a PDF or Word file.'; ok = false; }
+    const all = [...af.querySelectorAll('input[type=file]')].flatMap(i => [...i.files]);
+    const proofs = ['a-proof1','a-proof2','a-proof3'].flatMap(id => [...document.getElementById(id).files]);
+    if (proofs.some(p => !/^image\//.test(p.type) && !/\.(pdf|docx?)$/i.test(p.name))) { fErr.textContent = 'Proof files can be images, PDFs or Word files.'; ok = false; }
+    const total = all.reduce((n, x) => n + x.size, 0);
+    if (total > MAX_BYTES) { fErr.textContent = 'Your files add up to ' + (total / 1048576).toFixed(1) + ' MB. Please keep them under 5 MB in total.'; ok = false; }
+    return ok;
+  }
+  af.addEventListener('submit', e => {
+    const valid = validate(af), filesOk = checkFiles();
+    if (!valid || !filesOk) { e.preventDefault(); return; }
+    document.getElementById('a-subject').value = 'Pandori application: ' + document.getElementById('a-role').value + ' – ' + document.getElementById('a-name').value.trim();
+    document.getElementById('a-auto').value = AUTO_APPLY;
+    document.getElementById('a-next').value = location.origin + location.pathname + '#applied';
+    const btn = af.querySelector('[type=submit]'); btn.textContent = 'Sending…';
+    setTimeout(() => { btn.disabled = true; }, 0);
+  });
   const cf = document.getElementById('contact-form');
   cf.addEventListener('submit', e => { e.preventDefault(); if (!validate(cf)) return; const d = Object.fromEntries(new FormData(cf));
     send(cf, document.getElementById('contact-done'), 'Pandori enquiry: ' + d.need + (d.company ? ' – ' + d.company : ''),
-      {Name: d.name, Company: d.company || '–', Email: d.email, 'Interested in': d.need, Message: d.message, _replyto: d.email, _autoresponse: AUTO_CONTACT},
+      {Name: d.name, Company: d.company || '–', email: d.email, 'Interested in': d.need, Message: d.message, _replyto: d.email, _autoresponse: AUTO_CONTACT},
       'We\'ve received your message and will get back to you soon.'); });
 })();
 </script>
