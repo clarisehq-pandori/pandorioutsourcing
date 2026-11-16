@@ -166,9 +166,9 @@ button#send{background:#202C44;color:#FFFFFF}
         <div class="q"><label for="p_reach">Who do you want to reach?</label><span class="hint">Clients, employers, followers, partners.</span><input type="text" id="p_reach" name="Person: who to reach"></div>
         <fieldset class="q"><legend>How comfortable are you on camera?</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="Person: camera comfort" value="Very, I can talk to camera"><span>Very, I can talk to camera</span></label>
-            <label class="opt"><input type="radio" name="Person: camera comfort" value="Okay with guidance"><span>Okay with guidance</span></label>
-            <label class="opt"><input type="radio" name="Person: camera comfort" value="Prefer candid / voiceover"><span>Prefer candid or voiceover</span></label>
+            <label class="opt"><input type="checkbox" name="Person: camera comfort" value="Very, I can talk to camera"><span>Very, I can talk to camera</span></label>
+            <label class="opt"><input type="checkbox" name="Person: camera comfort" value="Okay with guidance"><span>Okay with guidance</span></label>
+            <label class="opt"><input type="checkbox" name="Person: camera comfort" value="Prefer candid / voiceover"><span>Prefer candid or voiceover</span></label>
           </div></fieldset>
         <div class="q"><label for="p_private">Topics you're happy to share, and anything that stays private</label><textarea id="p_private" name="Person: share vs private"></textarea></div>
       </div>
@@ -187,9 +187,9 @@ button#send{background:#202C44;color:#FFFFFF}
           </div></fieldset>
         <fieldset class="q"><legend>Stage</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="Product: stage" value="Brand new launch"><span>Brand new launch</span></label>
-            <label class="opt"><input type="radio" name="Product: stage" value="Relaunch"><span>Relaunch</span></label>
-            <label class="opt"><input type="radio" name="Product: stage" value="Already selling"><span>Already selling</span></label>
+            <label class="opt"><input type="checkbox" name="Product: stage" value="Brand new launch"><span>Brand new launch</span></label>
+            <label class="opt"><input type="checkbox" name="Product: stage" value="Relaunch"><span>Relaunch</span></label>
+            <label class="opt"><input type="checkbox" name="Product: stage" value="Already selling"><span>Already selling</span></label>
           </div></fieldset>
         <div class="q"><label for="pr_var">How many variants, sizes or colours need to be shown?</label><input type="text" id="pr_var" name="Product: variants"></div>
       </div>
@@ -205,12 +205,12 @@ button#send{background:#202C44;color:#FFFFFF}
         </div>
         <fieldset class="q"><legend>Type of event</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="Event: type" value="Launch"><span>Launch</span></label>
-            <label class="opt"><input type="radio" name="Event: type" value="Conference"><span>Conference</span></label>
-            <label class="opt"><input type="radio" name="Event: type" value="Workshop"><span>Workshop</span></label>
-            <label class="opt"><input type="radio" name="Event: type" value="Wedding"><span>Wedding</span></label>
-            <label class="opt"><input type="radio" name="Event: type" value="Party or celebration"><span>Party or celebration</span></label>
-            <label class="opt"><input type="radio" name="Event: type" value="Other"><span>Other</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Launch"><span>Launch</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Conference"><span>Conference</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Workshop"><span>Workshop</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Wedding"><span>Wedding</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Party or celebration"><span>Party or celebration</span></label>
+            <label class="opt"><input type="checkbox" name="Event: type" value="Other"><span>Other</span></label>
           </div></fieldset>
         <fieldset class="q"><legend>When do you need content?</legend>
           <div class="opts">
@@ -249,9 +249,9 @@ button#send{background:#202C44;color:#FFFFFF}
       <div class="q"><label for="brandlink">Link to your brand files</label><span class="hint">Google Drive, Dropbox or Canva link. You can also send them after this form.</span><input type="url" id="brandlink" name="Brand files link" placeholder="https://"></div>
       <fieldset class="q"><legend>How settled is your branding?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Branding status" value="Fixed, follow it closely"><span>Fixed, follow it closely</span></label>
-          <label class="opt"><input type="radio" name="Branding status" value="Flexible, open to fresh ideas"><span>Flexible, open to fresh ideas</span></label>
-          <label class="opt"><input type="radio" name="Branding status" value="Needs work, may want a refresh"><span>Needs work, may want a refresh</span></label>
+          <label class="opt"><input type="checkbox" name="Branding status" value="Fixed, follow it closely"><span>Fixed, follow it closely</span></label>
+          <label class="opt"><input type="checkbox" name="Branding status" value="Flexible, open to fresh ideas"><span>Flexible, open to fresh ideas</span></label>
+          <label class="opt"><input type="checkbox" name="Branding status" value="Needs work, may want a refresh"><span>Needs work, may want a refresh</span></label>
         </div></fieldset>
       <div class="q"><label for="past" data-l-business="Have you run campaigns or shoots before? What worked, and what didn't?" data-l-person="Have you created content of yourself before? What worked, and what didn't?" data-l-product="Has this product been marketed before? What worked, and what didn't?" data-l-event="Have you run this or a similar event before? What content worked?" data-l-other="Have you run similar campaigns or shoots before? What worked, and what didn't?">Have you run campaigns or shoots before? What worked, and what didn't?</label><textarea id="past" name="Past campaigns"></textarea></div>
       <div class="q"><label for="likes">Name 2–3 brands whose content you like, and what you like about it.</label><textarea id="likes" name="Brands you like"></textarea></div>
@@ -263,8 +263,8 @@ button#send{background:#202C44;color:#FFFFFF}
 
     <section aria-labelledby="h2s">
       <div class="sechead"><span class="num">02</span><h2 id="h2s">Goals and audience</h2><p>What success looks like, and who it's for.</p></div>
-      <fieldset class="q"><legend>Main goals of this campaign</legend><span class="hint">Pick up to three.</span>
-        <div class="goalgroups" data-max="3">
+      <fieldset class="q"><legend>Main goals of this campaign</legend><span class="hint">Pick all that apply.</span>
+        <div class="goalgroups">
           <div class="gg"><span class="ggt">Get seen</span><div class="opts">
             <label class="opt"><input type="checkbox" name="Goals" value="Brand awareness"><span>Brand awareness</span></label>
             <label class="opt"><input type="checkbox" name="Goals" value="Followers and engagement"><span>Followers and engagement</span></label>
@@ -317,18 +317,18 @@ button#send{background:#202C44;color:#FFFFFF}
       <div class="q" data-only="business person product"><label for="tied">Is this tied to a launch date, season or event?</label><input type="text" id="tied" name="Launch / season / event"></div>
       <fieldset class="q"><legend>Will the content be used for</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Use" value="Organic posts"><span>Organic posts</span></label>
-          <label class="opt"><input type="radio" name="Use" value="Paid ads"><span>Paid ads</span></label>
-          <label class="opt"><input type="radio" name="Use" value="Both"><span>Both</span></label>
-          <label class="opt"><input type="radio" name="Use" value="Not sure yet"><span>Not sure yet</span></label>
+          <label class="opt"><input type="checkbox" name="Use" value="Organic posts"><span>Organic posts</span></label>
+          <label class="opt"><input type="checkbox" name="Use" value="Paid ads"><span>Paid ads</span></label>
+          <label class="opt"><input type="checkbox" name="Use" value="Both"><span>Both</span></label>
+          <label class="opt"><input type="checkbox" name="Use" value="Not sure yet"><span>Not sure yet</span></label>
         </div></fieldset>
     </section>
 
     <section aria-labelledby="hcs">
       <div class="sechead"><span class="num">03</span><h2 id="hcs">The content you want out there</h2><p>The look, feel and kind of content that fits your brand.</p></div>
       <div class="q"><label for="remember">After seeing your content, what should people feel or remember?</label><textarea id="remember" name="Feel / remember"></textarea></div>
-      <fieldset class="q"><legend>Tone you're going for</legend><span class="hint">Pick up to three.</span>
-        <div class="opts" data-max="3">
+      <fieldset class="q"><legend>Tone you're going for</legend><span class="hint">Pick all that apply.</span>
+        <div class="opts">
           <label class="opt"><input type="checkbox" name="Tone" value="Premium"><span>Premium</span></label>
           <label class="opt"><input type="checkbox" name="Tone" value="Warm and friendly"><span>Warm and friendly</span></label>
           <label class="opt"><input type="checkbox" name="Tone" value="Playful and funny"><span>Playful and funny</span></label>
@@ -371,15 +371,15 @@ button#send{background:#202C44;color:#FFFFFF}
         </div></fieldset>
       <fieldset class="q"><legend>How adventurous can we be?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Creative risk" value="Play it safe"><span>Play it safe</span></label>
-          <label class="opt"><input type="radio" name="Creative risk" value="A few experiments"><span>A few experiments</span></label>
-          <label class="opt"><input type="radio" name="Creative risk" value="Push the boundaries"><span>Push the boundaries</span></label>
+          <label class="opt"><input type="checkbox" name="Creative risk" value="Play it safe"><span>Play it safe</span></label>
+          <label class="opt"><input type="checkbox" name="Creative risk" value="A few experiments"><span>A few experiments</span></label>
+          <label class="opt"><input type="checkbox" name="Creative risk" value="Push the boundaries"><span>Push the boundaries</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>Trends and sounds</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Trends" value="Yes, jump on trends"><span>Yes, jump on trends</span></label>
-          <label class="opt"><input type="radio" name="Trends" value="Only if it fits the brand"><span>Only if it fits the brand</span></label>
-          <label class="opt"><input type="radio" name="Trends" value="No trends"><span>No trends</span></label>
+          <label class="opt"><input type="checkbox" name="Trends" value="Yes, jump on trends"><span>Yes, jump on trends</span></label>
+          <label class="opt"><input type="checkbox" name="Trends" value="Only if it fits the brand"><span>Only if it fits the brand</span></label>
+          <label class="opt"><input type="checkbox" name="Trends" value="No trends"><span>No trends</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>Who's comfortable on camera?</legend>
         <div class="opts">
@@ -479,18 +479,18 @@ button#send{background:#202C44;color:#FFFFFF}
       </div>
       <fieldset class="q"><legend>Are you open to using AI in your content?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="AI: open to it" value="Yes, use it wherever it helps"><span>Yes, wherever it helps</span></label>
-          <label class="opt"><input type="radio" name="AI: open to it" value="Some, but keep it subtle"><span>Some, but keep it subtle</span></label>
-          <label class="opt"><input type="radio" name="AI: open to it" value="Only behind the scenes (editing, captions)"><span>Only behind the scenes</span></label>
-          <label class="opt"><input type="radio" name="AI: open to it" value="No AI"><span>No AI</span></label>
+          <label class="opt"><input type="checkbox" name="AI: open to it" value="Yes, use it wherever it helps"><span>Yes, wherever it helps</span></label>
+          <label class="opt"><input type="checkbox" name="AI: open to it" value="Some, but keep it subtle"><span>Some, but keep it subtle</span></label>
+          <label class="opt"><input type="checkbox" name="AI: open to it" value="Only behind the scenes (editing, captions)"><span>Only behind the scenes</span></label>
+          <label class="opt"><input type="checkbox" name="AI: open to it" value="No AI"><span>No AI</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>How much of your content can be AI-made?</legend><span class="hint">100% AI means no shoot day. We'd build everything from your existing photos, videos and brand assets.</span>
         <div class="opts">
-          <label class="opt"><input type="radio" name="AI: share of content" value="None"><span>None</span></label>
-          <label class="opt"><input type="radio" name="AI: share of content" value="A little (up to 25%)"><span>A little, up to 25%</span></label>
-          <label class="opt"><input type="radio" name="AI: share of content" value="About half"><span>About half</span></label>
-          <label class="opt"><input type="radio" name="AI: share of content" value="Most of it (75%+)"><span>Most of it, 75%+</span></label>
-          <label class="opt"><input type="radio" name="AI: share of content" value="All of it (100% AI)"><span>All of it, 100% AI</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="None"><span>None</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="A little (up to 25%)"><span>A little, up to 25%</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="About half"><span>About half</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="Most of it (75%+)"><span>Most of it, 75%+</span></label>
+          <label class="opt"><input type="checkbox" name="AI: share of content" value="All of it (100% AI)"><span>All of it, 100% AI</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>Where are you comfortable with AI?</legend>
         <div class="opts">
@@ -504,8 +504,8 @@ button#send{background:#202C44;color:#FFFFFF}
         </div></fieldset>
       <fieldset class="q"><legend>Should we label AI-made content for your audience?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="AI: disclosure" value="Yes, always label it"><span>Yes, always label it</span></label>
-          <label class="opt"><input type="radio" name="AI: disclosure" value="Only where platforms require it"><span>Only where platforms require it</span></label>
+          <label class="opt"><input type="checkbox" name="AI: disclosure" value="Yes, always label it"><span>Yes, always label it</span></label>
+          <label class="opt"><input type="checkbox" name="AI: disclosure" value="Only where platforms require it"><span>Only where platforms require it</span></label>
         </div></fieldset>
       <div class="q"><label for="ai_never">Anything AI should never be used for?</label><span class="hint">For example, your face, your voice, product claims or customer stories.</span><textarea id="ai_never" name="AI: never use for"></textarea></div>
     </section>
@@ -545,9 +545,9 @@ button#send{background:#202C44;color:#FFFFFF}
         </div></fieldset>
       <fieldset class="q"><legend>Is this a one-off campaign or ongoing?</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Frequency" value="One-off campaign"><span>One-off campaign</span></label>
-          <label class="opt"><input type="radio" name="Frequency" value="Ongoing monthly"><span>Ongoing monthly</span></label>
-          <label class="opt"><input type="radio" name="Frequency" value="Not sure yet"><span>Not sure yet</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="One-off campaign"><span>One-off campaign</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Ongoing monthly"><span>Ongoing monthly</span></label>
+          <label class="opt"><input type="checkbox" name="Frequency" value="Not sure yet"><span>Not sure yet</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>What should we handle?</legend>
         <div class="opts">
@@ -595,9 +595,9 @@ button#send{background:#202C44;color:#FFFFFF}
         </div></fieldset>
       <fieldset class="q"><legend>Props and styling</legend>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Props" value="We have some you can use"><span>We have some you can use</span></label>
-          <label class="opt"><input type="radio" name="Props" value="Please source them"><span>Please source them</span></label>
-          <label class="opt"><input type="radio" name="Props" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="We have some you can use"><span>We have some you can use</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Please source them"><span>Please source them</span></label>
+          <label class="opt"><input type="checkbox" name="Props" value="Leave it to Pandori"><span>Leave it to Pandori</span></label>
         </div></fieldset>
       <fieldset class="q"><legend>Any extras you'd like?</legend>
         <div class="opts">
@@ -620,12 +620,12 @@ button#send{background:#202C44;color:#FFFFFF}
       <div class="q"><label for="deadline">When do you need the final content?</label><input type="date" id="deadline" name="Deadline"></div>
       <fieldset class="q"><legend>Budget range for this project</legend><span class="hint">In US dollars.</span>
         <div class="opts">
-          <label class="opt"><input type="radio" name="Budget (USD)" value="Under $500"><span>Under $500</span></label>
-          <label class="opt"><input type="radio" name="Budget (USD)" value="$500–1,000"><span>$500–1,000</span></label>
-          <label class="opt"><input type="radio" name="Budget (USD)" value="$1,000–2,500"><span>$1,000–2,500</span></label>
-          <label class="opt"><input type="radio" name="Budget (USD)" value="$2,500–5,000"><span>$2,500–5,000</span></label>
-          <label class="opt"><input type="radio" name="Budget (USD)" value="$5,000–10,000"><span>$5,000–10,000</span></label>
-          <label class="opt"><input type="radio" name="Budget (USD)" value="$10,000+"><span>$10,000+</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="Under $500"><span>Under $500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$500–1,000"><span>$500–1,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$1,000–2,500"><span>$1,000–2,500</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$2,500–5,000"><span>$2,500–5,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$5,000–10,000"><span>$5,000–10,000</span></label>
+          <label class="opt"><input type="checkbox" name="Budget (USD)" value="$10,000+"><span>$10,000+</span></label>
         </div></fieldset>
       <div class="q"><label for="else">Anything else we should know?</label><textarea id="else" name="Anything else"></textarea></div>
       <p class="note">Once we have your answers, we'll send a tailored quote. <em>Strategy and creative concepts are shared once the project is confirmed.</em></p>
