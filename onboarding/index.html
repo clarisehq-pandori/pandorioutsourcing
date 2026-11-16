@@ -144,10 +144,10 @@ button#send{background:#202C44;color:#FFFFFF}
   <form id="qform" novalidate>
     <section aria-labelledby="h1s">
       <div class="sechead"><span class="num">01</span><h2 id="h1s">About you</h2><p>So we understand who you are and what we'd be promoting.</p></div>
-      <div class="q"><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
+      <div class="q" hidden><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
         <select id="service" name="Service" required>
           <option value="">Choose one…</option>
-          <option>Content creation only</option>
+          <option selected>Content creation only</option>
           <option>Content + social media management</option>
           <option>Content + social media management + paid ads</option>
           <option>Not sure yet, help me decide</option>
@@ -485,7 +485,7 @@ button#send{background:#202C44;color:#FFFFFF}
 // Answers go to this inbox through FormSubmit (the same service the website's contact form uses).
 const SEND_TO = "https://formsubmit.co/clarise@pandorioutsourcing.com";
 const THANKS_URL = "https://pandorioutsourcing.com/onboarding/?sent=1";
-const KNOWN = [{"question": "Brand", "answer": "Breath Lab"}, {"question": "Product", "answer": "Oral Probiotic, 10 Billion CFU, 30 vanilla peach lozenges. Neutralises bad breath; clinically formulated; results in 30 days"}, {"question": "Campaign is about", "answer": "A product"}, {"question": "Where the content runs", "answer": "Facebook and Instagram ads, run by Breath Lab"}, {"question": "Variants to show", "answer": "One product (30-lozenge tube)"}, {"question": "Format", "answer": "Vertical video"}, {"question": "Audience", "answer": "Men aged 35-44 and women aged 45-54, global"}, {"question": "Direction", "answer": "Funny, relatable, 'memeable' sketches with broad appeal, nothing too pop-culture specific. Open to a skit or a real-looking 'getting ready' video (e.g. before a date or job interview)"}];
+const KNOWN = [{"question": "Brand", "answer": "Breath Lab"}, {"question": "Product", "answer": "Oral Probiotic, 10 Billion CFU, 30 vanilla peach lozenges. Neutralises bad breath; clinically formulated; results in 30 days"}, {"question": "Campaign is about", "answer": "A product"}, {"question": "Service", "answer": "Content creation (Breath Lab runs its own ads)"}, {"question": "Where the content runs", "answer": "Facebook and Instagram ads, run by Breath Lab"}, {"question": "Variants to show", "answer": "One product (30-lozenge tube)"}, {"question": "Format", "answer": "Vertical video"}, {"question": "Audience", "answer": "Men aged 35-44 and women aged 45-54, global"}, {"question": "Direction", "answer": "Funny, relatable, 'memeable' sketches with broad appeal, nothing too pop-culture specific. Open to a skit or a real-looking 'getting ready' video (e.g. before a date or job interview)"}];
 // -------------------
 (() => {
   const form = document.getElementById("qform"), bar = document.getElementById("bar"), pct = document.getElementById("pct"), err = document.getElementById("err");
