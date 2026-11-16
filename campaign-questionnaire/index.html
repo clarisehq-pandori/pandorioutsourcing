@@ -214,7 +214,7 @@ button#send{background:#202C44;color:#FFFFFF}
         <fieldset class="q"><legend>When do you need content?</legend>
           <div class="opts">
             <label class="opt"><input type="checkbox" name="Event: content timing" value="Before (promo)"><span>Before, to promote it</span></label>
-            <label class="opt"><input type="checkbox" name="Event: content timing" value="During (live posting)"><span>During, live posting</span></label>
+            <label class="opt"><input type="checkbox" name="Event: content timing" value="During the event"><span>During the event</span></label>
             <label class="opt"><input type="checkbox" name="Event: content timing" value="Same-day edit"><span>Same-day edit</span></label>
             <label class="opt"><input type="checkbox" name="Event: content timing" value="After (recap)"><span>After, recap</span></label>
           </div></fieldset>
@@ -498,7 +498,7 @@ button#send{background:#202C44;color:#FFFFFF}
 
     <section aria-labelledby="h3s">
       <div class="sechead"><span class="num">05</span><h2 id="h3s">Deliverables and platforms</h2><p>What we'd be creating, and where it will live.</p></div>
-      <fieldset class="q"><legend data-s-content="Where will this content be posted?" data-s-social="Which platforms should we manage?" data-s-ads="Which platforms should we manage and advertise on?" data-s-all="Platforms">Platforms</legend>
+      <fieldset class="q"><legend>Where will this content be used?</legend><span class="hint" data-s-all="Pick every place it will appear." data-s-social="Pick every place it will appear. You'll list the accounts we manage further down." data-s-ads="Pick every place it will appear. You'll list the accounts we manage and where to run ads further down.">Pick every place it will appear.</span>
         <div class="opts">
           <label class="opt"><input type="checkbox" name="Platforms" value="Instagram"><span>Instagram</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Facebook"><span>Facebook</span></label>
@@ -514,18 +514,18 @@ button#send{background:#202C44;color:#FFFFFF}
           <label class="opt"><input type="checkbox" name="Platforms" value="Google Business Profile"><span>Google Business Profile</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Shopee / Lazada / TikTok Shop listings"><span>Marketplace listings</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Email newsletter"><span>Email newsletter</span></label>
-          <label class="opt"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)"><span>Paid ads</span></label>
+          <label class="opt" data-svc="content social"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)"><span>Paid ads you run yourself</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Billboards or outdoor"><span>Billboards or outdoor</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Event screens or presentations"><span>Event screens</span></label>
         </div></fieldset>
-      <fieldset class="q"><legend>Roughly how much content do you need?</legend>
+      <fieldset class="q"><legend data-s-all="Roughly how much content do you need?" data-s-content="Roughly how much content do you need?" data-s-social="Roughly how much content do you need each month?" data-s-ads="Roughly how much content do you need each month, including ads?">Roughly how much content do you need?</legend>
         <div class="counts">
           <label>Short videos / Reels<input type="number" min="0" id="c1" name="Qty: short videos"></label>
           <label>Photos<input type="number" min="0" id="c2" name="Qty: photos"></label>
           <label>Carousels or graphics<input type="number" min="0" id="c3" name="Qty: carousels / graphics"></label>
           <label>Longer videos (60s+)<input type="number" min="0" id="c4" name="Qty: long videos"></label>
           <label>Stories<input type="number" min="0" id="c5" name="Qty: stories"></label>
-          <label>Ad creatives<input type="number" min="0" id="c6" name="Qty: ad creatives"></label>
+          <label data-svc="content ads">Ad creatives<input type="number" min="0" id="c6" name="Qty: ad creatives"></label>
           <label>Product listing images<input type="number" min="0" id="c7" name="Qty: listing images"></label>
           <label>Behind-the-scenes clips<input type="number" min="0" id="c8" name="Qty: BTS clips"></label>
         </div></fieldset>
@@ -683,7 +683,7 @@ button#send{background:#202C44;color:#FFFFFF}
         <div class="q"><label for="revs">Rounds of revisions you expect</label><input type="number" min="0" id="revs" name="Revision rounds"></div>
       </div>
       <div class="q"><label for="deadline">When do you need the final content?</label><span class="hint">Include any launch, season or event it's tied to.</span><input type="text" id="deadline" name="Deadline and timing"></div>
-      <fieldset class="q"><legend>Budget range for this project</legend><span class="hint">In US dollars, for our work. Ad spend is separate.</span>
+      <fieldset class="q"><legend>Budget range for this project</legend><span class="hint" data-s-all="In US dollars, for our work." data-s-ads="In US dollars, for our work. Ad spend is separate.">In US dollars, for our work.</span>
         <div class="opts">
           <label class="opt"><input type="checkbox" name="Budget (USD)" value="Under $500"><span>Under $500</span></label>
           <label class="opt"><input type="checkbox" name="Budget (USD)" value="$500–1,000"><span>$500–1,000</span></label>
