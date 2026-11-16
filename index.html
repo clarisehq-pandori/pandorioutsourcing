@@ -590,7 +590,7 @@ footer .logo.mark{width:28px}
   af.addEventListener('submit', e => {
     const valid = validate(af), filesOk = checkFiles();
     if (!valid || !filesOk) { e.preventDefault(); return; }
-    document.getElementById('a-subject').value = 'Pandori Hiring - ' + document.getElementById('a-role').value;
+    document.getElementById('a-subject').value = 'Pandori Hiring - ' + document.getElementById('a-role').value + ' - ' + document.getElementById('a-name').value.trim();
     const btn = af.querySelector('[type=submit]'); btn.textContent = 'Sending…';
     setTimeout(() => { btn.disabled = true; }, 0);
   });
