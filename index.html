@@ -24,6 +24,7 @@
   --navy:#202C44; --navy-2:#2A3954; --on-navy:#FFFFFF; --navy-soft:#BAC4D7;
   --forest:#2E4733; --forest-2:#3A5940; --on-forest:#F3F7F0; --leaf:#5E8243; --sage:#C9DDB4; --leaf-soft:#E4ECDC;
   --danger:#B4483C;
+  --shade-1:rgba(46,71,51,.16); --shade-2:rgba(32,44,68,.12);
   --display:"League Spartan","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"Quicksand","Nunito","Segoe UI",system-ui,sans-serif;
   --ease:cubic-bezier(.2,.7,.2,1); --t-fast:180ms; --t-mid:320ms; --t-slow:640ms;
@@ -32,11 +33,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#111826; --surface:#18213A; --ink:#EEF1F6; --body-ink:#CDD4E2; --muted:#A3ADC2; --line:#2A3550;
   --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
-  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; color-scheme:dark }}
+  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }}
 :root[data-theme="dark"]{
   --paper:#111826; --surface:#18213A; --ink:#EEF1F6; --body-ink:#CDD4E2; --muted:#A3ADC2; --line:#2A3550;
   --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
-  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; color-scheme:dark }
+  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -172,9 +173,9 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 
 /* ---------- FLOATING ELEMENTS (shared) ---------- */
 .floaty{position:relative;isolation:isolate}
-.blob{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;animation:drift 10s ease-in-out infinite alternate}
-.blob.g{background:radial-gradient(circle,rgba(201,221,180,.75),rgba(201,221,180,0) 68%)}
-.blob.b{background:radial-gradient(circle,rgba(186,196,215,.7),rgba(186,196,215,0) 68%)}
+.blob{position:absolute;z-index:-1;pointer-events:none;filter:blur(18px);animation:drift 10s ease-in-out infinite alternate}
+.blob.g{background:radial-gradient(closest-side,var(--shade-1),color-mix(in srgb,var(--shade-1) 45%,transparent) 55%,transparent 100%)}
+.blob.b{background:radial-gradient(closest-side,var(--shade-2),color-mix(in srgb,var(--shade-2) 45%,transparent) 55%,transparent 100%)}
 .leafy{position:absolute;z-index:-1;width:26px;color:var(--leaf);opacity:.5;pointer-events:none;animation:drift 8s ease-in-out infinite alternate}
 .leafy path{fill:currentColor}
 @keyframes drift{to{transform:translate(18px,-22px) rotate(12deg) scale(1.06)}}
@@ -187,6 +188,16 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .avatars span:hover{transform:translateY(-4px)}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .pills span{background:var(--leaf-soft);color:var(--leaf);font-weight:700;padding:6px 14px;border-radius:999px;font-size:.9rem}
+.matchrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 24px;padding-block:clamp(8px,2vw,20px) clamp(48px,7vw,88px)}
+.mr-l{font:800 clamp(1.15rem,2vw,1.45rem) var(--display);color:var(--muted)}
+.mr-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.mp{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 18px 9px 9px;font:800 1.02rem var(--display);color:var(--ink);text-decoration:none;
+  transform:rotate(var(--r));box-shadow:0 14px 26px -20px rgba(16,24,40,.55);animation:bob 3.4s ease-in-out infinite alternate;animation-delay:calc(var(--i)*.4s);transition:transform var(--t-mid) var(--ease),background var(--t-fast)}
+.mp:hover,.mp:focus-visible{transform:rotate(0) translateY(-3px);background:var(--sage);color:var(--navy)}
+.mp .mi{width:34px;height:34px;border-radius:50%;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center;flex:none;transition:background var(--t-fast)}
+.mp:hover .mi{background:#fff}
+.mp svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:520px){.mp{font-size:.92rem;padding:7px 14px 7px 7px}.mp .mi{width:30px;height:30px}}
 .ticker{overflow:hidden;border-block:1px solid var(--line);padding-block:18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .ticker .track{display:flex;width:max-content;animation:marq 28s linear infinite}
 .ticker:hover .track{animation-play-state:paused}
@@ -326,7 +337,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .acc details[open] p{animation:fade .35s var(--ease)}
 .sp .btn{margin-top:24px}
 /* mock app window */
-.mock{position:relative;background:var(--surface);color:var(--navy);border-radius:20px;box-shadow:0 40px 70px -40px rgba(10,16,32,.55),0 0 0 1px rgba(16,24,40,.06);display:grid;grid-template-columns:150px minmax(0,1fr);overflow:hidden;min-height:340px}
+.mock{position:relative;background:var(--surface);color:var(--ink);border-radius:20px;box-shadow:0 40px 70px -40px rgba(10,16,32,.55),0 0 0 1px rgba(16,24,40,.06);display:grid;grid-template-columns:150px minmax(0,1fr);overflow:hidden;min-height:340px}
 .sp.light .mock{background:var(--paper);box-shadow:0 30px 60px -40px rgba(10,16,32,.45),0 0 0 1px var(--line)}
 @media (max-width:560px){.mock{grid-template-columns:1fr}.mock .side{display:none}}
 .mock .side{background:rgba(32,44,68,.04);padding:16px 12px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line)}
@@ -336,21 +347,21 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .mock .side span.on{background:var(--leaf-soft);color:var(--leaf)}
 .mock .side span::before{content:"";width:12px;height:12px;border-radius:4px;background:currentColor;opacity:.35}
 .mock .main{padding:20px 22px;display:grid;gap:12px;align-content:start}
-.mock h4{margin:0 0 4px;font:900 1.5rem var(--display);color:var(--navy)}
+.mock h4{margin:0 0 4px;font:900 1.5rem var(--display);color:var(--ink)}
 .task{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:.9rem;font-weight:600}
-.sp.light .task{background:#fff}
+.sp.light .task{background:var(--surface)}
 .task .ck{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:#fff;transition:background var(--t-mid),border-color var(--t-mid)}
 .task .ck svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity var(--t-mid)}
-.task.ticked .ck{background:var(--leaf);border-color:var(--leaf)}
-.task.ticked .ck svg{opacity:1}
+.task .ck.on,.task.ticked .ck{background:var(--leaf);border-color:var(--leaf)}
+.task .ck.on svg,.task.ticked .ck svg{opacity:1}
 .task.ticked .t{text-decoration:line-through;color:var(--muted)}
 .task .when{margin-left:auto;font-size:.78rem;color:var(--muted);white-space:nowrap}
 .cal{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .cal .d{font-size:.78rem;font-weight:700;color:var(--muted);text-align:center}
-.cal .post{border-radius:10px;padding:8px;font-size:.78rem;font-weight:700;display:grid;gap:4px;min-height:74px;background:#fff;border:1px solid var(--line)}
+.cal .post{border-radius:10px;padding:8px;font-size:.78rem;font-weight:700;display:grid;gap:4px;min-height:74px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .cal .post em{font-style:normal;font-size:.7rem;padding:2px 7px;border-radius:999px;justify-self:start}
 .st-sched{background:var(--leaf-soft);color:var(--leaf)}
-.st-draft{background:#EEF0F6;color:var(--muted)}
+.st-draft{background:var(--line);color:var(--ink)}
 .st-live{background:var(--sage);color:var(--forest)}
 .cal .post.empty{background:transparent;border-style:dashed}
 .mock-chip{position:absolute;z-index:2;display:flex;gap:9px;align-items:center;background:#fff;color:var(--navy);border-radius:14px;padding:9px 14px 9px 9px;font-weight:700;font-size:.88rem;box-shadow:0 18px 34px -18px rgba(5,10,25,.55);animation:bob 3.2s ease-in-out infinite alternate}
@@ -358,6 +369,30 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .mock-chip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .mockwrap{position:relative}
 
+.sp.light .mock .main,.sp .mock .main{color:var(--ink)}
+.kb{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kb .col{display:grid;gap:8px;align-content:start}
+.kb .col>b{font-size:.78rem;color:var(--muted)}
+.kb .kc{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:.8rem;font-weight:700;display:grid;gap:6px}
+.kb .kc i{height:6px;border-radius:6px;background:var(--leaf-soft);display:block}
+.kb .kc i.w2{width:70%}
+.kb .col:last-child .kc{border-color:var(--leaf)}
+.flow{display:grid;gap:0;position:relative;padding-left:4px}
+.flow .fs{display:flex;align-items:center;gap:12px;padding:9px 0;font-size:.9rem;font-weight:600;position:relative}
+.flow .fs .tag2{margin-left:auto;font-size:.72rem;padding:2px 8px;border-radius:999px}
+.proj{display:grid;gap:12px}
+.proj .meter{height:10px;border-radius:10px;background:var(--leaf-soft);overflow:hidden}
+.proj .meter i{display:block;height:100%;width:64%;background:var(--leaf);border-radius:10px}
+.proj .row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:600}
+.sv-head .mr-pills{justify-content:flex-start;margin-top:28px}
+.sv-more{display:inline-block;margin-left:16px;font-weight:700;color:inherit;text-underline-offset:4px}
+.sp.dark .sv-more{color:var(--sage)}
+@media (max-width:560px){.mock{grid-template-columns:1fr}.mock .side{display:none!important}.mock .main{padding:16px}.cal{gap:5px}.cal .post{padding:6px;font-size:.7rem;min-height:56px}.cal .post em{font-size:0;width:10px;height:10px;padding:0}.mockwrap .mock-chip{font-size:.8rem}.kb{gap:6px}}
+.sp ul.inc{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.sp ul.inc li{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.sp ul.inc li i{width:22px;height:22px;border-radius:50%;background:var(--sage);color:var(--forest);display:grid;place-items:center;flex:none;margin-top:2px}
+.sp ul.inc svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:700px){nav a .hm{display:none}}
 /* ---------- CALL PANEL ---------- */
 .call{background:var(--leaf-soft);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(24px,4vw,56px)}
 @media (max-width:900px){.call{grid-template-columns:1fr}}
@@ -537,7 +572,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
   <div class="wrap bar">
     <a class="brand" href="#home" aria-label="Pandori home"><span class="logo word"></span></a>
     <nav aria-label="Main">
-      <a href="#home">Home</a><a href="#about">About us</a><a href="#hiring">Hiring</a><a class="nav-cta" href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About<span class="hm"> us</span></a><a href="#hiring">Hiring</a><a class="nav-cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -615,8 +650,15 @@ footer{padding-block:56px 40px;font-size:.95rem}
     </div>
   </div>
 
-  <div class="wrap" style="padding-bottom:clamp(48px,7vw,88px)">
-    <div class="ticker" aria-label="Services: Virtual Assistants, Content Creation, Social Media, Process Outsourcing, Independent Contractors"><div class="track" aria-hidden="true"><span>Virtual Assistants</span><span>Content Creation</span><span>Social Media</span><span>Process Outsourcing</span><span>Independent Contractors</span><span>Virtual Assistants</span><span>Content Creation</span><span>Social Media</span><span>Process Outsourcing</span><span>Independent Contractors</span></div></div>
+  <div class="wrap matchrow">
+    <p class="mr-l">We match you with</p>
+    <div class="mr-pills">
+      <a class="mp" href="#services-va" style="--r:-3deg;--i:0"><span class="mi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></span>Virtual Assistants</a>
+      <a class="mp" href="#services-content" style="--r:2deg;--i:1"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4"/></svg></span>Content Creators</a>
+      <a class="mp" href="#services-social" style="--r:-1.5deg;--i:2"><span class="mi"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></span>Social Media Managers</a>
+      <a class="mp" href="#services-bpo" style="--r:2.5deg;--i:3"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></span>Process Specialists</a>
+      <a class="mp" href="#services-contractors" style="--r:-2deg;--i:4"><span class="mi"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>Independent Contractors</a>
+    </div>
   </div>
 
   <div class="navy band panel" id="how">
@@ -648,7 +690,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
           <details><summary>Business Process Outsourcing</summary><p>A repeatable process, staffed, managed and improved every month.</p></details>
           <details><summary>Independent Contractors</summary><p>Specialists for a defined scope, without a full-time hire.</p></details>
         </div>
-        <a class="btn ink" href="#contact">Get matched <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ink" href="#contact">Get matched <span class="arr" aria-hidden="true">→</span></a><a class="sv-more" href="#services">See all services</a>
       </div>
       <div class="mockwrap" aria-hidden="true">
         <div class="mock">
@@ -674,7 +716,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
           <details open><summary>Content Creation</summary><p>Posts, copy and visuals that sound like you. AI speeds it up; people keep it authentic.</p></details>
           <details><summary>Social Media Management</summary><p>Planning, publishing and community replies, measured against your goals.</p></details>
         </div>
-        <a class="btn sage" href="#contact">Get matched <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn sage" href="#contact">Get matched <span class="arr" aria-hidden="true">→</span></a><a class="sv-more" href="#services">See all services</a>
       </div>
       <div class="mockwrap" aria-hidden="true">
         <div class="mock">
@@ -727,6 +769,139 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <img src="assets/photos/remote-team.jpg" alt="A remote team working together at a long table" loading="lazy" width="1280" height="1060">
         <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="stampA" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58"/><g class="spin"><text><textPath href="#stampA">PANDORI · YOUR TEAM, AMPLIFIED · PANDORI ·</textPath></text></g><foreignObject x="40" y="38" width="40" height="44"><span class="logo mark"></span></foreignObject></svg>
         <div class="vbar" aria-hidden="true"><span><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><span class="end"><svg viewBox="0 0 24 24"><path d="M4 15c5-5 11-5 16 0l-2 2-3-2v-2a9 9 0 0 0-6 0v2l-3 2z"/></svg></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="view" id="v-services" data-view="services" hidden>
+  <div class="navy band">
+    <div class="wrap sv-head">
+      <h1 style="font-size:clamp(2.8rem,7vw,5.4rem);font-weight:900;letter-spacing:-.03em;line-height:.95;max-width:14ch">Everything we take off your plate</h1>
+      <p class="lede muted" style="margin-top:20px">Five ways to grow your team. Pick one to jump to it.</p>
+      <div class="mr-pills">
+      <a class="mp" href="#services-va" style="--r:-3deg;--i:0"><span class="mi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></span>Virtual Assistants</a>
+      <a class="mp" href="#services-content" style="--r:2deg;--i:1"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4"/></svg></span>Content Creators</a>
+      <a class="mp" href="#services-social" style="--r:-1.5deg;--i:2"><span class="mi"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></span>Social Media Managers</a>
+      <a class="mp" href="#services-bpo" style="--r:2.5deg;--i:3"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></span>Process Specialists</a>
+      <a class="mp" href="#services-contractors" style="--r:-2deg;--i:4"><span class="mi"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>Independent Contractors</a>
+    </div>
+    </div>
+  </div>
+  <div class="band" style="padding-block:14px clamp(48px,7vw,88px)">
+    <div class="panel sp light" id="services-va">
+      <div>
+        <span class="badge-k">People</span>
+        <h2>Virtual Assistants</h2>
+        <p class="intro">Your inbox, calendar and admin, handled by someone focused on you.</p>
+        <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Inbox and email management</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Calendar and meeting scheduling</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Admin, data entry and filing</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Day-to-day operations support</li></ul>
+        <a class="btn ink" href="#contact" data-need="Virtual Assistants">Get matched <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mockwrap" aria-hidden="true">
+        <div class="mock">
+          <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Today</span><span>Inbox</span><span>Calendar</span><span>Reports</span></div>
+          <div class="main"><h4>Today</h4>
+            <div class="task"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t" style="text-decoration:line-through;color:var(--muted)">Inbox cleared</span><span class="when">9:00</span></div>
+            <div class="task"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t" style="text-decoration:line-through;color:var(--muted)">Meetings booked for next week</span><span class="when">10:30</span></div>
+            <div class="task"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">Supplier invoices filed</span><span class="when">14:00</span></div>
+            <div class="task"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">End-of-day summary sent</span><span class="when">17:00</span></div>
+          </div>
+        </div>
+        <span class="mock-chip" style="right:-10px;top:-18px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Done before you log on</span>
+      </div>
+    </div>
+    <div class="panel sp dark" id="services-content">
+      <div>
+        <span class="badge-k">Marketing</span>
+        <h2>Content Creation</h2>
+        <p class="intro">Posts, copy and visuals that sound like your brand.</p>
+        <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Social posts and captions</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Graphics and short videos</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Newsletters and blog copy</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>AI for speed, people for authenticity</li></ul>
+        <a class="btn sage" href="#contact" data-need="Content Creation">Get matched <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mockwrap" aria-hidden="true">
+        <div class="mock">
+          <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Board</span><span>Brand kit</span><span>Assets</span><span>Calendar</span></div>
+          <div class="main"><h4>Content board</h4>
+            <div class="kb">
+              <div class="col"><b>Drafting</b><div class="kc">Founder story<i></i><i class="w2"></i></div><div class="kc">Newsletter intro<i></i></div></div>
+              <div class="col"><b>In review</b><div class="kc">Launch carousel<i></i><i class="w2"></i></div></div>
+              <div class="col"><b>Approved</b><div class="kc">Weekly tips reel<i></i></div><div class="kc">Product photos<i class="w2"></i></div></div>
+            </div>
+          </div>
+        </div>
+        <span class="mock-chip" style="left:-12px;bottom:-18px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Approved and on brand</span>
+      </div>
+    </div>
+    <div class="panel sp light" id="services-social">
+      <div>
+        <span class="badge-k">Marketing</span>
+        <h2>Social Media Management</h2>
+        <p class="intro">Your channels planned, published and looked after.</p>
+        <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Content calendar planning</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Scheduling and publishing</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Community replies</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Reporting against your goals</li></ul>
+        <a class="btn ink" href="#contact" data-need="Social Media Management">Get matched <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mockwrap" aria-hidden="true">
+        <div class="mock">
+          <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Calendar</span><span>Community</span><span>Insights</span></div>
+          <div class="main"><h4>This week</h4>
+            <div class="cal">
+              <span class="d">Mon</span><span class="d">Tue</span><span class="d">Wed</span><span class="d">Thu</span><span class="d">Fri</span>
+              <div class="post">Reel<em class="st-live">Posted</em></div><div class="post empty"></div>
+              <div class="post">Carousel<em class="st-sched">Scheduled</em></div><div class="post">Story<em class="st-sched">Scheduled</em></div>
+              <div class="post">Live Q&amp;A<em class="st-draft">Draft</em></div>
+            </div>
+            <div class="task" style="margin-top:6px"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">New comments answered</span><span class="when">Daily</span></div>
+          </div>
+        </div>
+        <span class="mock-chip" style="right:-10px;top:-18px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>On schedule, every week</span>
+      </div>
+    </div>
+    <div class="panel sp dark" id="services-bpo">
+      <div>
+        <span class="badge-k">People</span>
+        <h2>Business Process Outsourcing</h2>
+        <p class="intro">Hand us a repeatable process. We staff it, run it and improve it.</p>
+        <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Process mapped and documented</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Trained, dedicated staff</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Managed day to day</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Improved every month</li></ul>
+        <a class="btn sage" href="#contact" data-need="Business Process Outsourcing">Get matched <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mockwrap" aria-hidden="true">
+        <div class="mock">
+          <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Process</span><span>SOPs</span><span>Queue</span><span>Reports</span></div>
+          <div class="main"><h4>Order processing</h4>
+            <div class="flow">
+              <div class="fs"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Request received<span class="tag2 st-live">Done</span></div>
+              <div class="fs"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Checked against the SOP<span class="tag2 st-live">Done</span></div>
+              <div class="fs"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Processed and logged<span class="tag2 st-sched">In progress</span></div>
+              <div class="fs"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Quality review<span class="tag2 st-draft">Next</span></div>
+            </div>
+          </div>
+        </div>
+        <span class="mock-chip" style="left:-12px;bottom:-18px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Process improved this month</span>
+      </div>
+    </div>
+    <div class="panel sp light" id="services-contractors">
+      <div>
+        <span class="badge-k">People</span>
+        <h2>Independent Contractors</h2>
+        <p class="intro">Specialists for a defined scope, without a full-time hire.</p>
+        <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Clear scope and milestones</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Specialist skills on demand</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Flexible start and end</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>No full-time overhead</li></ul>
+        <a class="btn ink" href="#contact" data-need="Independent Contractors">Get matched <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="mockwrap" aria-hidden="true">
+        <div class="mock">
+          <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Project</span><span>Milestones</span><span>Files</span></div>
+          <div class="main"><h4>Brand refresh</h4>
+            <div class="proj">
+              <div class="row"><span>Progress</span><span>Milestone 3 of 5</span></div>
+              <div class="meter"><i></i></div>
+              <div class="task"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">Scope agreed</span><span class="when">Week 1</span></div>
+              <div class="task"><span class="ck on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">First concepts delivered</span><span class="when">Week 2</span></div>
+              <div class="task"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="t">Final files handed over</span><span class="when">Week 4</span></div>
+            </div>
+          </div>
+        </div>
+        <span class="mock-chip" style="right:-10px;top:-18px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>On track for handover</span>
       </div>
     </div>
   </div>
@@ -949,7 +1124,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
   <div class="wrap">
     <div class="foot">
       <div><span class="logo word" role="img" aria-label="Pandori"></span><p>Highly skilled, AI-trained freelancers matched to your exact business needs. Based in Davao, Philippines.</p></div>
-      <div><h4>Pandori</h4><a href="#home">Home</a><a href="#about">About us</a><a href="#how">How it works</a></div>
+      <div><h4>Pandori</h4><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About us</a><a href="#how">How it works</a></div>
       <div><h4>Work with us</h4><a href="#contact">Get matched</a><a href="#hiring">Open roles</a><a href="#apply">Apply</a></div>
     </div>
     <div class="legal">© 2026 Pandori Global Outsourcing Solutions</div>
@@ -972,6 +1147,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
     if (h === 'apply' || h === 'applied') target = 'hiring';
     if (h === 'sent') target = 'contact';
     if (h === 'how') target = 'home';
+    if (h.startsWith('services-')) target = 'services';
     if (!views.some(v => v.dataset.view === target)) target = 'home';
     const current = views.find(v => !v.hidden);
     const swap = () => {
@@ -981,7 +1157,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
       resetForm('contact-form', 'contact-done', h === 'sent');
       if (h === 'applied') showApplied();
       if (h === 'sent') showSent();
-      const anchor = (h === 'apply' || h === 'applied') ? 'apply-wrap' : (h === 'how' ? 'how' : null);
+      const anchor = (h === 'apply' || h === 'applied') ? 'apply-wrap' : ((h === 'how' || h.startsWith('services-')) ? h : null);
       if (anchor) document.getElementById(anchor).scrollIntoView({behavior: first || reduce ? 'auto' : 'smooth'});
       else if (current && current.dataset.view !== target) window.scrollTo(0,0);
       refresh();
@@ -1089,6 +1265,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
       }, 1400);
     }
   }
+
+  document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click', () => { document.getElementById('c-need').value = a.dataset.need; }));
 
   /* ---------- role filters + apply buttons ---------- */
   const fb = [...document.querySelectorAll('.filters button')];
