@@ -31,11 +31,11 @@
   --r-lg:22px; --r-md:14px; --r-sm:10px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#111826; --surface:#18213A; --ink:#EEF1F6; --body-ink:#CDD4E2; --muted:#A3ADC2; --line:#2A3550;
+  --paper:#121513; --surface:#1A1F1C; --ink:#EEF1F6; --body-ink:#D2D8D3; --muted:#A6AFA8; --line:#2A322D;
   --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
   --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }}
 :root[data-theme="dark"]{
-  --paper:#111826; --surface:#18213A; --ink:#EEF1F6; --body-ink:#CDD4E2; --muted:#A3ADC2; --line:#2A3550;
+  --paper:#121513; --surface:#1A1F1C; --ink:#EEF1F6; --body-ink:#D2D8D3; --muted:#A6AFA8; --line:#2A322D;
   --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
   --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }
 
@@ -59,6 +59,10 @@ a{color:inherit}
 .lede{font-size:clamp(1.08rem,1.5vw,1.22rem);max-width:56ch}
 .muted{color:var(--muted)}
 .navy .muted{color:var(--navy-soft)}
+.forest .muted{color:rgba(243,247,240,.78)}
+.forest .step .dot{background:var(--forest-2);color:rgba(243,247,240,.75);border-color:rgba(201,221,180,.3)}
+.forest .step p{color:rgba(243,247,240,.8)}
+.forest .steps::before{background:rgba(201,221,180,.2)}
 .h2{font-size:clamp(2.2rem,5vw,3.6rem)}
 .kicker{font-weight:700;color:var(--leaf);font-size:1.05rem;margin-bottom:10px}
 .navy .kicker,.forest .kicker{color:var(--sage)}
@@ -306,7 +310,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .panel{margin-inline:max(12px,env(safe-area-inset-left,0px));border-radius:clamp(24px,3vw,40px);position:relative}
 .panel+.panel{margin-top:14px}
 .band.panel{padding-block:clamp(44px,6vw,80px)}
-.stamp{position:absolute;width:clamp(96px,10vw,132px);height:auto;z-index:3}
+.stamp{position:absolute;width:clamp(134px,14vw,185px);height:auto;z-index:3}
 .stamp circle{fill:var(--sage)}
 .stamp text{font:800 10.5px var(--display);letter-spacing:.12em;fill:var(--navy)}
 .stamp .spin{transform-origin:60px 60px;animation:turn 18s linear infinite}
@@ -407,8 +411,8 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .call-card .btn{margin-top:26px;width:100%;justify-content:center}
 .call-photo{position:relative;border-radius:24px;overflow:visible;min-height:420px}
 .call-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px}
-.call-photo .stamp{right:-14px;top:-24px}
-@media (max-width:560px){.call-photo{min-height:300px}.call-photo .stamp{right:4px}}
+.call-photo .stamp{right:-20px;top:-36px}
+@media (max-width:560px){.call-photo{min-height:300px}.call-photo .stamp{right:4px;width:118px}}
 .vbar{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:10px;background:rgba(23,32,58,.85);padding:10px 14px;border-radius:999px}
 .vbar span{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff}
 .vbar span.end{background:#C8644F}
@@ -690,7 +694,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
     </div>
   </div>
 
-  <div class="navy band panel" id="how">
+  <div class="forest band panel" id="how">
     <div class="wrap">
       <div class="how-top">
         <div>
@@ -796,7 +800,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
       </div>
       <div class="call-photo">
         <img src="assets/photos/va-video-call.jpg" alt="A virtual assistant wearing a headset, smiling on a video call" loading="lazy" width="1280" height="960">
-        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="stampA" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58"/><g class="spin"><text><textPath href="#stampA">PANDORI · YOUR TEAM, AMPLIFIED · PANDORI ·</textPath></text></g><foreignObject x="40" y="38" width="40" height="44"><span class="logo mark"></span></foreignObject></svg>
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="stampA" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58"/><g class="spin"><text><textPath href="#stampA">PANDORI · YOUR TEAM, AMPLIFIED · PANDORI ·</textPath></text></g><foreignObject x="45" y="37" width="40" height="46"><span class="logo mark"></span></foreignObject></svg>
         <div class="vbar" aria-hidden="true"><span><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><span class="end"><svg viewBox="0 0 24 24"><path d="M4 15c5-5 11-5 16 0l-2 2-3-2v-2a9 9 0 0 0-6 0v2l-3 2z"/></svg></span></div>
       </div>
     </div>
@@ -805,7 +809,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 
 <!-- ================= SERVICES ================= -->
 <section class="view" id="v-services" data-view="services" hidden>
-  <div class="navy band">
+  <div class="forest band">
     <div class="wrap sv-head">
       <h1 style="font-size:clamp(2.8rem,7vw,5.4rem);font-weight:900;letter-spacing:-.03em;line-height:.95;max-width:14ch">Everything we take off your plate</h1>
       <p class="lede muted" style="margin-top:20px">Five ways to grow your team. Pick one to jump to it.</p>
@@ -974,7 +978,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
   </div>
 
   <div class="forest band panel">
-    <svg class="stamp" style="right:clamp(16px,4vw,56px);top:-28px" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="stampB" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58"/><g class="spin"><text><textPath href="#stampB">PANDORI · YOUR TEAM, AMPLIFIED · PANDORI ·</textPath></text></g><foreignObject x="40" y="38" width="40" height="44"><span class="logo mark"></span></foreignObject></svg>
+    <svg class="stamp" style="right:clamp(16px,4vw,56px);top:-28px" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="stampB" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58"/><g class="spin"><text><textPath href="#stampB">PANDORI · YOUR TEAM, AMPLIFIED · PANDORI ·</textPath></text></g><foreignObject x="45" y="37" width="40" height="46"><span class="logo mark"></span></foreignObject></svg>
     <div class="wrap">
       <div class="pillars-head">
         <h2 class="h2">Challenged. Growing. Goal-driven.</h2>
@@ -1122,7 +1126,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 
 <!-- ================= CONTACT ================= -->
 <section class="view" id="v-contact" data-view="contact" hidden>
-  <div class="navy band">
+  <div class="forest band">
     <div class="wrap pagehead">
       <div>
         <h1>Let's find your right fit.</h1>
