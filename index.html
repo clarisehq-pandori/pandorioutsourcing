@@ -42,6 +42,7 @@
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
 @media (max-width:700px){html{scroll-padding-top:112px}}
+main{overflow-x:clip}
 body{margin:0;background:var(--paper);color:var(--body-ink);font:500 17px/1.65 var(--body)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--navy)}
 img{max-width:100%;display:block}
@@ -169,6 +170,56 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 @keyframes leaf{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
 @keyframes bob{to{margin-top:-8px}}
 
+/* ---------- FLOATING ELEMENTS (shared) ---------- */
+.floaty{position:relative;isolation:isolate}
+.blob{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;animation:drift 10s ease-in-out infinite alternate}
+.blob.g{background:radial-gradient(circle,rgba(201,221,180,.75),rgba(201,221,180,0) 68%)}
+.blob.b{background:radial-gradient(circle,rgba(186,196,215,.7),rgba(186,196,215,0) 68%)}
+.leafy{position:absolute;z-index:-1;width:26px;color:var(--leaf);opacity:.5;pointer-events:none;animation:drift 8s ease-in-out infinite alternate}
+.leafy path{fill:currentColor}
+@keyframes drift{to{transform:translate(18px,-22px) rotate(12deg) scale(1.06)}}
+.badge{position:absolute;z-index:2;display:flex;gap:9px;align-items:center;background:#fff;color:var(--navy);border-radius:999px;padding:8px 16px 8px 9px;font-weight:700;font-size:.92rem;box-shadow:0 16px 30px -16px rgba(5,10,25,.5);animation:bob 3.2s ease-in-out infinite alternate;white-space:nowrap}
+.badge i{width:24px;height:24px;border-radius:50%;background:var(--sage);color:var(--forest);display:grid;place-items:center;flex:none}
+.badge svg,.chip .dot svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.avatars{display:flex;margin-top:24px}
+.avatars span{width:46px;height:46px;border-radius:50%;border:3px solid var(--paper);margin-left:-10px;display:grid;place-items:center;font:800 .88rem var(--display);color:#fff;transition:transform var(--t-mid) var(--ease)}
+.avatars span:first-child{margin-left:0}
+.avatars span:hover{transform:translateY(-4px)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pills span{background:var(--leaf-soft);color:var(--leaf);font-weight:700;padding:6px 14px;border-radius:999px;font-size:.9rem}
+.ticker{overflow:hidden;border-block:1px solid var(--line);padding-block:18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker .track{display:flex;width:max-content;animation:marq 28s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.ticker span{display:flex;align-items:center;gap:36px;padding-right:36px;white-space:nowrap;font:800 clamp(1.3rem,2.4vw,1.8rem) var(--display);color:var(--ink)}
+.ticker span::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--leaf)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- PROBLEMS: floating cards (Option C) ---------- */
+.pc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:900px){.pc{grid-template-columns:1fr}}
+.pc-list{margin-top:28px;border-top:1px solid var(--line)}
+.pc-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.pc-row .no{font:700 clamp(1.02rem,1.5vw,1.15rem)/1.25 var(--display);color:var(--muted);background:linear-gradient(var(--danger),var(--danger)) left 55%/var(--strike,100%) 2px no-repeat;justify-self:start;transition:background-size .8s cubic-bezier(.45,0,.25,1) calc(.4s + var(--k)*.35s)}
+.pc-row .to{width:22px;height:2px;background:var(--leaf);position:relative}
+.pc-row .to::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--leaf);border-right:0}
+.pc-row .yes{font:800 clamp(1.05rem,1.6vw,1.2rem)/1.2 var(--display);color:var(--ink);opacity:var(--yo,1);transform:translateX(var(--yx,0));transition:opacity .6s var(--ease) calc(1s + var(--k)*.35s),transform .6s var(--ease) calc(1s + var(--k)*.35s)}
+.pc-row:nth-child(1){--k:0}.pc-row:nth-child(2){--k:1}.pc-row:nth-child(3){--k:2}.pc-row:nth-child(4){--k:3}
+.js-motion .pc:not(.in){--strike:0%;--yo:0;--yx:-8px}
+@media (max-width:520px){.pc-row{grid-template-columns:1fr;gap:6px}.pc-row .to{display:none}}
+.pc-stage{position:relative;min-height:520px}
+@media (max-width:520px){.pc-stage{min-height:430px}}
+.pc-photo{position:absolute;inset:44px 56px;border-radius:28px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(16,24,40,.6)}
+@media (max-width:520px){.pc-photo{inset:40px 12px}}
+.pc-photo img{width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;z-index:2;display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 18px 34px -18px rgba(5,10,25,.55);font-weight:700;color:var(--navy);font-size:.95rem;white-space:nowrap;animation:bob 3.4s ease-in-out infinite alternate}
+.chip .dot{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;flex:none}
+.chip.bad .dot{background:#F6E2DC;color:#C8644F}
+.chip.bad b{font-weight:700;color:var(--muted);background:linear-gradient(#C8644F,#C8644F) left 55%/var(--strike,100%) 2px no-repeat;transition:background-size .7s var(--ease) .9s}
+.chip.good .dot{background:var(--sage);color:var(--forest)}
+.chip.good{opacity:var(--yo,1);transition:opacity .6s var(--ease) 1.6s}
+.chip.good+.chip.good{transition-delay:2s}
+@media (max-width:520px){.chip{font-size:.82rem;padding:8px 11px}.chip .dot{width:24px;height:24px}}
+
 /* ---------- PHOTO STATEMENT ---------- */
 .statement{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,72px);align-items:center}
 @media (max-width:860px){.statement{grid-template-columns:1fr}}
@@ -178,6 +229,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .shot .tag i{width:8px;height:8px;border-radius:50%;background:var(--leaf)}
 .statement h2{font-size:clamp(2rem,4.2vw,3.2rem)}
 .statement p{margin-top:18px;max-width:46ch}
+@media (max-width:520px){.statement .badge[style*="right:-14px"]{right:6px!important}}
 
 /* ---------- PROBLEMS -> FIXES ---------- */
 .pf-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
@@ -386,6 +438,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 .reveal{transition:opacity .8s var(--ease),transform .8s var(--ease)}
 
 @media (prefers-reduced-motion:reduce){
+  .ticker .track{animation:none!important;flex-wrap:wrap}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .shot img{transform:none!important}
 }
@@ -427,28 +480,55 @@ footer{padding-block:56px 40px;font-size:.95rem}
   </div>
 
   <div class="band">
-    <div class="wrap statement">
-      <div class="shot reveal" data-parallax><img src="assets/photos/desk-plants.jpg" alt="A tidy home desk with a laptop, tea and plants" loading="lazy" width="1280" height="800"><span class="tag"><i></i>Remote, dedicated, supported</span></div>
+    <div class="wrap statement floaty">
+      <span class="blob g" style="width:260px;height:260px;right:2%;top:-40px"></span>
+      <span class="blob b" style="width:180px;height:180px;left:40%;bottom:-60px;animation-delay:2s"></span>
+      <svg class="leafy" style="top:-10px;left:52%" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/></svg>
+      <div style="position:relative">
+        <div class="shot reveal"><img src="assets/photos/desk-plants.jpg" alt="A tidy home desk with a laptop, tea and plants" loading="lazy" width="1280" height="800"></div>
+        <span class="badge" style="top:-16px;left:24px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Dedicated</span>
+        <span class="badge" style="top:44%;right:-14px;animation-delay:.7s"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>AI-trained</span>
+        <span class="badge" style="bottom:-16px;left:80px;animation-delay:1.3s"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Supported</span>
+      </div>
       <div>
         <h2>Looked-after people do better work.</h2>
-        <p>Most agencies treat freelancers as a cost and clients as a ticket. We do the opposite. Our professionals are cared for, properly incentivised and challenged to be great, and that shows up in the results they bring to your business.</p>
+        <p>Cared for, properly incentivised and challenged to be great. It shows in your results.</p>
+        <div class="avatars" aria-label="Roles we match"><span style="background:#2E4733" title="Virtual Assistant">VA</span><span style="background:#202C44" title="Content Creator">CC</span><span style="background:#5E8243" title="Social Media Manager">SM</span><span style="background:#3A5940" title="Process Specialist">PS</span><span style="background:#2A3954" title="Independent Contractor">IC</span></div>
+        <div class="pills"><span>Inbox and calendar</span><span>Content calendars</span><span>Reporting</span><span>Community replies</span><span>Process docs</span></div>
       </div>
     </div>
   </div>
 
   <div class="band" style="padding-top:0">
     <div class="wrap">
-      <div class="pf-head">
-        <h2 class="h2">Where outsourcing breaks, and how we fix it</h2>
-        <p class="muted">Four problems we hear from almost every business that has outsourced before.</p>
-      </div>
-      <div class="pf-list">
-        <div class="pf"><div class="prob"><h3>The “restart tax”</h3><p>Constantly recruiting and onboarding temporary workers drains resources and stops long-term knowledge from building up.</p></div><div class="arrow" aria-hidden="true"></div><div class="fix"><b>Pre-onboarding and management</b>Talent arrives ready to work, and we manage continuity so knowledge stays with your business.</div></div>
-        <div class="pf"><div class="prob"><h3>Fragmented attention</h3><p>Freelancers juggle many clients and BPOs chase volume. Your business becomes a ticket, and the work turns slow and generic.</p></div><div class="arrow" aria-hidden="true"></div><div class="fix"><b>Dedicated, exclusive focus</b>Your freelancer works as a committed partner on your goals.</div></div>
-        <div class="pf"><div class="prob"><h3>The strategic talent deficit</h3><p>Basic tasks are easy to outsource. Proactive specialists who handle complex problems and drive ROI are hard to find.</p></div><div class="arrow" aria-hidden="true"></div><div class="fix"><b>Precision recruitment</b>We skip the entry-level learning curve and match you with experts built for immediate impact.</div></div>
-        <div class="pf"><div class="prob"><h3>The AI efficiency gap</h3><p>Companies pay for manual work that should be automated, or get generic output from people using AI lazily.</p></div><div class="arrow" aria-hidden="true"></div><div class="fix"><b>Verified AI workflows</b>Our talent is trained to use AI well, so the work is fast and still sounds like you.</div></div>
+      <div class="pc">
+        <div>
+          <h2 class="h2">Outsourcing, without the usual problems</h2>
+          <div class="pc-list">
+            <div class="pc-row"><span class="no">Restarting every few months</span><span class="to" aria-hidden="true"></span><span class="yes">Long-term, managed talent</span></div>
+            <div class="pc-row"><span class="no">One ticket among many</span><span class="to" aria-hidden="true"></span><span class="yes">A dedicated partner</span></div>
+            <div class="pc-row"><span class="no">Hard-to-find specialists</span><span class="to" aria-hidden="true"></span><span class="yes">Precision recruitment</span></div>
+            <div class="pc-row"><span class="no">Busywork or lazy AI</span><span class="to" aria-hidden="true"></span><span class="yes">Verified AI workflows</span></div>
+          </div>
+        </div>
+        <div class="pc-stage floaty" aria-hidden="true">
+          <span class="blob g" style="width:240px;height:240px;left:-30px;bottom:10px"></span>
+          <span class="blob b" style="width:200px;height:200px;right:-20px;top:0;animation-delay:3s"></span>
+          <svg class="leafy" style="top:8px;right:38%" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/></svg>
+          <svg class="leafy" style="bottom:20px;left:44%;width:20px;animation-delay:1.5s" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/></svg>
+          <div class="pc-photo"><img src="assets/photos/hands-laptop.jpg" alt="" loading="lazy" width="1280" height="853"></div>
+          <div class="chip bad" style="top:18px;left:0"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span><b>Day 1, again</b></div>
+          <div class="chip bad" style="top:150px;right:0;animation-delay:.6s"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span><b>Ticket #4,182</b></div>
+          <div class="chip good" style="bottom:150px;left:6px;animation-delay:1s"><span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Dedicated to your business</div>
+          <div class="chip good" style="bottom:18px;right:24px;animation-delay:1.4s"><span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>AI workflow verified</div>
+        </div>
       </div>
     </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:clamp(48px,7vw,88px)">
+    <div class="ticker" aria-label="Services: Virtual Assistants, Content Creation, Social Media, Process Outsourcing, Independent Contractors"><div class="track" aria-hidden="true"><span>Virtual Assistants</span><span>Content Creation</span><span>Social Media</span><span>Process Outsourcing</span><span>Independent Contractors</span><span>Virtual Assistants</span><span>Content Creation</span><span>Social Media</span><span>Process Outsourcing</span><span>Independent Contractors</span></div></div>
   </div>
 
   <div class="navy band" id="how">
@@ -458,7 +538,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
           <h2 class="h2">How it works</h2>
           <p class="lede muted" style="margin-top:16px">From first conversation to a working partnership, in four steps.</p>
         </div>
-        <div class="shot reveal" data-parallax><img src="assets/photos/hands-laptop.jpg" alt="Someone working on a laptop and checking their phone" loading="lazy" width="1280" height="853"></div>
+        <div class="shot reveal" data-parallax><img src="assets/photos/planning-desk.jpg" alt="A notebook, phone and laptop laid out on a white desk" loading="lazy" width="1280" height="853"></div>
       </div>
       <ol class="steps" id="steps">
         <li class="step"><span class="dot">1</span><h3>Share your needs</h3><p>A short call about the role, your goals and your budget.</p></li>
@@ -818,10 +898,10 @@ footer{padding-block:56px 40px;font-size:.95rem}
   /* ---------- reveals (problems, photos) ---------- */
   let io = null;
   if (!reduce && 'IntersectionObserver' in window) {
-    io = new IntersectionObserver(es => es.forEach(e => { const need = e.target.classList.contains('pf') ? .6 : .3; if (e.isIntersecting && e.intersectionRatio >= need) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: [.3, .6], rootMargin: '0px 0px -10% 0px'});
+    io = new IntersectionObserver(es => es.forEach(e => { const need = e.target.classList.contains('pf') ? .6 : .25; if (e.isIntersecting && e.intersectionRatio >= need) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: [.3, .6], rootMargin: '0px 0px -10% 0px'});
   } else root.classList.remove('js-motion');
   function refresh(){
-    document.querySelectorAll('.view:not([hidden]) .pf:not(.in), .view:not([hidden]) .reveal:not(.in), .view:not([hidden]) .steps:not(.in), .view:not([hidden]) .pillars:not(.in)').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+    document.querySelectorAll('.view:not([hidden]) .pf:not(.in), .view:not([hidden]) .reveal:not(.in), .view:not([hidden]) .steps:not(.in), .view:not([hidden]) .pillars:not(.in), .view:not([hidden]) .pc:not(.in)').forEach(el => io ? io.observe(el) : el.classList.add('in'));
     onScroll();
   }
 
