@@ -48,7 +48,7 @@ body{margin:0;background:var(--paper);color:var(--body-ink);font:500 17px/1.65 v
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--navy)}
 img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--display);color:var(--ink);font-weight:800;line-height:1;letter-spacing:-.02em;text-wrap:balance;margin:0}
-.navy h1,.navy h2,.navy h3,.forest h2,.forest h3{color:inherit}
+.navy h1,.navy h2,.navy h3,.forest h1,.forest h2,.forest h3{color:inherit}
 p{margin:0}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:8px}
@@ -408,6 +408,13 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .sp ul.inc li i{width:22px;height:22px;border-radius:50%;background:var(--sage);color:var(--forest);display:grid;place-items:center;flex:none;margin-top:2px}
 .sp ul.inc svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:700px){nav a .hm{display:none}}
+.mockwrap.has-person{padding-top:clamp(40px,6vw,90px)}
+.sv-person{position:absolute;z-index:3;bottom:-4px;height:clamp(220px,26vw,330px);width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 18px 24px rgba(0,0,0,.22));-webkit-mask-image:linear-gradient(0deg,transparent,#000 10%);mask-image:linear-gradient(0deg,transparent,#000 10%)}
+.has-person.r .sv-person{right:-4%}
+.has-person.l .sv-person{left:-4%}
+.has-person.r .mock{margin-right:24%}
+.has-person.l .mock{margin-left:24%}
+@media (max-width:900px){.sv-person{top:0;bottom:auto;height:190px}.has-person.r .mock,.has-person.l .mock{margin:0}.has-person.r .sv-person{right:8px}.has-person.l .sv-person{left:8px}.mockwrap.has-person{padding-top:180px}}
 /* ---------- CALL PANEL ---------- */
 .call{background:var(--leaf-soft);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(24px,4vw,56px)}
 @media (max-width:900px){.call{grid-template-columns:1fr}}
@@ -468,6 +475,13 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .pillar h3{font-size:clamp(1.7rem,2.8vw,2.4rem);color:#fff;line-height:1.02}
 .pillar p{color:rgba(243,247,240,.85);max-width:36ch}
 
+.ph-person{position:relative;height:clamp(300px,34vw,440px);display:flex;justify-content:center;align-items:flex-end}
+.ph-person img{position:relative;z-index:1;height:100%;width:auto;max-width:none;filter:drop-shadow(0 24px 30px rgba(0,0,0,.3));-webkit-mask-image:linear-gradient(0deg,transparent,#000 8%);mask-image:linear-gradient(0deg,transparent,#000 8%)}
+.ph-ring{position:absolute;bottom:4%;left:50%;width:min(86%,380px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(201,221,180,.5),rgba(201,221,180,.12) 62%,transparent 72%)}
+.ph-person .badge{z-index:2}
+.how-person{height:clamp(240px,26vw,340px)}
+.pagehead .ph-person{margin-bottom:calc(-1 * clamp(64px,9vw,120px))}
+@media (max-width:860px){.ph-person{height:260px}.pagehead .ph-person{margin-bottom:calc(-1 * clamp(64px,9vw,120px))}}
 /* ---------- ABOUT ---------- */
 .founder{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start;max-width:900px}
 @media (max-width:700px){.founder{grid-template-columns:1fr}}
@@ -711,7 +725,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
           <h2 class="h2">How it works</h2>
           <p class="lede muted" style="margin-top:16px">From first conversation to a working partnership, in four steps.</p>
         </div>
-        <div class="shot reveal" data-parallax><img src="assets/photos/planning-desk.jpg" alt="A notebook, phone and laptop laid out on a white desk" loading="lazy" width="1280" height="853"></div>
+        <div class="ph-person how-person"><span class="ph-ring" aria-hidden="true"></span><img src="assets/photos/person-how.webp" alt="" loading="lazy" width="840" height="1190"></div>
       </div>
       <ol class="steps" id="steps">
         <li class="step"><span class="dot">1</span><h3>Share your needs</h3><p>A short call about the role, your goals and your budget.</p></li>
@@ -841,7 +855,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Inbox and email management</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Calendar and meeting scheduling</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Admin, data entry and filing</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Day-to-day operations support</li></ul>
         <a class="btn ink" href="#contact" data-need="Virtual Assistants">Get matched <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="mockwrap" aria-hidden="true">
+      <div class="mockwrap has-person r" aria-hidden="true">
+        <img class="sv-person" src="assets/photos/role-va.webp" alt="" loading="lazy" width="840" height="1190">
         <div class="mock">
           <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Today</span><span>Inbox</span><span>Calendar</span><span>Reports</span></div>
           <div class="main"><h4>Today</h4>
@@ -862,7 +877,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Social posts and captions</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Graphics and short videos</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Newsletters and blog copy</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>AI for speed, people for authenticity</li></ul>
         <a class="btn sage" href="#contact" data-need="Content Creation">Get matched <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="mockwrap" aria-hidden="true">
+      <div class="mockwrap has-person l" aria-hidden="true">
+        <img class="sv-person" src="assets/photos/role-cc.webp" alt="" loading="lazy" width="840" height="1190">
         <div class="mock">
           <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Board</span><span>Brand kit</span><span>Assets</span><span>Calendar</span></div>
           <div class="main"><h4>Content board</h4>
@@ -884,7 +900,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Content calendar planning</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Scheduling and publishing</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Community replies</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Reporting against your goals</li></ul>
         <a class="btn ink" href="#contact" data-need="Social Media Management">Get matched <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="mockwrap" aria-hidden="true">
+      <div class="mockwrap has-person r" aria-hidden="true">
+        <img class="sv-person" src="assets/photos/role-smm.webp" alt="" loading="lazy" width="840" height="1190">
         <div class="mock">
           <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Calendar</span><span>Community</span><span>Insights</span></div>
           <div class="main"><h4>This week</h4>
@@ -908,7 +925,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Process mapped and documented</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Trained, dedicated staff</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Managed day to day</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Improved every month</li></ul>
         <a class="btn sage" href="#contact" data-need="Business Process Outsourcing">Get matched <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="mockwrap" aria-hidden="true">
+      <div class="mockwrap has-person l" aria-hidden="true">
+        <img class="sv-person" src="assets/photos/role-bps.webp" alt="" loading="lazy" width="840" height="1190">
         <div class="mock">
           <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Process</span><span>SOPs</span><span>Queue</span><span>Reports</span></div>
           <div class="main"><h4>Order processing</h4>
@@ -931,7 +949,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <ul class="inc"><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Clear scope and milestones</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Specialist skills on demand</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Flexible start and end</li><li><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>No full-time overhead</li></ul>
         <a class="btn ink" href="#contact" data-need="Independent Contractors">Get matched <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="mockwrap" aria-hidden="true">
+      <div class="mockwrap has-person r" aria-hidden="true">
+        <img class="sv-person" src="assets/photos/role-ic.webp" alt="" loading="lazy" width="840" height="1190">
         <div class="mock">
           <div class="side"><div class="dots"><i></i><i></i><i></i></div><span class="on">Project</span><span>Milestones</span><span>Files</span></div>
           <div class="main"><h4>Brand refresh</h4>
@@ -1043,7 +1062,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
           <h1>Do your best work, and be looked after doing it.</h1>
           <p class="lede muted">We're a freelancing company built for freelancers. Join a team where you are cared for, properly incentivised and challenged to be great.</p>
         </div>
-        <div class="shot"><img src="assets/photos/remote-professional.jpg" alt="A young professional working on a laptop in a bright coworking space" width="1280" height="960"></div>
+        <div class="ph-person"><span class="ph-ring" aria-hidden="true"></span><img src="assets/photos/person-hiring.webp" alt="" width="840" height="1190"><span class="badge" style="left:0;bottom:30%"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Now hiring</span></div>
       </div>
       <div class="perks">
         <div class="perk"><b>Dedicated clients</b><span class="muted">Real partnerships with one focus, not a queue of tickets.</span></div>
@@ -1142,7 +1161,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <h1>Let's find your right fit.</h1>
         <p class="lede muted">Tell us what you need and we'll come back with a plan, and the right people.</p>
       </div>
-      <div class="shot"><img src="assets/photos/planning-desk.jpg" alt="A notebook, phone and laptop laid out on a white desk" width="1280" height="853"></div>
+      <div class="ph-person"><span class="ph-ring" aria-hidden="true"></span><img src="assets/photos/person-contact.webp" alt="" width="840" height="1190"><span class="badge" style="left:2%;bottom:22%"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>A real person replies</span></div>
     </div>
   </div>
   <div class="band">
