@@ -118,9 +118,6 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .hero .sub{margin-top:22px;font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:600;color:#fff;max-width:30ch;line-height:1.4}
 .hero .lede{margin-top:14px}
 .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-.sprig{width:min(240px,55%);height:auto;margin-top:18px;color:var(--sage);overflow:visible}
-.sprig path.stem{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-.sprig .leafs path{fill:currentColor}
 
 /* hero visual: photo with live status cards */
 .hv{position:relative;max-width:520px;margin-inline:auto;width:100%;padding:28px 0 36px;--px:0;--py:0}
@@ -159,9 +156,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .motion .hero h1 .line{animation:rise .8s var(--ease) both}
 .motion .hero h1 .line:nth-child(2){animation-delay:.12s}
 .motion .hero .sub,.motion .hero .lede,.motion .hero .actions{animation:fade .8s var(--ease) .35s both}
-.motion .sprig .stem{stroke-dasharray:260;animation:drawStem 1.2s var(--ease) .5s both}
-.motion .sprig .leafs path{transform-box:fill-box;transform-origin:center;animation:leaf .5s var(--ease) both;animation-delay:calc(.8s + var(--i)*.09s)}
-.float .hv-card.c1{animation:cardIn .7s var(--ease) .8s both,bob 3.4s ease-in-out 2.2s infinite alternate}
+.motion .motion .float .hv-card.c1{animation:cardIn .7s var(--ease) .8s both,bob 3.4s ease-in-out 2.2s infinite alternate}
 .float .hv-card.c2{animation:cardIn .7s var(--ease) 1.05s both,bob 3s ease-in-out 2.6s infinite alternate}
 .float .hv-card.c3{animation:cardIn .7s var(--ease) 1.3s both,bob 3.8s ease-in-out 3s infinite alternate}
 @keyframes unveil{from{opacity:0;clip-path:inset(18% 0 0 0 round 28px);transform:scale(1.04)}to{opacity:1;clip-path:inset(0 0 0 0 round 28px);transform:none}}
@@ -413,19 +408,6 @@ footer{padding-block:56px 40px;font-size:.95rem}
     <div class="wrap hero-grid">
       <div>
         <h1><span class="line">Your team,</span><span class="line">amplified.</span></h1>
-        <svg class="sprig" viewBox="0 0 240 46" aria-hidden="true">
-          <path class="stem" d="M4 40 C 70 38, 150 30, 236 8"/>
-          <g class="leafs">
-            <path style="--i:0" d="M40 38 c -6 -12 4 -20 12 -22 c -2 8 -4 16 -12 22z"/>
-            <path style="--i:1" d="M58 40 c 10 6 20 4 26 -2 c -8 -3 -18 -4 -26 2z"/>
-            <path style="--i:2" d="M86 33 c -4 -12 6 -19 14 -20 c -2 8 -5 15 -14 20z"/>
-            <path style="--i:3" d="M104 35 c 10 6 20 3 25 -4 c -8 -2 -17 -3 -25 4z"/>
-            <path style="--i:4" d="M132 26 c -3 -12 8 -18 16 -18 c -3 8 -7 14 -16 18z"/>
-            <path style="--i:5" d="M150 27 c 10 4 19 0 23 -7 c -8 -1 -16 0 -23 7z"/>
-            <path style="--i:6" d="M178 17 c -2 -11 9 -16 16 -15 c -3 7 -8 12 -16 15z"/>
-            <path style="--i:7" d="M196 17 c 9 3 17 -2 20 -9 c -7 0 -14 2 -20 9z"/>
-          </g>
-        </svg>
         <p class="sub">Highly skilled, AI-trained freelancers matched to your exact business needs.</p>
         <p class="lede muted">We find, train and support the people who work on your business, so they stay focused and keep delivering.</p>
         <div class="actions">
