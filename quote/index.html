@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Breath Lab Quote Request</title>
+<title>Pandori Quote Request</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&family=Hind+Guntur:wght@400;500;600&family=Trirong:ital,wght@0,300;1,300&display=swap">
 <style>
 /* Layout: navy cover band with the Pandori wordmark, then one calm column of five numbered sections (the order is the real flow of the brief). White, navy, sage. */
@@ -133,7 +133,7 @@ button#send{background:#202C44;color:#FFFFFF}
     <img class="logo" src="logo.png" alt="Pandori" width="200" height="53">
     <span class="eyebrow">Quote request</span>
     <h1>Tell us what you need</h1>
-    <p class="lede">We already have your product, where it runs and the format from our chat, so these are just the last details we need to price your videos.</p>
+    <p class="lede">A few questions so we can price your project accurately, with no surprises later. Creative details come after you sign.</p>
     <div class="meta"><span>About 8–10 minutes</span><span>"Not sure yet" is a fine answer</span></div>
   </div>
 </header>
@@ -144,20 +144,20 @@ button#send{background:#202C44;color:#FFFFFF}
   <form id="qform" novalidate>
     <section aria-labelledby="h1s">
       <div class="sechead"><span class="num">01</span><h2 id="h1s">About you</h2><p>So we understand who you are and what we'd be promoting.</p></div>
-      <div class="q" hidden><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
+      <div class="q"><label for="service">What do you need from Pandori? <span class="req">(required)</span></label>
         <select id="service" name="Service" required>
           <option value="">Choose one…</option>
-          <option selected>Content creation only</option>
+          <option>Content creation only</option>
           <option>Content + social media management</option>
           <option>Content + social media management + paid ads</option>
           <option>Not sure yet, help me decide</option>
         </select></div>
-      <div class="q" hidden><label for="subject">This campaign is about <span class="req">(required)</span></label>
+      <div class="q"><label for="subject">This campaign is about <span class="req">(required)</span></label>
         <select id="subject" name="Campaign is about" required>
           <option value="">Choose one…</option>
           <option>A business</option>
           <option>A person (personal brand)</option>
-          <option selected>A product</option>
+          <option>A product</option>
           <option>An event</option>
           <option>Other</option>
         </select></div>
@@ -168,9 +168,9 @@ button#send{background:#202C44;color:#FFFFFF}
       <div class="branch" data-for="A product" hidden>
         <p class="bhead" data-only="other">The product</p>
         <div class="grid2">
-          <div class="q" hidden><label for="pr_name">Product name</label><input type="text" id="pr_name" name="Product: name" value="Breath Lab Oral Probiotic (10 Billion CFU, 30 lozenges)"></div>
+          <div class="q"><label for="pr_name">Product name</label><input type="text" id="pr_name" name="Product: name"></div>
         </div>
-        <div class="q" hidden><label for="pr_var">How many variants, sizes or colours need to be shown?</label><input type="text" id="pr_var" name="Product: variants"></div>
+        <div class="q"><label for="pr_var">How many variants, sizes or colours need to be shown?</label><input type="text" id="pr_var" name="Product: variants"></div>
       </div>
       <div class="branch" data-for="An event" hidden>
         <p class="bhead" data-only="other">The event</p>
@@ -205,7 +205,7 @@ button#send{background:#202C44;color:#FFFFFF}
         <div class="q"><label for="email">Email <span class="req">(required)</span></label><input type="email" id="email" name="Email" required autocomplete="email"></div>
       </div>
       <div class="grid2">
-        <div class="q" hidden><label for="biz"><span data-l-business="Business name" data-l-person="Your brand or professional name" data-l-product="Brand or company behind the product" data-l-event="Organiser or company" data-l-other="Business, brand or organiser name">Business name</span> <span class="req">(required)</span></label><input type="text" id="biz" name="Business name" required value="Breath Lab" autocomplete="organization"></div>
+        <div class="q"><label for="biz"><span data-l-business="Business name" data-l-person="Your brand or professional name" data-l-product="Brand or company behind the product" data-l-event="Organiser or company" data-l-other="Business, brand or organiser name">Business name</span> <span class="req">(required)</span></label><input type="text" id="biz" name="Business name" required autocomplete="organization"></div>
         <div class="q"><label for="web">Website or main social handle</label><input type="text" id="web" name="Website / socials" placeholder="e.g. @yourbrand"></div>
       </div>
       <fieldset class="q"><legend>Which brand assets do you already have?</legend><span class="hint">Tick everything you have. It helps us match your look from day one.</span>
@@ -355,10 +355,10 @@ button#send{background:#202C44;color:#FFFFFF}
 
     <section aria-labelledby="h3s">
       <div class="sechead"><span class="num">05</span><h2 id="h3s">Deliverables and platforms</h2><p>What we'd be creating, and where it will live.</p></div>
-      <fieldset class="q" hidden><legend>Where will this content be used?</legend><span class="hint" data-s-all="Pick every place it will appear." data-s-social="Pick every place it will appear. You'll list the accounts we manage further down." data-s-ads="Pick every place it will appear. You'll list the accounts we manage and where to run ads further down.">Pick every place it will appear.</span>
+      <fieldset class="q"><legend>Where will this content be used?</legend><span class="hint" data-s-all="Pick every place it will appear." data-s-social="Pick every place it will appear. You'll list the accounts we manage further down." data-s-ads="Pick every place it will appear. You'll list the accounts we manage and where to run ads further down.">Pick every place it will appear.</span>
         <div class="opts">
-          <label class="opt"><input type="checkbox" name="Platforms" value="Instagram" checked><span>Instagram</span></label>
-          <label class="opt"><input type="checkbox" name="Platforms" value="Facebook" checked><span>Facebook</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Instagram"><span>Instagram</span></label>
+          <label class="opt"><input type="checkbox" name="Platforms" value="Facebook"><span>Facebook</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="TikTok"><span>TikTok</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="LinkedIn"><span>LinkedIn</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="YouTube"><span>YouTube</span></label>
@@ -371,7 +371,7 @@ button#send{background:#202C44;color:#FFFFFF}
           <label class="opt"><input type="checkbox" name="Platforms" value="Google Business Profile"><span>Google Business Profile</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Shopee / Lazada / TikTok Shop listings"><span>Marketplace listings</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Email newsletter"><span>Email newsletter</span></label>
-          <label class="opt" data-svc="content social"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)" checked><span>Paid ads you run yourself</span></label>
+          <label class="opt" data-svc="content social"><input type="checkbox" name="Platforms" value="Paid ads (Meta, TikTok, Google)"><span>Paid ads you run yourself</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Billboards or outdoor"><span>Billboards or outdoor</span></label>
           <label class="opt"><input type="checkbox" name="Platforms" value="Event screens or presentations"><span>Event screens</span></label>
         </div></fieldset>
@@ -485,7 +485,6 @@ button#send{background:#202C44;color:#FFFFFF}
 // Answers go to this inbox through FormSubmit (the same service the website's contact form uses).
 const SEND_TO = "https://formsubmit.co/clarise@pandorioutsourcing.com";
 const THANKS_URL = "https://pandorioutsourcing.com/quote/?sent=1";
-const KNOWN = [{"question": "Brand", "answer": "Breath Lab"}, {"question": "Product", "answer": "Oral Probiotic, 10 Billion CFU, 30 vanilla peach lozenges. Neutralises bad breath; clinically formulated; results in 30 days"}, {"question": "Campaign is about", "answer": "A product"}, {"question": "Service", "answer": "Content creation (Breath Lab runs its own ads)"}, {"question": "Where the content runs", "answer": "Facebook and Instagram ads, run by Breath Lab"}, {"question": "Variants to show", "answer": "One product (30-lozenge tube)"}, {"question": "Format", "answer": "Vertical video"}, {"question": "Audience", "answer": "Men aged 35-44 and women aged 45-54, global"}, {"question": "Direction", "answer": "Funny, relatable, 'memeable' sketches with broad appeal, nothing too pop-culture specific. Open to a skit or a real-looking 'getting ready' video (e.g. before a date or job interview)"}];
 // -------------------
 (() => {
   const form = document.getElementById("qform"), bar = document.getElementById("bar"), pct = document.getElementById("pct"), err = document.getElementById("err");
@@ -601,7 +600,6 @@ const KNOWN = [{"question": "Brand", "answer": "Breath Lab"}, {"question": "Prod
       }).filter(x => x.question);
       return { num, title, items };
     });
-    sections.unshift({ num: "00", title: "Already discussed in chat", items: KNOWN });
     const payload = {
       name: form.querySelector("#name").value.trim(), email: form.querySelector("#email").value.trim(),
       business: form.querySelector("#biz").value.trim(), type: form.querySelector("#subject").value, service: form.querySelector("#service").value,
