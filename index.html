@@ -69,8 +69,7 @@ a{color:inherit}
 .logo.mark{--src:url(assets/mark.png);aspect-ratio:476/567}
 
 /* header */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:var(--on-navy);transition:box-shadow var(--t-mid) var(--ease)}
-header.scrolled{box-shadow:0 8px 24px -12px rgba(8,14,28,.55)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:var(--on-navy);box-shadow:0 10px 28px -10px rgba(4,8,18,.7),0 1px 0 rgba(255,255,255,.04)}
 .bar{display:flex;align-items:center;gap:16px;min-height:72px;transition:min-height var(--t-mid) var(--ease)}
 header.scrolled .bar{min-height:60px}
 .brand{display:flex;align-items:center;text-decoration:none;color:#fff}
@@ -110,19 +109,19 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .linkbtn{font:700 .92rem var(--body);border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;text-decoration:none}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;overflow:hidden;padding-block:clamp(48px,7vw,96px) clamp(56px,8vw,110px)}
+.hero{position:relative;overflow:hidden;padding-block:clamp(16px,2.5vw,36px) clamp(44px,6vw,80px)}
 .hero::before{content:"";position:absolute;inset:auto -20% -40% auto;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;
   background:radial-gradient(closest-side,rgba(110,143,78,.28),rgba(110,143,78,0));pointer-events:none}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(3.2rem,8.6vw,7rem);font-weight:900;letter-spacing:-.035em;line-height:.92}
+.hero h1{font-size:clamp(2.9rem,6.6vw,5.4rem);font-weight:900;letter-spacing:-.035em;line-height:.92}
 .hero h1 .line{display:block}
 .hero .sub{margin-top:22px;font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:600;color:#fff;max-width:30ch;line-height:1.4}
 .hero .lede{margin-top:14px}
 .hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 
 /* hero visual: photo with live status cards */
-.hv{position:relative;max-width:520px;margin-inline:auto;width:100%;padding:28px 0 36px;--px:0;--py:0}
+.hv{position:relative;max-width:460px;margin-inline:auto;width:100%;padding:28px 0 36px;--px:0;--py:0}
 .hv-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/4.6;background:var(--navy-2);box-shadow:0 50px 80px -40px rgba(0,0,0,.7);margin-left:clamp(24px,6%,48px)}
 .hv-photo img{width:100%;height:100%;object-fit:cover}
 .hv-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,32,58,0) 55%,rgba(23,32,58,.55))}
@@ -506,6 +505,35 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .role .btn{grid-row:1/span 3;grid-column:2;padding:11px 20px}
 .role.fade-in{animation:fade .35s var(--ease)}
 @media (max-width:600px){.role{grid-template-columns:1fr}.role .btn{grid-row:auto;grid-column:1;justify-self:start;margin-top:8px}.role:hover{padding-inline:4px}}
+
+/* ---------- ROLE WALL (people with job cards) ---------- */
+.rolewall{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(8px,2vw,24px);margin-top:12px}
+.rp{position:relative;flex:0 1 360px;aspect-ratio:1/1;max-width:100%}
+.rp-blob{position:absolute;z-index:0;left:6%;right:6%;bottom:6%;height:46%;border-radius:999px;background:radial-gradient(closest-side,rgba(201,221,180,.55),rgba(201,221,180,.18) 70%,transparent 100%)}
+.rp-person{position:absolute;z-index:1;bottom:0;height:100%;width:auto;max-width:none;filter:drop-shadow(0 18px 24px rgba(16,24,40,.18));-webkit-mask-image:linear-gradient(0deg,transparent,#000 7%);mask-image:linear-gradient(0deg,transparent,#000 7%)}
+.rp.left .rp-person{left:2%}
+.rp.right .rp-person{right:2%}
+.rcard{position:absolute;z-index:2;top:30%;width:min(62%,230px);display:grid;gap:6px;padding:14px 16px;border-radius:16px;text-decoration:none;color:#1C2740;
+  background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 22px 40px -24px rgba(16,24,40,.45);transform:rotate(var(--rot));transition:transform var(--t-mid) var(--ease),box-shadow var(--t-mid),background var(--t-fast)}
+.rp.left .rcard{right:0}
+.rp.right .rcard{left:0}
+.rcard:hover,.rcard:focus-visible{transform:rotate(0) translateY(-4px);background:rgba(255,255,255,.9);box-shadow:0 30px 50px -26px rgba(16,24,40,.55)}
+.rtags{display:flex;gap:5px;flex-wrap:wrap}
+.rtags span{font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid #D7DEE2;background:#fff;color:#34405A}
+.rcard b{font:800 1.2rem/1.1 var(--display);color:#1C2740}
+.rline{font-size:.82rem;color:#5A6580;line-height:1.35}
+.rgo{font-weight:800;color:#5E8243;font-size:.95rem}
+.rgo span{display:inline-block;transition:transform var(--t-mid) var(--ease)}
+.rcard:hover .rgo span{transform:translateX(4px)}
+.motion .rp .rcard{animation:bob 3.6s ease-in-out infinite alternate}
+.motion .rp:nth-child(2) .rcard{animation-delay:.5s}.motion .rp:nth-child(3) .rcard{animation-delay:1s}.motion .rp:nth-child(4) .rcard{animation-delay:1.5s}.motion .rp:nth-child(5) .rcard{animation-delay:2s}
+.rp.fade-in{animation:fade .35s var(--ease)}
+.roles-band{background:linear-gradient(180deg,#F4F6F5,#EDF2E8);color:#34405A}
+.roles-band .h2{color:#1C2740}
+.roles-band .filters button{color:#1C2740;border-color:#D7DEE2}
+.roles-band .filters button[aria-pressed="true"]{background:#1C2740;color:#F4F6F5;border-color:#1C2740}
+@media (max-width:420px){.rcard{width:64%;padding:11px 12px}.rcard b{font-size:1.02rem}}
 
 /* ---------- FORMS ---------- */
 form{display:grid;gap:18px}
@@ -1011,7 +1039,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
     </div>
   </div>
 
-  <div class="band">
+  <div class="band roles-band panel" style="margin-top:14px">
     <div class="wrap">
       <h2 class="h2">Open roles</h2>
       <div class="filters" role="group" aria-label="Filter roles">
@@ -1019,12 +1047,32 @@ footer{padding-block:56px 40px;font-size:.95rem}
         <button type="button" aria-pressed="false" data-f="ops">Operations</button>
         <button type="button" aria-pressed="false" data-f="mkt">Marketing</button>
       </div>
-      <div class="roles" id="roles">
-        <article class="role" data-c="ops"><div class="tags"><span>Operations</span><span>Remote</span></div><h3>Virtual Assistant</h3><p>Run admin, inbox, calendar and operations for one dedicated client using AI-assisted workflows.</p><a class="btn ink" href="#apply" data-role="Virtual Assistant">Apply <span class="arr" aria-hidden="true">→</span></a></article>
-        <article class="role" data-c="ops"><div class="tags"><span>Operations</span><span>Remote</span></div><h3>Business Process Specialist</h3><p>Own a client process end to end, document it, and make it faster each month.</p><a class="btn ink" href="#apply" data-role="Business Process Specialist">Apply <span class="arr" aria-hidden="true">→</span></a></article>
-        <article class="role" data-c="mkt"><div class="tags"><span>Marketing</span><span>Remote</span></div><h3>Content Creator</h3><p>Write and design on-brand content. Use AI to move fast, and your judgement to keep it human.</p><a class="btn ink" href="#apply" data-role="Content Creator">Apply <span class="arr" aria-hidden="true">→</span></a></article>
-        <article class="role" data-c="mkt"><div class="tags"><span>Marketing</span><span>Remote</span></div><h3>Social Media Manager</h3><p>Plan, publish and grow client channels against clear, measurable goals.</p><a class="btn ink" href="#apply" data-role="Social Media Manager">Apply <span class="arr" aria-hidden="true">→</span></a></article>
-        <article class="role" data-c="ops mkt"><div class="tags"><span>Any specialty</span><span>Contract</span></div><h3>Independent Contractor</h3><p>Experienced specialist? Join our talent pool for scoped, high-impact client projects.</p><a class="btn ink" href="#apply" data-role="Independent Contractor">Apply <span class="arr" aria-hidden="true">→</span></a></article>
+      <div class="rolewall" id="roles">
+        <div class="rp left" data-c="ops">
+          <span class="rp-blob" aria-hidden="true"></span>
+          <img class="rp-person" src="assets/photos/role-va.webp" alt="" loading="lazy" width="840" height="1190">
+          <a class="rcard" href="#apply" data-role="Virtual Assistant" style="--rot:-3deg"><span class="rtags"><span>Operations</span><span>Remote</span></span><b>Virtual Assistant</b><span class="rline">Admin, inbox and calendar for one dedicated client</span><span class="rgo">Apply <span aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="rp right" data-c="ops">
+          <span class="rp-blob" aria-hidden="true"></span>
+          <img class="rp-person" src="assets/photos/role-bps.webp" alt="" loading="lazy" width="840" height="1190">
+          <a class="rcard" href="#apply" data-role="Business Process Specialist" style="--rot:2.5deg"><span class="rtags"><span>Operations</span><span>Remote</span></span><b>Business Process Specialist</b><span class="rline">Own a client process end to end</span><span class="rgo">Apply <span aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="rp right" data-c="mkt">
+          <span class="rp-blob" aria-hidden="true"></span>
+          <img class="rp-person" src="assets/photos/role-cc.webp" alt="" loading="lazy" width="840" height="1190">
+          <a class="rcard" href="#apply" data-role="Content Creator" style="--rot:2deg"><span class="rtags"><span>Marketing</span><span>Remote</span></span><b>Content Creator</b><span class="rline">On-brand posts, copy and visuals</span><span class="rgo">Apply <span aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="rp left" data-c="mkt">
+          <span class="rp-blob" aria-hidden="true"></span>
+          <img class="rp-person" src="assets/photos/role-smm.webp" alt="" loading="lazy" width="840" height="1190">
+          <a class="rcard" href="#apply" data-role="Social Media Manager" style="--rot:-2.5deg"><span class="rtags"><span>Marketing</span><span>Remote</span></span><b>Social Media Manager</b><span class="rline">Plan, publish and grow channels</span><span class="rgo">Apply <span aria-hidden="true">→</span></span></a>
+        </div>
+        <div class="rp left" data-c="ops mkt">
+          <span class="rp-blob" aria-hidden="true"></span>
+          <img class="rp-person" src="assets/photos/role-ic.webp" alt="" loading="lazy" width="840" height="1190">
+          <a class="rcard" href="#apply" data-role="Independent Contractor" style="--rot:1.5deg"><span class="rtags"><span>Any specialty</span><span>Contract</span></span><b>Independent Contractor</b><span class="rline">Scoped, high-impact projects</span><span class="rgo">Apply <span aria-hidden="true">→</span></span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1272,7 +1320,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
   const fb = [...document.querySelectorAll('.filters button')];
   fb.forEach(b => b.onclick = () => {
     fb.forEach(x => x.setAttribute('aria-pressed', x === b));
-    document.querySelectorAll('.role').forEach(r => {
+    document.querySelectorAll('.rp').forEach(r => {
       const show = b.dataset.f === 'all' || r.dataset.c.split(' ').includes(b.dataset.f);
       r.hidden = !show; r.classList.remove('fade-in'); if (show && !reduce) { void r.offsetWidth; r.classList.add('fade-in'); }
     });
