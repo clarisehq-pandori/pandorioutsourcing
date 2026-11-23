@@ -19,8 +19,8 @@
 /* Pandori. Navy brand bands alternate with paper sections. One signature moment: the hero "team" constellation.
    Motion: a single load sequence in the hero, then motion only where it explains something
    (problems giving way to fixes, the how-it-works line filling) or answers an action. */
-:root{
-  --paper:#F4F6F5; --surface:#FFFFFF; --ink:#1C2740; --body-ink:#34405A; --muted:#5A6580; --line:#D7DEE2;
+:root{color-scheme:light;
+  --paper:#FFFFFF; --surface:#F4F7F2; --ink:#1C2740; --body-ink:#34405A; --muted:#5A6580; --line:#D7DEE2;
   --navy:#202C44; --navy-2:#2A3954; --on-navy:#FFFFFF; --navy-soft:#BAC4D7;
   --forest:#2E4733; --forest-2:#3A5940; --on-forest:#F3F7F0; --leaf:#5E8243; --sage:#C9DDB4; --leaf-soft:#E4ECDC;
   --danger:#B4483C;
@@ -30,14 +30,6 @@
   --ease:cubic-bezier(.2,.7,.2,1); --t-fast:180ms; --t-mid:320ms; --t-slow:640ms;
   --r-lg:22px; --r-md:14px; --r-sm:10px;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#121513; --surface:#1A1F1C; --ink:#EEF1F6; --body-ink:#D2D8D3; --muted:#A6AFA8; --line:#2A322D;
-  --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
-  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }}
-:root[data-theme="dark"]{
-  --paper:#121513; --surface:#1A1F1C; --ink:#EEF1F6; --body-ink:#D2D8D3; --muted:#A6AFA8; --line:#2A322D;
-  --navy:#17203A; --navy-2:#202B47; --navy-soft:#AEB8CC;
-  --forest:#1F3226; --forest-2:#2A4231; --leaf:#A3C287; --leaf-soft:#22301F; --danger:#F08F80; --shade-1:rgba(3,6,12,.55); --shade-2:rgba(6,10,20,.6); color-scheme:dark }
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -108,8 +100,6 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .btn.ghost:hover{border-color:#fff}
 .btn.ink{background:var(--ink);color:var(--paper)}
 .btn.leaf{background:var(--leaf);color:#fff}
-:root[data-theme="dark"] .btn.leaf{color:#13200F}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.leaf{color:#13200F}}
 .linkbtn{font:700 .92rem var(--body);border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;text-decoration:none}
 
 /* ---------- HERO ---------- */
