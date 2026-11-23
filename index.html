@@ -208,6 +208,16 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .ticker span::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--leaf)}
 @keyframes marq{to{transform:translateX(-50%)}}
 
+.gvs{display:grid;gap:10px;margin-top:24px}
+.gv{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px;transition:transform var(--t-mid) var(--ease),border-color var(--t-fast)}
+.gv:hover{transform:translateX(4px);border-color:var(--leaf)}
+.gv small{display:block;font-size:.74rem;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.gv b{display:block;font:800 1.02rem/1.2 var(--display);color:var(--ink)}
+.gv .gv-get{color:var(--leaf)}
+.gv-i{width:38px;height:38px;border-radius:11px;background:var(--leaf-soft);color:var(--leaf);display:grid;place-items:center}
+.gv-i svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gv-arrow{color:var(--leaf);font-weight:800}
+@media (max-width:480px){.gv{grid-template-columns:auto minmax(0,1fr);row-gap:6px}.gv-arrow{display:none}.gv>div:last-child{grid-column:2}}
 /* ---------- PROBLEMS: floating cards (Option C) ---------- */
 .pc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:center}
 @media (max-width:900px){.pc{grid-template-columns:1fr}}
@@ -592,6 +602,8 @@ footer{padding-block:56px 40px;font-size:.95rem}
 .js-motion .reveal:not(.in){opacity:0;transform:translateY(24px) scale(.985)}
 .reveal{transition:opacity .8s var(--ease),transform .8s var(--ease)}
 
+/* used by the replay loop to snap back to the start state instantly */
+.replay,.replay *,.replay::before,.replay::after,.replay *::before,.replay *::after{transition:none!important}
 @media (prefers-reduced-motion:reduce){
   .stamp .spin{animation:none!important}
   .ticker .track{animation:none!important;flex-wrap:wrap}
@@ -641,16 +653,13 @@ footer{padding-block:56px 40px;font-size:.95rem}
       <span class="blob b" style="width:180px;height:180px;left:40%;bottom:-60px;animation-delay:2s"></span>
       <svg class="leafy" style="top:-10px;left:52%" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/></svg>
       <div style="position:relative">
-        <div class="shot reveal"><img src="assets/photos/desk-plants.jpg" alt="A tidy home desk with a laptop, tea and plants" loading="lazy" width="1280" height="800"></div>
-        <span class="badge" style="top:-16px;left:24px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Dedicated</span>
-        <span class="badge" style="top:44%;right:-14px;animation-delay:.7s"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>AI-trained</span>
-        <span class="badge" style="bottom:-16px;left:80px;animation-delay:1.3s"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Supported</span>
+        <div class="shot reveal"><img src="assets/photos/team-collaborating.jpg" alt="A small team talking and smiling around a table with laptops" loading="lazy" width="1280" height="960"></div>
+        <span class="badge" style="bottom:-16px;left:24px"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Supported by Pandori</span>
       </div>
       <div>
         <h2>Looked-after people do better work.</h2>
-        <p>Cared for, properly incentivised and challenged to be great. It shows in your results.</p>
-        <div class="avatars" aria-label="Roles we match"><span style="background:#2E4733" title="Virtual Assistant">VA</span><span style="background:#202C44" title="Content Creator">CC</span><span style="background:#5E8243" title="Social Media Manager">SM</span><span style="background:#3A5940" title="Process Specialist">PS</span><span style="background:#2A3954" title="Independent Contractor">IC</span></div>
-        <div class="pills"><span>Inbox and calendar</span><span>Content calendars</span><span>Reporting</span><span>Community replies</span><span>Process docs</span></div>
+        <p>Here's what we give every Pandori professional, and what that means for your business.</p>
+        <div class="gvs"><div class="gv"><span class="gv-i"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><small>We give</small><b>Fair incentives</b></div><span class="gv-arrow" aria-hidden="true">→</span><div><small>You get</small><b class="gv-get">Motivated work</b></div></div><div class="gv"><span class="gv-i"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 4.6L19 9.8l-4.8 2.2L12 17l-2.2-5L5 9.8l4.8-2.2z"/><path d="M19 15l.9 2 2.1.9-2.1.9-.9 2-.9-2-2.1-.9 2.1-.9z"/></svg></span><div><small>We give</small><b>AI training</b></div><span class="gv-arrow" aria-hidden="true">→</span><div><small>You get</small><b class="gv-get">Faster results</b></div></div><div class="gv"><span class="gv-i"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><div><small>We give</small><b>A clear growth path</b></div><span class="gv-arrow" aria-hidden="true">→</span><div><small>You get</small><b class="gv-get">People who stay</b></div></div><div class="gv"><span class="gv-i"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9A5 5 0 0 1 12 6a5 5 0 0 1 9.3 6c-2.3 4.6-9.3 9-9.3 9z"/></svg></span><div><small>We give</small><b>Real support</b></div><span class="gv-arrow" aria-hidden="true">→</span><div><small>You get</small><b class="gv-get">Fewer restarts</b></div></div></div>
       </div>
     </div>
   </div>
@@ -1252,7 +1261,10 @@ footer{padding-block:56px 40px;font-size:.95rem}
       setTimeout(() => {
         roleEl.textContent = roles[k]; roleEl.classList.remove('out'); roleEl.classList.add('pre');
         void roleEl.offsetWidth; roleEl.classList.remove('pre');
-        bar.style.setProperty('--w', (62 + (k * 9) % 34) + '%');
+        bar.style.transition = 'none'; bar.style.setProperty('--w', '0%'); void bar.offsetWidth; bar.style.transition = '';
+        requestAnimationFrame(() => bar.style.setProperty('--w', (62 + (k * 9) % 34) + '%'));
+        const tick = hv.querySelector('.c2 .tick path');
+        if (tick) { tick.style.animation = 'none'; void tick.getBoundingClientRect(); tick.style.animation = 'drawTick .6s var(--ease) both'; }
       }, 450);
     }, 3200);
     let raf = 0;
@@ -1275,6 +1287,20 @@ footer{padding-block:56px 40px;font-size:.95rem}
   function refresh(){
     document.querySelectorAll('.view:not([hidden]) .pf:not(.in), .view:not([hidden]) .reveal:not(.in), .view:not([hidden]) .steps:not(.in), .view:not([hidden]) .pillars:not(.in), .view:not([hidden]) .pc:not(.in)').forEach(el => io ? io.observe(el) : el.classList.add('in'));
     onScroll();
+  }
+
+  /* ---------- replay: sequences loop while they are on screen ---------- */
+  if (!reduce) {
+    const loops = [['.pc', 8000], ['.steps', 9000], ['.pillars', 7000]];
+    loops.forEach(([sel, every]) => document.querySelectorAll(sel).forEach(el => {
+      setInterval(() => {
+        if (document.hidden || !el.offsetParent || !el.classList.contains('in')) return;
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        el.classList.add('replay'); el.classList.remove('in'); void el.offsetWidth; getComputedStyle(el, '::after').transform; el.querySelectorAll('.pillar').forEach(x => getComputedStyle(x, '::before').transform);
+        requestAnimationFrame(() => { el.classList.remove('replay'); setTimeout(() => el.classList.add('in'), 350); });
+      }, every);
+    }));
   }
 
   /* ---------- scroll-linked: header, steps line, photo parallax ---------- */
