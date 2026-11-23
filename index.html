@@ -224,10 +224,10 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 @media (max-width:900px){.pc{grid-template-columns:1fr}}
 .pc-list{margin-top:28px;border-top:1px solid var(--line)}
 .pc-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
-.pc-row .no{font:700 clamp(1.02rem,1.5vw,1.15rem)/1.25 var(--display);color:var(--muted);background:linear-gradient(var(--danger),var(--danger)) left 55%/var(--strike,100%) 2px no-repeat;justify-self:start;transition:background-size .8s cubic-bezier(.45,0,.25,1) calc(.4s + var(--k)*.35s)}
+.pc-row .no{font:700 clamp(1.02rem,1.5vw,1.15rem)/1.25 var(--display);color:var(--muted);background:linear-gradient(var(--danger),var(--danger)) left 55%/var(--strike,100%) 2px no-repeat;justify-self:start;transition:background-size .5s cubic-bezier(.45,0,.25,1) calc(.2s + var(--k)*.22s)}
 .pc-row .to{width:22px;height:2px;background:var(--leaf);position:relative}
 .pc-row .to::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--leaf);border-right:0}
-.pc-row .yes{font:800 clamp(1.05rem,1.6vw,1.2rem)/1.2 var(--display);color:var(--ink);opacity:var(--yo,1);transform:translateX(var(--yx,0));transition:opacity .6s var(--ease) calc(1s + var(--k)*.35s),transform .6s var(--ease) calc(1s + var(--k)*.35s)}
+.pc-row .yes{font:800 clamp(1.05rem,1.6vw,1.2rem)/1.2 var(--display);color:var(--ink);opacity:var(--yo,1);transform:translateX(var(--yx,0));transition:opacity .4s var(--ease) calc(.55s + var(--k)*.22s),transform .4s var(--ease) calc(.55s + var(--k)*.22s)}
 .pc-row:nth-child(1){--k:0}.pc-row:nth-child(2){--k:1}.pc-row:nth-child(3){--k:2}.pc-row:nth-child(4){--k:3}
 .js-motion .pc:not(.in){--strike:0%;--yo:0;--yx:-8px}
 @media (max-width:520px){.pc-row{grid-template-columns:1fr;gap:6px}.pc-row .to{display:none}}
@@ -239,10 +239,10 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .chip{position:absolute;z-index:2;display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 18px 34px -18px rgba(5,10,25,.55);font-weight:700;color:var(--navy);font-size:.95rem;white-space:nowrap;animation:bob 3.4s ease-in-out infinite alternate}
 .chip .dot{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;flex:none}
 .chip.bad .dot{background:#F6E2DC;color:#C8644F}
-.chip.bad b{font-weight:700;color:var(--muted);background:linear-gradient(#C8644F,#C8644F) left 55%/var(--strike,100%) 2px no-repeat;transition:background-size .7s var(--ease) .9s}
+.chip.bad b{font-weight:700;color:var(--muted);background:linear-gradient(#C8644F,#C8644F) left 55%/var(--strike,100%) 2px no-repeat;transition:background-size .45s var(--ease) .5s}
 .chip.good .dot{background:var(--sage);color:var(--forest)}
-.chip.good{opacity:var(--yo,1);transition:opacity .6s var(--ease) 1.6s}
-.chip.good+.chip.good{transition-delay:2s}
+.chip.good{opacity:var(--yo,1);transition:opacity .4s var(--ease) .9s}
+.chip.good+.chip.good{transition-delay:1.15s}
 @media (max-width:520px){.chip{font-size:.82rem;padding:8px 11px}.chip .dot{width:24px;height:24px}}
 
 /* ---------- PHOTO STATEMENT ---------- */
@@ -496,6 +496,14 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .crowd .c-l{margin-right:-6%}
 .crowd .badge{position:absolute;z-index:3}
 @media (max-width:860px){.sv-grid{grid-template-columns:1fr}.crowd{height:260px}}
+@media (min-width:1001px){
+  #how{overflow:hidden}
+  #how .how-top{grid-template-columns:1fr}
+  #how .steps{max-width:72%}
+  #how .how-person{position:absolute;right:3%;bottom:0;height:min(88%,560px);width:auto;margin:0;z-index:0}
+  #how .how-person img{position:static;transform:none;height:100%;width:auto;-webkit-mask-image:none;mask-image:none}
+  #how .wrap{position:relative;z-index:1}
+}
 /* ---------- ABOUT ---------- */
 .founder{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start;max-width:900px}
 @media (max-width:700px){.founder{grid-template-columns:1fr}}
@@ -733,13 +741,14 @@ footer{padding-block:56px 40px;font-size:.95rem}
   </div>
 
   <div class="forest band panel" id="how">
+    <div class="ph-person how-person"><span class="ph-ring" aria-hidden="true"></span><img src="assets/photos/person-how.webp" alt="" loading="lazy" width="840" height="1190"></div>
     <div class="wrap">
       <div class="how-top">
         <div>
           <h2 class="h2">How it works</h2>
           <p class="lede muted" style="margin-top:16px">From first conversation to a working partnership, in four steps.</p>
         </div>
-        <div class="ph-person how-person"><span class="ph-ring" aria-hidden="true"></span><img src="assets/photos/person-how.webp" alt="" loading="lazy" width="840" height="1190"></div>
+        
       </div>
       <ol class="steps" id="steps">
         <li class="step"><span class="dot">1</span><h3>Share your needs</h3><p>A short call about the role, your goals and your budget.</p></li>
@@ -1332,7 +1341,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 
   /* ---------- replay: sequences loop while they are on screen ---------- */
   if (!reduce) {
-    const loops = [['.pc', 8000], ['.steps', 9000], ['.pillars', 7000]];
+    const loops = [['.pc', 5000], ['.steps', 9000], ['.pillars', 7000]];
     loops.forEach(([sel, every]) => document.querySelectorAll(sel).forEach(el => {
       setInterval(() => {
         if (document.hidden || !el.offsetParent || !el.classList.contains('in')) return;
