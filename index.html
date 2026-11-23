@@ -410,17 +410,17 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .sp ul.inc svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:700px){nav a .hm{display:none}}
 .mockwrap.has-person{padding-top:clamp(40px,6vw,90px)}
-.sv-person{position:absolute;z-index:0;bottom:-4px;height:clamp(220px,26vw,330px);width:auto;max-width:none;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,transparent,#000 10%);mask-image:linear-gradient(0deg,transparent,#000 10%)}
-.has-person.r .sv-person{right:-4%}
-.has-person.l .sv-person{left:-4%}
+.sv-person{position:absolute;z-index:3;bottom:-4px;height:clamp(220px,26vw,330px);width:auto;max-width:none;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,transparent,#000 10%);mask-image:linear-gradient(0deg,transparent,#000 10%)}
+.has-person.r .sv-person{right:-1%}
+.has-person.l .sv-person{left:-1%}
 .has-person .mock{position:relative;z-index:1}
-.has-person.r .mock{margin-right:30%}
+.has-person.r .mock{margin-right:22%}
 .mockwrap .mock-chip{z-index:4}
 .has-person.l .mock-chip{left:auto!important;right:-12px!important;bottom:-18px!important;top:auto!important}
 .has-person.r .mock-chip{right:auto!important;left:-12px!important;top:auto!important;bottom:-18px!important}
 @media (max-width:900px){.has-person.l .mock-chip,.has-person.r .mock-chip{left:auto!important;right:8px!important}}
 .has-person .cal .post em{font-size:0;width:12px;height:12px;padding:0}
-.has-person.l .mock{margin-left:30%}
+.has-person.l .mock{margin-left:22%}
 @media (max-width:900px){.sv-person{top:0;bottom:auto;height:190px}.has-person.r .mock,.has-person.l .mock{margin:0}.has-person.r .sv-person{right:8px}.has-person.l .sv-person{left:8px}.mockwrap.has-person{padding-top:180px}}
 /* ---------- CALL PANEL ---------- */
 .call{background:var(--leaf-soft);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(24px,4vw,56px)}
