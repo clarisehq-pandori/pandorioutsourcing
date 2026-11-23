@@ -172,7 +172,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes drawStem{from{stroke-dashoffset:260}to{stroke-dashoffset:0}}
 @keyframes leaf{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
-@keyframes bob{to{margin-top:-8px}}
+@keyframes bob{to{margin-top:-14px}}
 
 /* ---------- FLOATING ELEMENTS (shared) ---------- */
 .floaty{position:relative;isolation:isolate}
@@ -380,6 +380,21 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .st-draft{background:var(--line);color:var(--ink)}
 .st-live{background:var(--sage);color:var(--forest)}
 .cal .post.empty{background:transparent;border-style:dashed}
+/* livelier mock animations */
+.task,.cal .post{transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease)}
+.task.pop{animation:taskPop .55s var(--ease)}
+.task.pop .ck{animation:ckPop .55s var(--ease)}
+.task.ticked{border-color:var(--leaf)}
+.task .t{background:linear-gradient(currentColor,currentColor) 0 55%/0 2px no-repeat;transition:background-size .45s var(--ease),color .35s}
+.task.ticked .t{text-decoration:none;background-size:100% 2px}
+.cal .post.pop{animation:postPop .6s var(--ease)}
+.cal .post em{transition:background .3s,color .3s}
+.cal .post.st-new{border-style:solid;animation:postPop .6s var(--ease)}
+.mock-chip.cheer{animation:chipCheer .7s var(--ease)}
+@keyframes taskPop{0%{transform:none}35%{transform:translateX(8px) scale(1.03);box-shadow:0 0 0 4px color-mix(in srgb,var(--leaf) 35%,transparent)}100%{transform:none;box-shadow:none}}
+@keyframes ckPop{0%{transform:scale(.6)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes postPop{0%{transform:scale(1)}40%{transform:scale(1.08) translateY(-4px);box-shadow:0 0 0 4px color-mix(in srgb,var(--leaf) 45%,transparent),0 14px 24px -14px rgba(0,0,0,.6)}100%{transform:none;box-shadow:none}}
+@keyframes chipCheer{0%{transform:scale(1)}40%{transform:scale(1.12) rotate(-3deg)}100%{transform:scale(1)}}
 .mock-chip{position:absolute;z-index:2;display:flex;gap:9px;align-items:center;background:#fff;color:var(--navy);border-radius:14px;padding:9px 14px 9px 9px;font-weight:700;font-size:.88rem;box-shadow:0 18px 34px -18px rgba(5,10,25,.55);animation:bob 3.2s ease-in-out infinite alternate}
 .mock-chip i{width:26px;height:26px;border-radius:8px;background:var(--sage);color:var(--forest);display:grid;place-items:center}
 .mock-chip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
@@ -1307,7 +1322,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
         const tick = hv.querySelector('.c2 .tick path');
         if (tick) { tick.style.animation = 'none'; void tick.getBoundingClientRect(); tick.style.animation = 'drawTick .6s var(--ease) both'; }
       }, 450);
-    }, 3200);
+    }, 2200);
     let raf = 0;
     hv.closest('.hero').addEventListener('pointermove', e => {
       if (e.pointerType !== 'mouse') return;
@@ -1332,7 +1347,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 
   /* ---------- replay: sequences loop while they are on screen ---------- */
   if (!reduce) {
-    const loops = [['.pc', 8000], ['.steps', 9000], ['.pillars', 7000]];
+    const loops = [['.pc', 5000], ['.steps', 5500], ['.pillars', 4500]];
     loops.forEach(([sel, every]) => document.querySelectorAll(sel).forEach(el => {
       setInterval(() => {
         if (document.hidden || !el.offsetParent || !el.classList.contains('in')) return;
@@ -1375,16 +1390,38 @@ footer{padding-block:56px 40px;font-size:.95rem}
   const todo = document.getElementById('todo');
   if (todo) {
     const tasks = [...todo.querySelectorAll('.task')];
+    const chip = todo.closest('.mockwrap')?.querySelector('.mock-chip');
     if (reduce) tasks.forEach(t => t.classList.add('ticked'));
     else {
-      let k = 0;
+      let k = 0, hold = 0;
       setInterval(() => {
         if (document.hidden || !todo.offsetParent) return;
-        if (k < tasks.length) tasks[k++].classList.add('ticked');
-        else { tasks.forEach(t => t.classList.remove('ticked')); k = 0; }
-      }, 1400);
+        if (hold > 0) { hold--; return; }
+        if (k < tasks.length) {
+          const t = tasks[k++]; t.classList.add('ticked'); t.classList.remove('pop'); void t.offsetWidth; t.classList.add('pop');
+          if (k === tasks.length && chip) { chip.classList.remove('cheer'); void chip.offsetWidth; chip.classList.add('cheer'); hold = 2; }
+        } else { tasks.forEach(t => t.classList.remove('ticked', 'pop')); k = 0; }
+      }, 650);
     }
   }
+
+  /* ---------- content calendars move posts along: Draft -> Scheduled -> Posted ---------- */
+  if (!reduce) document.querySelectorAll('.cal').forEach(cal => {
+    const order = ['st-draft', 'st-sched', 'st-live'], label = {'st-draft': 'Draft', 'st-sched': 'Scheduled', 'st-live': 'Posted'};
+    const posts = [...cal.querySelectorAll('.post:not(.empty)')];
+    const start = posts.map(p => p.querySelector('em').className);
+    const reply = cal.parentElement.querySelector('.task');
+    let hold = 0;
+    const bump = el => { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); };
+    setInterval(() => {
+      if (document.hidden || !cal.offsetParent) return;
+      if (hold > 0) { if (--hold === 0) posts.forEach((p, i) => { const em = p.querySelector('em'); em.className = start[i]; em.textContent = label[start[i]]; }); return; }
+      const next = posts.find(p => p.querySelector('em').className !== 'st-live');
+      if (!next) { if (reply) { reply.classList.remove('pop'); void reply.offsetWidth; reply.classList.add('pop'); } hold = 3; return; }
+      const em = next.querySelector('em'), cls = order[order.indexOf(em.className) + 1];
+      em.className = cls; em.textContent = label[cls]; bump(next);
+    }, 750);
+  });
 
   document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click', () => { document.getElementById('c-need').value = a.dataset.need; }));
 
