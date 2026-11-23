@@ -81,14 +81,14 @@ nav a[aria-current="page"]{color:#fff}
 nav a[aria-current="page"]::after,nav a:hover::after{transform:scaleX(1)}
 nav .nav-cta{margin-left:10px;background:var(--sage);color:var(--navy);border-radius:999px;padding:9px 18px;font-weight:700}
 nav .nav-cta::after{display:none}
-nav .nav-cta:hover{color:var(--navy);background:#fff}
+nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);background:#fff}
 @media (max-width:700px){
   .bar{flex-wrap:wrap;padding-block:10px;gap:6px}
   header.scrolled .bar{min-height:0}
   nav{margin-left:0;width:100%;justify-content:space-between}
   nav a{padding:6px 4px;font-size:.95rem;white-space:nowrap}
   nav a::after{left:4px;right:4px}
-  nav .nav-cta{display:none}
+  nav .nav-cta{margin-left:0;padding:6px 14px}
 }
 
 /* buttons */
@@ -401,8 +401,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
   <div class="wrap bar">
     <a class="brand" href="#home" aria-label="Pandori home"><span class="logo word"></span></a>
     <nav aria-label="Main">
-      <a href="#home">Home</a><a href="#about">About us</a><a href="#hiring">Hiring</a><a href="#contact">Contact</a>
-      <a class="nav-cta" href="#contact">Get matched</a>
+      <a href="#home">Home</a><a href="#about">About us</a><a href="#hiring">Hiring</a><a class="nav-cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -760,7 +759,7 @@ footer{padding-block:56px 40px;font-size:.95rem}
 
   /* ---------- routing ---------- */
   const views = [...document.querySelectorAll('[data-view]')];
-  const links = [...document.querySelectorAll('nav a:not(.nav-cta)')];
+  const links = [...document.querySelectorAll('nav a')];
   let first = true;
   function route(){
     const h = location.hash.slice(1) || 'home';
