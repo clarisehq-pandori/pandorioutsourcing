@@ -420,10 +420,10 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .call-card li i{width:22px;height:22px;border-radius:50%;background:var(--sage);color:var(--forest);display:grid;place-items:center;flex:none;margin-top:2px}
 .call-card li svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 .call-card .btn{margin-top:26px;width:100%;justify-content:center}
-.call-photo{position:relative;border-radius:24px;overflow:visible;min-height:420px}
-.call-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px}
+.call-photo{position:relative;border-radius:24px;overflow:visible;aspect-ratio:4/3;max-width:100%;align-self:center}
+.call-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:24px}
 .call-photo .stamp{right:-20px;top:-36px}
-@media (max-width:560px){.call-photo{min-height:300px}.call-photo .stamp{right:4px;width:118px}}
+@media (max-width:560px){.call-photo{min-height:0}.call-photo .stamp{right:4px;width:118px}}
 .vbar{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:10px;background:rgba(23,32,58,.85);padding:10px 14px;border-radius:999px}
 .vbar span{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff}
 .vbar span.end{background:#C8644F}
