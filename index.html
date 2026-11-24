@@ -320,7 +320,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 @keyframes turn{to{transform:rotate(360deg)}}
 
 /* ---------- SERVICE PANELS ---------- */
-.sp{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:center;padding:clamp(28px,5vw,64px)}
+.sp{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:center;--pb:clamp(28px,5vw,64px);padding:var(--pb) max(var(--pb),calc((100% - 1180px)/2))}
 @media (max-width:900px){.sp{grid-template-columns:1fr}}
 .sp.light{background:var(--surface);box-shadow:0 1px 0 var(--line)}
 .sp.dark{background:var(--forest);color:var(--on-forest)}
@@ -399,19 +399,21 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .sp ul.inc li i{width:22px;height:22px;border-radius:50%;background:var(--sage);color:var(--forest);display:grid;place-items:center;flex:none;margin-top:2px}
 .sp ul.inc svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:700px){nav a .hm{display:none}}
-.mockwrap.has-person{padding-top:clamp(40px,6vw,90px)}
-.sv-person{position:absolute;z-index:3;bottom:-4px;height:clamp(220px,26vw,330px);width:auto;max-width:none;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,transparent,#000 10%);mask-image:linear-gradient(0deg,transparent,#000 10%)}
+.mockwrap.has-person{padding-top:clamp(40px,6vw,90px);align-self:end}
+.sp:has(.has-person){align-items:end}
+.sp:has(.has-person)>div:first-child{align-self:center}
+.sv-person{position:absolute;z-index:3;bottom:calc(-1 * var(--pb));height:clamp(300px,34vw,470px);width:auto;max-width:none;pointer-events:none}
 .has-person.r .sv-person{right:-1%}
 .has-person.l .sv-person{left:-1%}
 .has-person .mock{position:relative;z-index:1}
-.has-person.r .mock{margin-right:22%}
+.has-person.r .mock{margin-right:30%}
 .mockwrap .mock-chip{z-index:4}
 .has-person.l .mock-chip{left:auto!important;right:-12px!important;bottom:-18px!important;top:auto!important}
 .has-person.r .mock-chip{right:auto!important;left:-12px!important;top:auto!important;bottom:-18px!important}
 @media (max-width:900px){.has-person.l .mock-chip,.has-person.r .mock-chip{left:auto!important;right:8px!important}}
 .has-person .cal .post em{font-size:0;width:12px;height:12px;padding:0}
-.has-person.l .mock{margin-left:22%}
-@media (max-width:900px){.sv-person{top:0;bottom:auto;height:190px}.has-person.r .mock,.has-person.l .mock{margin:0}.has-person.r .sv-person{right:8px}.has-person.l .sv-person{left:8px}.mockwrap.has-person{padding-top:180px}}
+.has-person.l .mock{margin-left:30%}
+@media (max-width:900px){.sv-person{top:0;bottom:auto;height:210px}.has-person.r .mock,.has-person.l .mock{margin:0}.has-person.r .sv-person{right:8px}.has-person.l .sv-person{left:8px}.mockwrap.has-person{padding-top:180px}}
 /* ---------- CALL PANEL ---------- */
 .call{background:var(--leaf-soft);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(24px,4vw,56px)}
 @media (max-width:900px){.call{grid-template-columns:1fr}}
@@ -553,7 +555,7 @@ nav .nav-cta:hover,nav .nav-cta[aria-current="page"]{color:var(--navy);backgroun
 .rolewall{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(8px,2vw,24px);margin-top:12px}
 .rp{position:relative;flex:0 1 360px;aspect-ratio:1/1;max-width:100%}
 .rp-blob{position:absolute;z-index:0;left:6%;right:6%;bottom:6%;height:46%;border-radius:999px;background:radial-gradient(closest-side,rgba(201,221,180,.55),rgba(201,221,180,.18) 70%,transparent 100%)}
-.rp-person{position:absolute;z-index:1;bottom:0;height:100%;width:auto;max-width:none;-webkit-mask-image:linear-gradient(0deg,transparent,#000 7%);mask-image:linear-gradient(0deg,transparent,#000 7%)}
+.rp-person{position:absolute;z-index:1;bottom:0;height:100%;width:auto;max-width:none}
 .rp.left .rp-person{left:2%}
 .rp.right .rp-person{right:2%}
 .rcard{position:absolute;z-index:2;top:30%;width:min(62%,230px);display:grid;gap:6px;padding:14px 16px;border-radius:16px;text-decoration:none;color:#1C2740;
